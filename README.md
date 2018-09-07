@@ -18,5 +18,7 @@ A seguinte lista apresenta as etapas pretendidas para o projeto:
 * Criar instalador provendo todos os recursos necessários para o programa.
 * Última fase de testes: funcionamento e desempenho em outras máquinas.
 
+Items com a marca &#10003; ao final representam estágios concluídos.
+
 <hr />
 Data prevista para a finalização: 22/09/2018
