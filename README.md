@@ -21,4 +21,4 @@ A seguinte lista apresenta as etapas pretendidas para o projeto:
 * Última fase de testes: funcionamento e desempenho em outras máquinas.
 
 <hr />
-Data de finalização: 22/09/2018
+Data prevista para a finalização: 22/09/2018
