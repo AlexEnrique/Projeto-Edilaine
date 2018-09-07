@@ -2,8 +2,6 @@
 
 Este repositória se refere ao projeto de um software criador de currículo em Java.
 
-No momento, o desenvolvimento se encontra na etapa de produção da GUI do software.
-
 
 A seguinte lista apresenta as etapas pretendidas para o projeto:
 
