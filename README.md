@@ -18,4 +18,3 @@ A seguinte lista apresenta as etapas pretendidas para o projeto:
 
 <hr />
 Data de finalização: 22/09/2018
-
