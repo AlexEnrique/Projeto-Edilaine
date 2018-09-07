@@ -2,6 +2,8 @@ package projetoedilaine;
 
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+
 
 /**
  *
@@ -10,9 +12,13 @@ import javax.swing.*;
 public class Janela0 extends javax.swing.JFrame {
 
     int x, y;
-    int alpha = 0;
+    int buttonsAlreadyDisplayed = 0;
+    int cvalue = 255;
     Timer fadeInJL3;
-    ActionListener fadeInJL3Action;
+    Timer fadeInJL4;
+    Timer fadeInJL5;
+    Timer fadeInJL7;
+    Timer fadeInJL8andButtons;
 
     public Janela0() {
         initComponents();
@@ -29,8 +35,8 @@ public class Janela0 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonExit = new javax.swing.JButton();
+        jButtonMinimize = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -46,7 +52,7 @@ public class Janela0 extends javax.swing.JFrame {
         setTitle("Criador de currículo CONTRETEC");
         setBackground(new java.awt.Color(255, 255, 255));
         setBounds(new java.awt.Rectangle(0, 0, 900, 550));
-        setLocation(new java.awt.Point(100, 100));
+        // setLocation(new java.awt.Point(100, 100));
         setMaximumSize(new java.awt.Dimension(900, 550));
         setMinimumSize(new java.awt.Dimension(900, 550));
         setUndecorated(true);
@@ -58,29 +64,47 @@ public class Janela0 extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setBackground(new java.awt.Color(62, 62, 62));
-        jButton1.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("x");
-        jButton1.setToolTipText("");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.setFocusPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExit.setBackground(new java.awt.Color(62, 62, 62));
+        jButtonExit.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonExit.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jButtonExit.setText("x");
+        // jButtonExit.setToolTipText("");
+        jButtonExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonExit.setFocusPainted(false);
+        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonExitActionPerformed(evt);
+            }
+        });
+        jButtonExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonExitMouseEntered(evt);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonExitMouseExited(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(62, 62, 62));
-        jButton3.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("-");
-        jButton3.setToolTipText("");
-        jButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton3.setFocusPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMinimize.setBackground(new java.awt.Color(62, 62, 62));
+        jButtonMinimize.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonMinimize.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jButtonMinimize.setText("-");
+        // jButtonMinimize.setToolTipText("");
+        jButtonMinimize.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonMinimize.setFocusPainted(false);
+        jButtonMinimize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonMinimizeActionPerformed(evt);
+            }
+        });
+        jButtonMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonMinimizeMouseEntered(evt);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonMinimizeMouseExited(evt);
             }
         });
 
@@ -103,9 +127,9 @@ public class Janela0 extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1))
         );
         jPanel2Layout.setVerticalGroup(
@@ -114,8 +138,8 @@ public class Janela0 extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
@@ -123,59 +147,159 @@ public class Janela0 extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/LogoEmpresa.png")); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(62, 62, 62));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Bem-vindo!");
 
-    jLabel3.setText("Bem-vindo!");
     // Fade-in timer ====================================================
-    fadeInJL3 = new Timer(5, new ActionListener() {
+    fadeInJL3 = new Timer(3, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent evt) {
-        jLabel3.setForeground(new java.awt.Color(62, 62, 62, alpha++));
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255, alpha));
+        cvalue--;
+        jLabel3.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
 
-        if (alpha == 255) {
+        if (cvalue == 62) {
           fadeInJL3.stop();
+          cvalue = 255;
+          fadeInJL5.setInitialDelay(300);
+          fadeInJL5.start();
         }
       }
     });
 
-    fadeInJL3.setInitialDelay(300);
+    fadeInJL3.setInitialDelay(1000);
     fadeInJL3.start();
     // ==================================================================
 
     jLabel4.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-    jLabel4.setText("O software foi desenvolvido para que você pudesse criar um currículo destacando-se em designer");
+    jLabel4.setText("Desenvolvemos este software para que você pudesse criar um currículo de um jeito prático");
+    jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+  // Fade-in timer ====================================================
+    fadeInJL4 = new Timer(3, new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+        cvalue--;
+        jLabel4.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
+        jLabel6.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
+        if (cvalue == 62) {
+          fadeInJL4.stop();
+          cvalue = 255;
+          fadeInJL7.setInitialDelay(2500);
+          fadeInJL7.start();
+        }
+      }
+    });
+    // ==================================================================
 
     jLabel5.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
     jLabel5.setText("Este é o criador de currículo da CONTRETEC desenvolvido para você.");
+    jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+    // Fade-in timer ====================================================
+    fadeInJL5 = new Timer(3, new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+        cvalue--;
+        jLabel5.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
+
+        if (cvalue == 62) {
+          fadeInJL5.stop();
+          cvalue = 255;
+          fadeInJL4.setInitialDelay(1000);
+          fadeInJL4.start();
+        }
+      }
+    });
+    // ==================================================================
 
     jLabel6.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-    jLabel6.setText("de um jeito prático e simples.");
+    jLabel6.setText("e simples destacando-se em designer e qualidade.");
+    jLabel6.setForeground(new java.awt.Color(255, 255, 255));
 
     jLabel7.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
     jLabel7.setText("Vamos começar! ");
+    jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+
+    // Fade-in timer ====================================================
+    fadeInJL7 = new Timer(3, new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+        cvalue--;
+        jLabel7.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
+
+        if (cvalue == 62) {
+          fadeInJL7.stop();
+          cvalue = 255;
+          fadeInJL8andButtons.setInitialDelay(1000);
+          fadeInJL8andButtons.start();
+        }
+      }
+    });
+    // ==================================================================
 
     jLabel8.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
     jLabel8.setText("Escolha uma das opções abaixo.");
+    jLabel8.setForeground(new java.awt.Color(255, 255, 255));
 
-    jButton2.setBackground(new java.awt.Color(62, 62, 62));
+    jButton2.setBackground(new java.awt.Color(255, 255, 255));
     jButton2.setForeground(new java.awt.Color(255, 255, 255));
     jButton2.setText("Abrir currículo existente");
+    jButton2.setBorder(new LineBorder(new java.awt.Color(255, 255, 255), 1));
     jButton2.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton2ActionPerformed(evt);
         }
     });
+    jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            jButton2MouseEntered(evt);
+        }
 
-    jButton4.setBackground(new java.awt.Color(62, 62, 62));
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            jButton2MouseExited(evt);
+        }
+    });
+
+    jButton4.setBackground(new java.awt.Color(255, 255, 255));
     jButton4.setForeground(new java.awt.Color(255, 255, 255));
     jButton4.setText("Criar novo currículo");
+    jButton4.setBorder(new LineBorder(new java.awt.Color(255, 255, 255), 1));
     jButton4.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton4ActionPerformed(evt);
         }
     });
+    jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            jButton4MouseEntered(evt);
+        }
+
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            jButton4MouseExited(evt);
+        }
+    });
+
+    // Fade-in timer ====================================================
+    fadeInJL8andButtons = new Timer(3, new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+        cvalue--;
+        jLabel8.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
+
+        jButton2.setBackground(new java.awt.Color(cvalue, cvalue, cvalue));
+        jButton2.setBorder(new LineBorder(new java.awt.Color(cvalue, cvalue, cvalue), 1));
+
+        jButton4.setBackground(new java.awt.Color(cvalue, cvalue, cvalue));
+        jButton4.setBorder(new LineBorder(new java.awt.Color(cvalue, cvalue, cvalue), 1));
+
+        if (cvalue == 62) {
+          fadeInJL8andButtons.stop();
+          cvalue = 255;
+          buttonsAlreadyDisplayed = 1;
+        }
+      }
+    });
+    // ==================================================================
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -249,13 +373,13 @@ public class Janela0 extends javax.swing.JFrame {
     setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonExitActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMinimizeActionPerformed
         this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonMinimizeActionPerformed
 
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
         x = evt.getX();
@@ -275,6 +399,56 @@ public class Janela0 extends javax.swing.JFrame {
         new janelaTemplates().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {
+      if (buttonsAlreadyDisplayed == 1) {
+        jButton2.setBackground(new java.awt.Color(240, 240, 240));
+        jButton2.setForeground(new java.awt.Color(62, 62, 62));
+      }
+    }
+
+    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {
+      if (buttonsAlreadyDisplayed == 1) {
+        jButton2.setBackground(new java.awt.Color(62, 62, 62));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+      }
+    }
+
+    private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {
+      if (buttonsAlreadyDisplayed == 1) {
+        jButton4.setBackground(new java.awt.Color(240, 240, 240));
+        jButton4.setForeground(new java.awt.Color(62, 62, 62));
+      }
+    }
+
+    private void jButton4MouseExited(java.awt.event.MouseEvent evt) {
+      if (buttonsAlreadyDisplayed == 1) {
+        jButton4.setBackground(new java.awt.Color(62, 62, 62));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+      }
+    }
+
+    private void jButtonExitMouseEntered(java.awt.event.MouseEvent evt) {
+      jButtonExit.setBackground(new java.awt.Color(240, 240, 240));
+      jButtonExit.setForeground(new java.awt.Color(62, 62, 62));
+    }
+
+    private void jButtonExitMouseExited(java.awt.event.MouseEvent evt) {
+      jButtonExit.setBackground(new java.awt.Color(62, 62, 62));
+      jButtonExit.setForeground(new java.awt.Color(255, 255, 255));
+    }
+
+    private void jButtonMinimizeMouseEntered(java.awt.event.MouseEvent evt) {
+      jButtonMinimize.setBackground(new java.awt.Color(240, 240, 240));
+      jButtonMinimize.setForeground(new java.awt.Color(62, 62, 62));
+    }
+
+    private void jButtonMinimizeMouseExited(java.awt.event.MouseEvent evt) {
+      jButtonMinimize.setBackground(new java.awt.Color(62, 62, 62));
+      jButtonMinimize.setForeground(new java.awt.Color(255, 255, 255));
+    }
+
+
 
     /**
      * @param args the command line arguments
@@ -301,6 +475,7 @@ public class Janela0 extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Janela0().setVisible(true);
             }
@@ -308,9 +483,9 @@ public class Janela0 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonExit;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonMinimize;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
