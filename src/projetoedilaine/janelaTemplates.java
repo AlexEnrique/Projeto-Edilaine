@@ -32,9 +32,9 @@ public class janelaTemplates extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabelTemp1 = new javax.swing.JLabel();
-        jLabelTemp2 = new javax.swing.JLabel();
-        jLabelTemp3 = new javax.swing.JLabel();
+        jButtonTemp1 = new javax.swing.JButton();
+        jButtonTemp2 = new javax.swing.JButton();
+        jButtonTemp3 = new javax.swing.JButton();
         jLabelCaption1 = new javax.swing.JLabel();
         jLabelCaption2 = new javax.swing.JLabel();
         jLabelCaption3 = new javax.swing.JLabel();
@@ -134,19 +134,40 @@ public class janelaTemplates extends javax.swing.JFrame {
         jLabelCaption1.setForeground(new Color(62, 62, 62));
         jLabelCaption1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCaption1.setText("Modelo 1");
-        jLabelTemp1.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/AdjustedTemplates/template1.png"));
+
+        jButtonTemp1.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/AdjustedTemplates/template1.png"));
+        jButtonTemp1.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  jButtonTemp1ActionPerformed(evt);
+            }
+        });
 
         jLabelCaption2.setFont(new Font("DejaVu Sans", 0, 18));
         jLabelCaption2.setForeground(new Color(62, 62, 62));
         jLabelCaption2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCaption2.setText("Modelo 2");
-        jLabelTemp2.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/AdjustedTemplates/template2.png"));
+
+        jButtonTemp2.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/AdjustedTemplates/template2.png"));
+        jButtonTemp2.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  jButtonTemp2ActionPerformed(evt);
+            }
+        });
 
         jLabelCaption3.setFont(new Font("DejaVu Sans", 0, 18));
         jLabelCaption3.setForeground(new Color(62, 62, 62));
         jLabelCaption3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCaption3.setText("Modelo 3");
-        jLabelTemp3.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/AdjustedTemplates/template3.png"));
+
+        jButtonTemp3.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/AdjustedTemplates/template3.png"));
+        jButtonTemp3.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  jButtonTemp3ActionPerformed(evt);
+            }
+        });
 
         // jPanel1
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -162,20 +183,20 @@ public class janelaTemplates extends javax.swing.JFrame {
               .addComponent(jLabel3)
               .addContainerGap(900 - 700 - 30, Short.MAX_VALUE))
               .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(64, 64, 64)
                 .addComponent(jLabelCaption1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
+                .addGap(130, 130, 130)
                 .addComponent(jLabelCaption2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
+                .addGap(130, 130, 130)
                 .addComponent(jLabelCaption3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
               .addGap(30, 30, 30)
-              .addComponent(jLabelTemp1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jButtonTemp1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addGap(60, 60, 60)
-              .addComponent(jLabelTemp2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jButtonTemp2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addGap(60, 60, 60)
-              .addComponent(jLabelTemp3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jButtonTemp3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -188,14 +209,14 @@ public class janelaTemplates extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(20, 20, 20)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(jLabelCaption1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jLabelCaption2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jLabelCaption3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addContainerGap(2, 2)
+              .addComponent(jLabelCaption1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabelCaption2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabelCaption3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addContainerGap(0, 0)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(jLabelTemp1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jLabelTemp2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jLabelTemp3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addComponent(jButtonTemp1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jButtonTemp2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jButtonTemp3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
               .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -231,6 +252,23 @@ public class janelaTemplates extends javax.swing.JFrame {
         this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
     }
 
+    private void jButtonTemp1ActionPerformed(java.awt.event.ActionEvent evt) {
+        new JanelaTemp1().setVisible(true);
+        this.dispose();
+    }
+
+    private void jButtonTemp2ActionPerformed(java.awt.event.ActionEvent evt) {
+        new JanelaTemp2().setVisible(true);
+        this.dispose();
+    }
+
+    private void jButtonTemp3ActionPerformed(java.awt.event.ActionEvent evt) {
+        new JanelaTemp3().setVisible(true);
+        this.dispose();
+    }
+
+
+
     /**
      * @param args the command line arguments
      */
@@ -263,9 +301,9 @@ public class janelaTemplates extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabelTemp1;
-    private javax.swing.JLabel jLabelTemp2;
-    private javax.swing.JLabel jLabelTemp3;
+    private javax.swing.JButton jButtonTemp1;
+    private javax.swing.JButton jButtonTemp2;
+    private javax.swing.JButton jButtonTemp3;
     private javax.swing.JLabel jLabelCaption1;
     private javax.swing.JLabel jLabelCaption2;
     private javax.swing.JLabel jLabelCaption3;
