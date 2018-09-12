@@ -6,8 +6,15 @@ Este repositória se refere ao projeto de um software criador de currículo em J
 A seguinte lista apresenta as etapas pretendidas para o projeto:
 
 * Construção da interface gráfica de usuário.
-  - Janela de boas-vindas. &#10003; 
-  - Janela de criação de novo currículo (templates).
+  - Janela de boas-vindas. &#10003;
+  - Janela de criação de novo currículo &#10003; (Ao final, adicionar mais templates).
+  - Janela de Entrada de dados.
+    - Janela de dados pessoais.
+    - Janela de objetivos profissionais e sobre.
+    - Janela de formação e experiências
+    - Outras janelas
+    - Implementar JSON para armazenar os dados
+  - Janela final de verificação dos dados
   - Janela de alteração de currículo existente.
     - Criar método para salvar dados de currículos e reabrir.
 * Adaptação dos códigos-fontes de templates em LaTeX para o programa.
