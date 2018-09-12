@@ -22,21 +22,12 @@ import org.json.JSONTokener;
  *
  * @author Alex Enrique Crispim
  */
-public class Janela0 extends javax.swing.JFrame {
+public class Janela0SemFadeIn extends javax.swing.JFrame {
 
     private int x, y;
-    private int buttonsAlreadyDisplayed = 0;
-    private int cvalue = 255;
-
-    private Timer fadeInJL3;
-    private Timer fadeInJL4;
-    private Timer fadeInJL5;
-    private Timer fadeInJL7;
-    private Timer fadeInJL8andButtons;
-
     private JSONObject json;
 
-    public Janela0() throws FileNotFoundException, IOException {
+    public Janela0SemFadeIn() throws FileNotFoundException, IOException {
         this.json = new JSONObject(
                         new JSONTokener(
                             new BufferedReader(
@@ -174,101 +165,32 @@ public class Janela0 extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/LogoEmpresa.png")); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(62, 62, 62));
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Bem-vindo!");
 
-    // Fade-in timer ====================================================
-    fadeInJL3 = new Timer(3, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent evt) {
-        cvalue--;
-        jLabel3.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
-
-        if (cvalue == 62) {
-          fadeInJL3.stop();
-          cvalue = 255;
-          fadeInJL5.setInitialDelay(300);
-          fadeInJL5.start();
-        }
-      }
-    });
-
-    fadeInJL3.setInitialDelay(1000);
-    fadeInJL3.start();
-    // ==================================================================
-
     jLabel4.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
     jLabel4.setText("Desenvolvemos este software para que você pudesse criar um currículo de um jeito prático");
-    jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-  // Fade-in timer ====================================================
-    fadeInJL4 = new Timer(3, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent evt) {
-        cvalue--;
-        jLabel4.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
-        jLabel6.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
-        if (cvalue == 62) {
-          fadeInJL4.stop();
-          cvalue = 255;
-          fadeInJL7.setInitialDelay(2500);
-          fadeInJL7.start();
-        }
-      }
-    });
-    // ==================================================================
+    jLabel4.setForeground(new java.awt.Color(62, 62, 62));
 
     jLabel5.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
     jLabel5.setText("Este é o criador de currículo da CONTRETEC desenvolvido para você.");
-    jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-    // Fade-in timer ====================================================
-    fadeInJL5 = new Timer(3, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent evt) {
-        cvalue--;
-        jLabel5.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
-
-        if (cvalue == 62) {
-          fadeInJL5.stop();
-          cvalue = 255;
-          fadeInJL4.setInitialDelay(1000);
-          fadeInJL4.start();
-        }
-      }
-    });
-    // ==================================================================
+    jLabel5.setForeground(new java.awt.Color(62, 62, 62));
 
     jLabel6.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
     jLabel6.setText("e simples destacando-se em designer e qualidade.");
-    jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel6.setForeground(new java.awt.Color(62, 62, 62));
 
     jLabel7.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
     jLabel7.setText("Vamos começar! ");
-    jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-
-    // Fade-in timer ====================================================
-    fadeInJL7 = new Timer(3, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent evt) {
-        cvalue--;
-        jLabel7.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
-
-        if (cvalue == 62) {
-          fadeInJL7.stop();
-          cvalue = 255;
-          fadeInJL8andButtons.setInitialDelay(1000);
-          fadeInJL8andButtons.start();
-        }
-      }
-    });
-    // ==================================================================
+    jLabel7.setForeground(new java.awt.Color(62, 62, 62));
 
     jLabel8.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
     jLabel8.setText("Escolha uma das opções abaixo.");
-    jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel8.setForeground(new java.awt.Color(62, 62, 62));
 
-    jButton2.setBackground(new java.awt.Color(255, 255, 255));
+    jButton2.setBackground(new java.awt.Color(62, 62, 62));
     jButton2.setForeground(new java.awt.Color(255, 255, 255));
     jButton2.setFont(new java.awt.Font("DejaVu Sans", 1, 14));
     jButton2.setText("Abrir currículo existente");
@@ -289,7 +211,7 @@ public class Janela0 extends javax.swing.JFrame {
         }
     });
 
-    jButton4.setBackground(new java.awt.Color(255, 255, 255));
+    jButton4.setBackground(new java.awt.Color(62, 62, 62));
     jButton4.setForeground(new java.awt.Color(255, 255, 255));
     jButton4.setFont(new java.awt.Font("DejaVu Sans", 1, 14));
     jButton4.setText("Criar novo currículo");
@@ -309,26 +231,6 @@ public class Janela0 extends javax.swing.JFrame {
             jButton4MouseExited(evt);
         }
     });
-
-    // Fade-in timer ====================================================
-    fadeInJL8andButtons = new Timer(3, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent evt) {
-        cvalue--;
-        jLabel8.setForeground(new java.awt.Color(cvalue, cvalue, cvalue));
-
-        jButton2.setBackground(new java.awt.Color(cvalue, cvalue, cvalue));
-
-        jButton4.setBackground(new java.awt.Color(cvalue, cvalue, cvalue));
-
-        if (cvalue == 62) {
-          fadeInJL8andButtons.stop();
-          cvalue = 255;
-          buttonsAlreadyDisplayed = 1;
-        }
-      }
-    });
-    // ==================================================================
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -404,9 +306,9 @@ public class Janela0 extends javax.swing.JFrame {
         try {
             Runtime.getRuntime().exec("rm tmp.json").waitFor();
         } catch (IOException ex) {
-            Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Janela0SemFadeIn.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Janela0SemFadeIn.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         System.exit(0);
@@ -455,50 +357,33 @@ public class Janela0 extends javax.swing.JFrame {
         try {
             new JanelaTemplates().setVisible(true);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Janela0SemFadeIn.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {
-      if (buttonsAlreadyDisplayed == 1) {
         jButton2.setBackground(new java.awt.Color(240, 240, 240));
         jButton2.setForeground(new java.awt.Color(62, 62, 62));
-      }
     }
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {
-      if (buttonsAlreadyDisplayed == 1) {
         jButton2.setBackground(new java.awt.Color(62, 62, 62));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-      }
     }
 
     private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {
-      if (buttonsAlreadyDisplayed == 1) {
         jButton4.setBackground(new java.awt.Color(240, 240, 240));
         jButton4.setForeground(new java.awt.Color(62, 62, 62));
-      }
     }
 
     private void jButton4MouseExited(java.awt.event.MouseEvent evt) {
-      if (buttonsAlreadyDisplayed == 1) {
         jButton4.setBackground(new java.awt.Color(62, 62, 62));
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-      }
     }
 
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("".equals(info.getName())) {
@@ -515,18 +400,14 @@ public class Janela0 extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JanelaEntradas1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 try {
-                    new Janela0().setVisible(true);
+                    new Janela0SemFadeIn().setVisible(true);
                 } catch (IOException ex) {
-                    Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Janela0SemFadeIn.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

@@ -1,13 +1,64 @@
 package projetoedilaine;
 
-public class ProjetoEdilaine {
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+public class ProjetoEdilaine {
     /**
-     *
-     * @param args
+     * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) {
-        new Janela0().setVisible(true);
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        JSONObject json;
+
+        if (new File("tmp.json").exists()) {
+          json = new JSONObject(
+                          new JSONTokener(
+                              new BufferedReader(
+                                  new FileReader("tmp.json")
+                              )
+                          )
+                      );
+        } else {
+          json = new JSONObject()
+                            .put("nome", "")
+                            .put("template", 0)
+                            .put("email", "")
+                            .put("telefone1", "")
+                            .put("telefone2", "")
+                            .put("cidade", "")
+                            .put("estado", "")
+                            .put("website", "")
+                            .put("linkedin", ""); // Criar novo JSONObject
+
+          new FileWriter("tmp.json").close(); // Criar novo arquivo
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("tmp.json"))) {
+          writer.write(json.toString());
+          writer.close();
+        } catch (IOException ex) {
+          Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (json.getInt("template") == 0) {
+          new Janela0().setVisible(true);
+          // new Janela0SemFadeIn().setVisible(true);
+        } else {
+          new JanelaEntradas1().setVisible(true);
+        }
+
+        // new JanelaEntradas1().setVisible(true);
+        // new JanelaTemplates().setVisible(true);
+        // new JanelaCriarJSON().setVisible(true);
     }
-    
 }
