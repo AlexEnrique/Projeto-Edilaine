@@ -29,6 +29,13 @@ public class JanelaEntradas1 extends javax.swing.JFrame {
     JSONObject json;
 
     public JanelaEntradas1() throws FileNotFoundException {
+      this.json = new JSONObject(
+                      new JSONTokener(
+                          new BufferedReader(
+                              new FileReader("tmp.json")
+                          )
+                      )
+                  );
         initComponents();
     }
 
@@ -63,10 +70,14 @@ public class JanelaEntradas1 extends javax.swing.JFrame {
         jLabelEmail = new javax.swing.JLabel();
         jLabelTelefone_1 = new javax.swing.JLabel();
         jLabelTelefone_2 = new javax.swing.JLabel();
+        jLabelDDD_1 = new javax.swing.JLabel();
+        jLabelDDD_2 = new javax.swing.JLabel();
         jLabelCidade = new javax.swing.JLabel();
         jLabelEstado = new javax.swing.JLabel();
         jLabelWebSite = new javax.swing.JLabel();
         jLabelLinkedIn = new javax.swing.JLabel();
+        jLabelObs1 = new javax.swing.JLabel();
+        jLabelObs2 = new javax.swing.JLabel();
         /* Mover para outra janela
          jLabelInteresses = new javax.swing.JLabel();
          jLabelIdiomas = new javax.swing.JLabel();
@@ -77,18 +88,12 @@ public class JanelaEntradas1 extends javax.swing.JFrame {
         jTextFieldEmail = new javax.swing.JTextField();
         jTextFieldTelefone_1 = new javax.swing.JTextField();
         jTextFieldTelefone_2 = new javax.swing.JTextField();
+        jTextFieldDDD_1 = new javax.swing.JTextField();
+        jTextFieldDDD_2 = new javax.swing.JTextField();
         jTextFieldCidade = new javax.swing.JTextField();
         jTextFieldEstado = new javax.swing.JTextField();
         jTextFieldWebSite = new javax.swing.JTextField();
         jTextFieldLinkedIn = new javax.swing.JTextField();
-
-        json = new JSONObject(
-            new JSONTokener(
-                new BufferedReader(
-                    new FileReader("tmp.json")
-                )
-            )
-        );
 
         // Next and previous buttons
         jButtonNext = new javax.swing.JButton();
@@ -312,10 +317,74 @@ public class JanelaEntradas1 extends javax.swing.JFrame {
             }
         });
 
+        jLabelDDD_1.setFont(new Font("DejaVu Sans", 0, 18));
+        jLabelDDD_1.setBackground(new Color(255, 255, 255));
+        jLabelDDD_1.setForeground(new Color(62, 62, 62));
+        jLabelDDD_1.setText("DDD");
+
+        jTextFieldDDD_1.setText(json.getString("DDD1"));
+        jTextFieldDDD_1.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent evt) {
+                ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent evt) {
+                ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent evt) {
+                ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+                json.put("DDD1", jTextFieldDDD_1.getText());
+                try {
+                    WriteJSON();
+                } catch (IOException ex) {
+                    Logger.getLogger(JanelaEntradas1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        jLabelDDD_2.setFont(new Font("DejaVu Sans", 0, 18));
+        jLabelDDD_2.setBackground(new Color(255, 255, 255));
+        jLabelDDD_2.setForeground(new Color(62, 62, 62));
+        jLabelDDD_2.setText("DDD");
+
+        jTextFieldDDD_2.setText(json.getString("DDD2"));
+        jTextFieldDDD_2.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent evt) {
+                ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent evt) {
+                ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent evt) {
+                ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+                json.put("DDD2", jTextFieldDDD_2.getText());
+                try {
+                    WriteJSON();
+                } catch (IOException ex) {
+                    Logger.getLogger(JanelaEntradas1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
         jLabelCidade.setFont(new Font("DejaVu Sans", 0, 18));
         jLabelCidade.setBackground(new Color(255, 255, 255));
         jLabelCidade.setForeground(new Color(62, 62, 62));
-        jLabelCidade.setText("Cidade de residência");
+        jLabelCidade.setText("Cidade onde mora");
 
         jTextFieldCidade.setText(json.getString("cidade"));
         jTextFieldCidade.getDocument().addDocumentListener(new DocumentListener() {
@@ -507,6 +576,18 @@ public class JanelaEntradas1 extends javax.swing.JFrame {
         });
         // ======================================================================================================
 
+        // jLabels para observações
+        jLabelObs1.setBackground(new Color(255, 255, 255));
+        jLabelObs1.setForeground(new Color(62, 62, 62));
+        jLabelObs1.setFont(new Font("DejaVu Sans", 0, 18));
+        jLabelObs1.setText("Obs.: A próxima janela trará opções para adicionar mais telefones e adicionar comentários");
+
+        jLabelObs2.setBackground(new Color(255, 255, 255));
+        jLabelObs2.setForeground(new Color(62, 62, 62));
+        jLabelObs2.setFont(new Font("DejaVu Sans", 0, 18));
+        jLabelObs2.setText("        sobre os dados inseridos acima.");
+        // ======================================================================================================
+
         jLabel1.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/LogoEmpresa.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -533,7 +614,6 @@ public class JanelaEntradas1 extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
         );
 
-        // Retornar daqui...
         //jPanel1
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -561,16 +641,40 @@ public class JanelaEntradas1 extends javax.swing.JFrame {
                   .addComponent(jTextFieldEmail, 390, 390, 390))
               .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGap(30, 30, 30)
-                  .addComponent(jLabelTelefone_1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(jLabelDDD_1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
               .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGap(30, 30, 30)
-                  .addComponent(jTextFieldTelefone_1, 390, 390, 390))
+                  .addComponent(jTextFieldDDD_1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
               .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGap(30, 30, 30)
-                  .addComponent(jLabelTelefone_2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGap(30, 30, 30)
+                  .addGap(30, 30, 30)
+                  .addGap(15, 15, 15)
+                  .addComponent(jLabelTelefone_1, javax.swing.GroupLayout.PREFERRED_SIZE, 250 - 70, javax.swing.GroupLayout.PREFERRED_SIZE))
               .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGap(30, 30, 30)
-                  .addComponent(jTextFieldTelefone_2, 390, 390, 390)))
+                  .addGap(30, 30, 30)
+                  .addGap(30, 30, 30)
+                  .addGap(15, 15, 15)
+                  .addComponent(jTextFieldTelefone_1, javax.swing.GroupLayout.PREFERRED_SIZE, 390 - 62 - 28 + 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addGap(30, 30, 30)
+                  .addComponent(jLabelDDD_2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addGap(30, 30, 30)
+                  .addComponent(jTextFieldDDD_2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addGap(30, 30, 30)
+                  .addGap(30, 30, 30)
+                  .addGap(30, 30, 30)
+                  .addGap(15, 15, 15)
+                  .addComponent(jLabelTelefone_2, javax.swing.GroupLayout.PREFERRED_SIZE, 250 - 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addGap(30, 30, 30)
+                  .addGap(30, 30, 30)
+                  .addGap(30, 30, 30)
+                  .addGap(15, 15, 15)
+                  .addComponent(jTextFieldTelefone_2, javax.swing.GroupLayout.PREFERRED_SIZE, 390 - 62 - 28 + 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
             // Segundo grupo
             .addGroup(jPanel1Layout.createParallelGroup()
               .addGroup(jPanel1Layout.createSequentialGroup()
@@ -613,6 +717,12 @@ public class JanelaEntradas1 extends javax.swing.JFrame {
                   .addComponent(jButtonPrevious, 170, 170, 170)
                   .addGap(45, 45, 45)
                   .addComponent(jButtonNext, 170, 170, 170)))
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabelObs1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30)
+                .addComponent(jLabelObs2, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,16 +744,20 @@ public class JanelaEntradas1 extends javax.swing.JFrame {
                     .addComponent(jTextFieldEmail, 30, 30, 30))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup()
-                    .addComponent(jLabelTelefone_1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelTelefone_1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDDD_1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup()
-                    .addComponent(jTextFieldTelefone_1, 30, 30, 30))
+                    .addComponent(jTextFieldTelefone_1, 30, 30, 30)
+                    .addComponent(jTextFieldDDD_1, 30, 30, 30))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup()
-                    .addComponent(jLabelTelefone_2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelTelefone_2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDDD_2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup()
-                    .addComponent(jTextFieldTelefone_2, 30, 30, 30)))
+                    .addComponent(jTextFieldTelefone_2, 30, 30, 30)
+                    .addComponent(jTextFieldDDD_2, 30, 30, 30)))
           // Segundo grupo
           .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(98, 98, 98)
@@ -673,7 +787,11 @@ public class JanelaEntradas1 extends javax.swing.JFrame {
                     .addComponent(jButtonNext, 60, 60, 60)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 550 - 135 - javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 550 - 135 - 50 - javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(480)
+                .addComponent(jLabelObs1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelObs2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -829,15 +947,22 @@ public class JanelaEntradas1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelTelefone_1;
     private javax.swing.JLabel jLabelTelefone_2;
+    private javax.swing.JLabel jLabelDDD_1;
+    private javax.swing.JLabel jLabelDDD_2;
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JLabel jLabelEstado;
     private javax.swing.JLabel jLabelWebSite;
     private javax.swing.JLabel jLabelLinkedIn;
+    private javax.swing.JLabel jLabelObs1;
+    private javax.swing.JLabel jLabelObs2;
+
 
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldTelefone_1;
     private javax.swing.JTextField jTextFieldTelefone_2;
+    private javax.swing.JTextField jTextFieldDDD_1;
+    private javax.swing.JTextField jTextFieldDDD_2;
     private javax.swing.JTextField jTextFieldCidade;
     private javax.swing.JTextField jTextFieldEstado;
     private javax.swing.JTextField jTextFieldWebSite;

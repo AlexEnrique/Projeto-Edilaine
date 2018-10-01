@@ -1,6 +1,8 @@
 package projetoedilaine;
 
+import java.awt.*;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -13,7 +15,6 @@ import javax.swing.event.DocumentEvent;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedReader;
@@ -22,18 +23,26 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 
 /**
  * @author Alex Enrique Crispim
  */
-public class LayoutBase extends javax.swing.JFrame {
+public class JanelaEntradas3 extends javax.swing.JFrame {
 
     private int x, y;
     private Timer fadeInJL3;
     private JSONObject json;
 
-    public LayoutBase() throws FileNotFoundException {
-      this.json = new JSONObject(
+    private static final long serialVersionUID = 8607734981506765935L;
+    private static final int SCROLL_BAR_ALPHA_ROLLOVER = 100;
+    private static final int SCROLL_BAR_ALPHA = 50;
+    private static final int THUMB_SIZE = 8;
+    private static final int SB_SIZE = 10;
+    private static final Color THUMB_COLOR = Color.BLACK;
+
+    public JanelaEntradas3() throws FileNotFoundException {
+        this.json = new JSONObject(
                       new JSONTokener(
                           new BufferedReader(
                               new FileReader("tmp.json")
@@ -55,12 +64,13 @@ public class LayoutBase extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
 
+        jLabel3 = new javax.swing.JLabel();
+        jTextArea = new javax.swing.JTextArea();
+        jScrollPane = new javax.swing.JScrollPane(jTextArea);
+
         // Botoes de minimizar e maximizar
         jButtonExit = new javax.swing.JButton();
         jButtonMinimize = new javax.swing.JButton();
-
-        // Separador
-        // jSeparator = new javax.swing.JSeparator(SwingConstants.VERTICAL);
 
         // Next and previous buttons
         jButtonNext = new javax.swing.JButton();
@@ -87,45 +97,45 @@ public class LayoutBase extends javax.swing.JFrame {
         jButtonExit.setText("x");
         jButtonExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonExit.setFocusPainted(false);
-        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExit.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonExitActionPerformed(evt);
             }
         });
-        jButtonExit.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonExit.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
+            public void mouseEntered(MouseEvent evt) {
                 jButtonExitMouseEntered(evt);
             }
 
             @Override
-            public void mouseExited(java.awt.event.MouseEvent evt) {
+            public void mouseExited(MouseEvent evt) {
                 jButtonExitMouseExited(evt);
             }
         });
 
 
         jButtonMinimize.setBackground(new java.awt.Color(62, 62, 62));
-        jButtonMinimize.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jButtonMinimize.setFont(new Font("DejaVu Sans", 1, 14)); // NOI18N
         jButtonMinimize.setForeground(new java.awt.Color(255, 255, 255));
         jButtonMinimize.setText("-");
         jButtonMinimize.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonMinimize.setFocusPainted(false);
-        jButtonMinimize.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMinimize.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonMinimizeActionPerformed(evt);
             }
         });
-        jButtonMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonMinimize.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
+            public void mouseEntered(MouseEvent evt) {
                 jButtonMinimizeMouseEntered(evt);
             }
 
             @Override
-            public void mouseExited(java.awt.event.MouseEvent evt) {
+            public void mouseExited(MouseEvent evt) {
                 jButtonMinimizeMouseExited(evt);
             }
         });
@@ -133,27 +143,62 @@ public class LayoutBase extends javax.swing.JFrame {
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
         jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             @Override
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
+            public void mouseDragged(MouseEvent evt) {
                 jLabel2MouseDragged(evt);
             }
         });
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel2.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(MouseEvent evt) {
                 jLabel2MousePressed(evt);
             }
         });
 
-        // Botões principais ====================================================================================
+        // jLabel3 e jTextArea config. ==========================================================================
+        jLabel3.setBackground(new Color(255, 255, 255));
+        jLabel3.setForeground(new Color(62, 62, 62));
+        jLabel3.setFont(new Font("DejaVu Sans", 0, 18));
+        jLabel3.setText("Está parte corresponde à seção \"Sobre mim\" do currículo. A mesma é opcional");
 
+        jTextArea.setColumns(1);
+        jTextArea.setRows(2);
+        jTextArea.setBorder(BorderFactory.createEmptyBorder());
+        jTextArea.setLineWrap(true);
+        jTextArea.setWrapStyleWord(true);
+        jTextArea.setText(json.getString("sobreMim"));
+        jTextArea.getDocument().addDocumentListener(new DocumentListener() {
+                  @Override
+                  public void changedUpdate(DocumentEvent evt) {
+                      ChangeJSON();
+                  }
 
+                  @Override
+                  public void removeUpdate(DocumentEvent evt) {
+                      ChangeJSON();
+                  }
 
+                  @Override
+                  public void insertUpdate(DocumentEvent evt) {
+                      ChangeJSON();
+                  }
 
-        // .setFont(new Font("DejaVu Sans", 0, 18));
-        // .setBackground(new Color(255, 255, 255));
-        // .setForeground(new Color(62, 62, 62));
-        // .setText("");
-        //=======================================================================================================
+                  public void ChangeJSON() {
+                      json.put("sobreMim", jTextArea.getText());
+                      try {
+                          WriteJSON();
+                      } catch (IOException ex) {
+                          Logger.getLogger(JanelaEntradas3.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+                  }
+              });
+
+        // The jTextArea is inside the jScrollPane
+        jScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+
+        jScrollBar = jScrollPane.getVerticalScrollBar();
+        jScrollBar.setPreferredSize(new Dimension(9, 1));
+        jScrollBar.setUI(new ProjectScrollBarUI(jScrollPane));
+        // ======================================================================================================
 
         // Next and Previous Buttons conf. ======================================================================
         jButtonNext.setFont(new Font("DejaVu Sans", 0, 18));
@@ -162,17 +207,17 @@ public class LayoutBase extends javax.swing.JFrame {
         jButtonNext.setText("Próximo");
         jButtonNext.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonNext.setFocusPainted(false);
-        jButtonNext.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNext.addActionListener(new ActionListener() {
           @Override
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
+          public void actionPerformed(ActionEvent evt) {
               try {
                   jButtonNextActionPerformed(evt);
               } catch (IOException ex) {
-                  Logger.getLogger(LayoutBase.class.getName()).log(Level.SEVERE, null, ex);
+                  Logger.getLogger(JanelaEntradas3.class.getName()).log(Level.SEVERE, null, ex);
               }
           }
         });
-        jButtonNext.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonNext.addMouseListener(new MouseAdapter() {
           @Override
           public void mouseEntered(java.awt.event.MouseEvent evt) {
             jButtonNextMouseEntered(evt);
@@ -190,15 +235,15 @@ public class LayoutBase extends javax.swing.JFrame {
         jButtonPrevious.setText("Voltar");
         jButtonPrevious.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonPrevious.setFocusPainted(false);
-        jButtonPrevious.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPrevious.addActionListener(new ActionListener() {
           @Override
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
+          public void actionPerformed(ActionEvent evt) {
               try {
                   jButtonPreviousActionPerformed(evt);
               } catch (FileNotFoundException ex) {
-                  Logger.getLogger(LayoutBase.class.getName()).log(Level.SEVERE, null, ex);
+                  Logger.getLogger(JanelaEntradas3.class.getName()).log(Level.SEVERE, null, ex);
               } catch (IOException ex) {
-                  Logger.getLogger(LayoutBase.class.getName()).log(Level.SEVERE, null, ex);
+                  Logger.getLogger(JanelaEntradas3.class.getName()).log(Level.SEVERE, null, ex);
               }
           }
         });
@@ -251,30 +296,41 @@ public class LayoutBase extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(30)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(30)
+                .addGroup(jPanel1Layout.createParallelGroup()
+                    .addGap(30)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup()
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createParallelGroup()
-              // .addGroup(jPanel1Layout.createSequentialGroup()
-              //     .addGap(450, 450, 450)
-              //     .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE))
               .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGap(450, 450, 450)
                   .addGap(30, 30, 30)
-                  .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addGap(450, 450, 450)
+                  .addGap(170+6)
                   .addGap(45, 45, 45)
                   .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+            )));
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup()
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup()
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 550 - 100 - 25 - 60 - 30 - 5, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10)
                 .addGroup(jPanel1Layout.createParallelGroup()
                     .addComponent(jButtonPrevious, 60, 60, 60)
                     .addComponent(jButtonNext, 60, 60, 60)))
-            // .addGroup(jPanel1Layout.createSequentialGroup()
-            //     .addGap(100, 100, 100)
-            //     .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 550 - 135 - 50 - javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        ));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -343,7 +399,7 @@ public class LayoutBase extends javax.swing.JFrame {
     private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         WriteJSON();
 
-        new JanelaEntradas2().setVisible(true);
+        new JanelaEntradas4().setVisible(true);
         this.dispose();
     }
 
@@ -361,7 +417,7 @@ public class LayoutBase extends javax.swing.JFrame {
     private void jButtonPreviousActionPerformed(java.awt.event.ActionEvent evt) throws FileNotFoundException, IOException {
       WriteJSON();
 
-      new JanelaTemplates().setVisible(true);
+      new JanelaEntradas2().setVisible(true);
       this.dispose();
     }
 
@@ -396,20 +452,20 @@ public class LayoutBase extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LayoutBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaEntradas3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LayoutBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaEntradas3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LayoutBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaEntradas3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LayoutBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaEntradas3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(() -> {
             try {
-                new LayoutBase().setVisible(true);
+                new JanelaEntradas3().setVisible(true);
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(LayoutBase.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JanelaEntradas3.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
@@ -420,10 +476,73 @@ public class LayoutBase extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
 
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JScrollBar jScrollBar;
+    private javax.swing.JTextArea jTextArea;
+
     private javax.swing.JButton jButtonExit;
     private javax.swing.JButton jButtonMinimize;
 
     private javax.swing.JButton jButtonNext;
     private javax.swing.JButton jButtonPrevious;
     // End of variables declaration
+
+    private static class ProjectScrollBarUI extends BasicScrollBarUI {
+        private JScrollPane jScrollPane;
+
+        private ProjectScrollBarUI(JScrollPane jScrollPane) {
+            this.jScrollPane = jScrollPane;
+        }
+
+        @Override
+        protected JButton createDecreaseButton(int orientation) {
+            return new InvisibleScrollBarButton();
+        }
+
+        @Override
+        protected JButton createIncreaseButton(int orientation) {
+            return new InvisibleScrollBarButton();
+        }
+
+        @Override
+        protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+            // Nothing
+        }
+
+        @Override
+        protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+            int alpha = isThumbRollover() ? SCROLL_BAR_ALPHA_ROLLOVER : SCROLL_BAR_ALPHA;
+            int orientation = scrollbar.getOrientation();
+            int x = thumbBounds.x;
+            int y = thumbBounds.y;
+
+            int width = thumbBounds.width;
+            int height = thumbBounds.height;
+
+            Graphics2D graphics2D = (Graphics2D) g.create();
+            graphics2D.setColor(new Color(THUMB_COLOR.getRed(), THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
+            graphics2D.fillRect(x, y, width, height);
+            graphics2D.dispose();
+        }
+
+        @Override
+        protected void setThumbBounds(int x, int y, int width, int height) {
+            super.setThumbBounds(x, y, width, height);
+            jScrollPane.repaint();
+        }
+
+        private static class InvisibleScrollBarButton extends JButton {
+
+            private static final long serialVersionUID = 1552427919226628689L;
+
+            private InvisibleScrollBarButton() {
+                setOpaque(false);
+                setFocusable(false);
+                setFocusPainted(false);
+                setBorderPainted(false);
+                setBorder(BorderFactory.createEmptyBorder());
+            }
+        }
+    }
 }

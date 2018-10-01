@@ -171,11 +171,11 @@ public class Janela0SemFadeIn extends javax.swing.JFrame {
         jLabel3.setText("Bem-vindo!");
 
     jLabel4.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-    jLabel4.setText("Desenvolvemos este software para que você pudesse criar um currículo de um jeito prático");
+    jLabel4.setText("Desenvolvemos este software para que você pudesse criar seu currículo de um jeito prático");
     jLabel4.setForeground(new java.awt.Color(62, 62, 62));
 
     jLabel5.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-    jLabel5.setText("Este é o criador de currículo da CONTRETEC desenvolvido para você.");
+    jLabel5.setText("Este é o criador de currículo da CONTRETEC.");
     jLabel5.setForeground(new java.awt.Color(62, 62, 62));
 
     jLabel6.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N

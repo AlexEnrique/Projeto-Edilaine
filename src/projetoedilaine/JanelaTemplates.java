@@ -399,6 +399,7 @@ public class JanelaTemplates extends javax.swing.JFrame {
 
         try {
             new JanelaEntradas1().setVisible(true);
+            new JanelaAviso1().setVisible(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -412,6 +413,7 @@ public class JanelaTemplates extends javax.swing.JFrame {
 
         try {
             new JanelaEntradas1().setVisible(true);
+            new JanelaAviso1().setVisible(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -425,6 +427,7 @@ public class JanelaTemplates extends javax.swing.JFrame {
 
         try {
             new JanelaEntradas1().setVisible(true);
+            new JanelaAviso1().setVisible(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
         }

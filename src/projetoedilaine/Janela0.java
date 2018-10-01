@@ -200,7 +200,7 @@ public class Janela0 extends javax.swing.JFrame {
     // ==================================================================
 
     jLabel4.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-    jLabel4.setText("Desenvolvemos este software para que você pudesse criar um currículo de um jeito prático");
+    jLabel4.setText("Desenvolvemos este software para que você pudesse criar seu currículo de um jeito prático");
     jLabel4.setForeground(new java.awt.Color(255, 255, 255));
   // Fade-in timer ====================================================
     fadeInJL4 = new Timer(3, new ActionListener() {
@@ -220,7 +220,7 @@ public class Janela0 extends javax.swing.JFrame {
     // ==================================================================
 
     jLabel5.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-    jLabel5.setText("Este é o criador de currículo da CONTRETEC desenvolvido para você.");
+    jLabel5.setText("Este é o criador de currículo da CONTRETEC.");
     jLabel5.setForeground(new java.awt.Color(255, 255, 255));
     // Fade-in timer ====================================================
     fadeInJL5 = new Timer(3, new ActionListener() {
