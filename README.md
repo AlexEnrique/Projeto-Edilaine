@@ -29,4 +29,4 @@ A seguinte lista apresenta as etapas pretendidas para o projeto:
 Items com a marca <code>&#10003;</code> ao final representam estágios concluídos.
 
 <hr />
-Data prevista para a finalização: 22/09/2018
+Data prevista para a finalização: 20/10/2018
