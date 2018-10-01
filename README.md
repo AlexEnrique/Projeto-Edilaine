@@ -12,8 +12,8 @@ A seguinte lista apresenta as etapas pretendidas para o projeto:
     - Implementar JSON para armazenar os dados &#10003;
       - Método de segurança contra fechamentos imprevistos do programa &#10003;
     - Janela de dados pessoais. &#10003;
-    - Janela de objetivos profissionais e sobre.
-    - Janela de formação e experiências
+    - Janela de objetivos profissionais e sobre. &#10003;
+    - Janela de formação e experiências &#10003;
     - Outras janelas
   - Janela final de verificação dos dados
   - Janela de alteração de currículo existente.
