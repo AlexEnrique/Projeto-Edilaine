@@ -36,6 +36,7 @@ import java.util.logging.Logger;
  */
 public class JanelaEntradas8 extends javax.swing.JFrame {
 
+    private int k = 0;
     private int x, y;
     private JSONObject json;
 
@@ -79,22 +80,21 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
         jLabel6 = new ArrayList<JLabel>();
         jLabel7 = new ArrayList<JLabel>();
 
-        jTextFieldJL4 = new ArrayList<JTextField>();
-        jTextFieldJL5 = new ArrayList<JTextField>();
-        jTextFieldJL6 = new ArrayList<JTextField>();
-        jTextAreaJL7 = new ArrayList<JTextArea>();
+        jTextFieldJL4 = new ArrayList<MyTextField>();
+        jTextFieldJL5 = new ArrayList<MyTextField>();
+        jTextFieldJL6 = new ArrayList<MyTextField>();
+        jTextAreaJL7 = new ArrayList<MyTextArea>();
         jScrollPaneText = new ArrayList<JScrollPane>();
         jScrollBar = new ArrayList<JScrollBar>();
 
         jPanelMain = new JPanel();
-        // jScrollPaneMain = new JScrollPane(jPanelMain);
-        jScrollPaneMain = new JScrollPane();
-        jButtonAdicionarFormacao = new JButton("Adicionar nova formação");
+        jScrollPaneMain = new JScrollPane(jPanelMain);
+        jButtonAdicionarHabilidade = new JButton("Adicionar nova formação");
 
-        // jTextFieldJL4 = new JTextField(json.getString("formacaoAnoInicio"));
-        // jTextFieldJL5 = new JTextField(json.getString("formacaoAnoFim"));
-        // jTextFieldJL6 = new JTextField(json.getString("formacaoLocal"));
-        // jTextAreaJL7 = new javax.swing.jTextAreaJL7(json.getString("formacaoDescricao")); // text area of jLabel7 (descrição)
+        // jTextFieldJL4 = new JTextField(json.getString("HabilidadeAnoInicio"));
+        // jTextFieldJL5 = new JTextField(json.getString("HabilidadeAnoFim"));
+        // jTextFieldJL6 = new JTextField(json.getString("HabilidadeLocal"));
+        // jTextAreaJL7 = new javax.swing.jTextAreaJL7(json.getString("HabilidadeDescricao")); // text area of jLabel7 (descrição)
         // jScrollPaneText = new javax.swing.jScrollPaneText(jTextAreaJL7);
 
         // Next and previous buttons
@@ -183,75 +183,7 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
         jLabel3.setBackground(new Color(255, 255, 255));
         jLabel3.setForeground(new Color(62, 62, 62));
         jLabel3.setFont(new Font("DejaVu Sans", 0, 18));
-        jLabel3.setText("Está janela corresponde à seção \"Habilidades\" do currículo. A mesma é opcional");
-
-        jLabel4.add(new JLabel("Ano de início"));
-        jLabel5.add(new JLabel("Ano de conclusão"));
-        jLabel6.add(new JLabel("Local de formação"));
-        jLabel7.add(new JLabel("Descrição"));
-        jTextFieldJL4.add(new JTextField(json.getString("formacaoAnoInicio")));
-        jTextFieldJL5.add(new JTextField(json.getString("formacaoAnoFim")));
-        jTextFieldJL6.add(new JTextField(json.getString("formacaoLocal")));
-        jTextAreaJL7.add(new JTextArea(json.getString("formacaoDescricao")));
-        jScrollPaneText.add(new JScrollPane(jTextAreaJL7.get(jTextAreaJL7.size() - 1)));
-
-        jTextAreaJL7.get(0).setColumns(1);
-        jTextAreaJL7.get(0).setRows(2);
-        jTextAreaJL7.get(0).setBorder(BorderFactory.createEmptyBorder());
-        jTextAreaJL7.get(0).setLineWrap(true);
-        jTextAreaJL7.get(0).setWrapStyleWord(true);
-        jTextAreaJL7.get(0).setText(json.getString("objetivosProfissionais"));
-        jTextAreaJL7.get(0).getDocument().addDocumentListener(new DocumentListener() {
-                  @Override
-                  public void changedUpdate(DocumentEvent evt) {
-                      ChangeJSON();
-                  }
-
-                  @Override
-                  public void removeUpdate(DocumentEvent evt) {
-                      ChangeJSON();
-                  }
-
-                  @Override
-                  public void insertUpdate(DocumentEvent evt) {
-                      ChangeJSON();
-                  }
-
-                  public void ChangeJSON() {
-                      json.put("objetivosProfissionais", jTextAreaJL7.get(0).getText());
-
-                      try {
-                          WriteJSON();
-                      } catch (IOException ex) {
-                          Logger.getLogger(JanelaEntradas5.class.getName()).log(Level.SEVERE, null, ex);
-                      }
-                  }
-              });
-
-        // The jTextAreaJL7 is inside the jScrollPaneText
-        jScrollPaneText.get(0).setBorder(javax.swing.BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
-
-        jScrollBar.add(jScrollPaneText.get(0).getVerticalScrollBar());
-        jScrollBar.get(0).setPreferredSize(new Dimension(9, 1));
-        jScrollBar.get(0).setUI(new ProjectScrollBarUI(jScrollPaneText.get(0)));
-
-        jLabel4.get(0).setBackground(new Color(255, 255, 255));
-        jLabel4.get(0).setForeground(new Color(62, 62, 62));
-        jLabel4.get(0).setFont(new Font("DejaVu Sans", 0, 18));
-
-        jLabel5.get(0).setBackground(new Color(255, 255, 255));
-        jLabel5.get(0).setForeground(new Color(62, 62, 62));
-        jLabel5.get(0).setFont(new Font("DejaVu Sans", 0, 18));
-
-        jLabel6.get(0).setBackground(new Color(255, 255, 255));
-        jLabel6.get(0).setForeground(new Color(62, 62, 62));
-        jLabel6.get(0).setFont(new Font("DejaVu Sans", 0, 18));
-
-        jLabel7.get(0).setBackground(new Color(255, 255, 255));
-        jLabel7.get(0).setForeground(new Color(62, 62, 62));
-        jLabel7.get(0).setFont(new Font("DejaVu Sans", 0, 18));
-        // ======================================================================================================
-
+        jLabel3.setText("Está janela corresponde à seção \"Habilidades Profissionais\" do currículo (opcional)");
 
         // jPanelMain ====================================================================================
         jScrollPaneMain.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
@@ -262,67 +194,173 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
 
         jPanelMain.setBackground(new Color(255, 255, 255));
 
+        // Entradas ===================================================================================
+        int length = 0;
+        for (String name : JSONObject.getNames(json)) {
+          if (name.substring(0, name.length() - 1).equals("habilidadeDescricao")) {
+            length++;
+          }
+        }
+
         GroupLayout jPanelMainLayout = new GroupLayout(jPanelMain);
+        GroupLayout.Group hGroup = jPanelMainLayout.createParallelGroup();
+        GroupLayout.Group vGroup = jPanelMainLayout.createSequentialGroup();
+        jPanelMainLayout.setHorizontalGroup(hGroup);
+        jPanelMainLayout.setVerticalGroup(vGroup);
         jPanelMain.setLayout(jPanelMainLayout);
-        jPanelMainLayout.setHorizontalGroup(
-          jPanelMainLayout.createParallelGroup()
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-              .addGap(30)
-              .addComponent(jLabel4.get(0), GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-              .addGap(15)
-              .addComponent(jLabel5.get(0), GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-              .addGap(20)
-              .addComponent(jLabel6.get(0), GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
-              )
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-              .addGap(30)
-              .addComponent(jTextFieldJL4.get(0), GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-              .addGap(15)
-              .addComponent(jTextFieldJL5.get(0), GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-              .addGap(20)
-              .addComponent(jTextFieldJL6.get(0), GroupLayout.PREFERRED_SIZE, 465, GroupLayout.PREFERRED_SIZE)
-              )
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-              .addGap(30)
-              .addComponent(jLabel7.get(0), GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-            )
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-              .addGap(30)
-              .addComponent(jScrollPaneText.get(0), GroupLayout.PREFERRED_SIZE, 768, GroupLayout.PREFERRED_SIZE)
-            )
-          );
-        jPanelMainLayout.setVerticalGroup(
-          jPanelMainLayout.createSequentialGroup()
-            .addGroup(jPanelMainLayout.createParallelGroup()
-              .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(3)
-                .addComponent(jLabel4.get(0), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                .addGap(3)
-                .addComponent(jTextFieldJL4.get(0), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                )
-              .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(3)
-                .addComponent(jLabel5.get(0), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                .addGap(3)
-                .addComponent(jTextFieldJL5.get(0), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                )
-              .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(3)
-                .addComponent(jLabel6.get(0), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                .addGap(3)
-                .addComponent(jTextFieldJL6.get(0), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                )
-              .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(3)
-                .addGap(55)
-                .addComponent(jLabel7.get(0), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                .addGap(3)
-                .addComponent(jScrollPaneText.get(0), GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
-                .addGap(10)
-                )
-            )
-          );
-        //=======================================================================================================
+
+        // k precisou ser definido fora do initComponents() por que deve ser final, se for de dentro da classe
+        for (k = 0; k < length; k++) {
+          // Criando novos elementos ===============================================================
+          jLabel6.add(new JLabel("Tipo de habilidade (ex. programação, administração, análise de dados)"));
+          jLabel7.add(new JLabel("Descrição"));
+          jTextFieldJL6.add(new MyTextField());
+          jTextAreaJL7.add(new MyTextArea());
+          jScrollPaneText.add(new JScrollPane(jTextAreaJL7.get(jTextAreaJL7.size() - 1)));
+
+          int aux = k;
+          jTextFieldJL6.get(k).setText(json.getString("habilidadeTipo" + String.valueOf(k)));
+          jTextFieldJL6.get(k).index = k;
+          jTextFieldJL6.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextFieldJL6.get(aux).index;
+              json.put("habilidadeTipo" + String.valueOf(index), jTextFieldJL6.get(index).getText());
+
+              try {
+                WriteJSON();
+              } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas8.class.getName()).log(Level.SEVERE, null, ex);
+              }
+            }
+          });
+
+          jTextAreaJL7.get(k).setColumns(1);
+          jTextAreaJL7.get(k).setRows(2);
+          jTextAreaJL7.get(k).setBorder(BorderFactory.createEmptyBorder());
+          jTextAreaJL7.get(k).setLineWrap(true);
+          jTextAreaJL7.get(k).setWrapStyleWord(true);
+          jTextAreaJL7.get(k).setText(json.getString("habilidadeDescricao" + String.valueOf(k)));
+          jTextAreaJL7.get(k).index = k;
+          jTextAreaJL7.get(k).getDocument().addDocumentListener(new DocumentListener() {
+                    @Override
+                    public void changedUpdate(DocumentEvent evt) {
+                        ChangeJSON();
+                    }
+
+                    @Override
+                    public void removeUpdate(DocumentEvent evt) {
+                        ChangeJSON();
+                    }
+
+                    @Override
+                    public void insertUpdate(DocumentEvent evt) {
+                        ChangeJSON();
+                    }
+
+                    public void ChangeJSON() {
+                        int index = jTextAreaJL7.get(aux).index;
+                        json.put("habilidadeDescricao" + String.valueOf(index), jTextAreaJL7.get(index).getText());
+
+                        try {
+                            WriteJSON();
+                        } catch (IOException ex) {
+                            Logger.getLogger(JanelaEntradas8.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                });
+
+          // The jTextAreaJL7 is inside the jScrollPaneText
+          jScrollPaneText.get(k).setBorder(javax.swing.BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+
+          jScrollBar.add(jScrollPaneText.get(k).getVerticalScrollBar());
+          jScrollBar.get(k).setPreferredSize(new Dimension(9, 1));
+          jScrollBar.get(k).setUI(new ProjectScrollBarUI(jScrollPaneText.get(k)));
+
+          jLabel6.get(k).setBackground(new Color(255, 255, 255));
+          jLabel6.get(k).setForeground(new Color(62, 62, 62));
+          jLabel6.get(k).setFont(new Font("DejaVu Sans", 0, 18));
+
+          jLabel7.get(k).setBackground(new Color(255, 255, 255));
+          jLabel7.get(k).setForeground(new Color(62, 62, 62));
+          jLabel7.get(k).setFont(new Font("DejaVu Sans", 0, 18));
+          // =================================================================================================================
+
+          // Adicionado-os ao painel ===============================================================
+              hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+                .addGap(30)
+                // .addComponent(jLabel4.get(k), GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                // .addGap(15)
+                // .addComponent(jLabel5.get(k), GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+                // .addGap(20)
+                .addComponent(jLabel6.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+                );
+              hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+                .addGap(30)
+                // .addComponent(jTextFieldJL4.get(k), GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                // .addGap(15)
+                // .addComponent(jTextFieldJL5.get(k), GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+                // .addGap(20)
+                .addComponent(jTextFieldJL6.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+                );
+              hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+                .addGap(30)
+                .addComponent(jLabel7.get(k), GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+              );
+              hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+                .addGap(30)
+                .addComponent(jScrollPaneText.get(k), GroupLayout.PREFERRED_SIZE, 768, GroupLayout.PREFERRED_SIZE)
+              );
+
+              // Vertical
+              vGroup.addGroup(jPanelMainLayout.createParallelGroup()
+                // .addGroup(jPanelMainLayout.createSequentialGroup()
+                //   // .addGap(k*330)
+                //   .addGap(3)
+                //   .addComponent(jLabel4.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                //   .addGap(3)
+                //   .addComponent(jTextFieldJL4.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                //   )
+                // .addGroup(jPanelMainLayout.createSequentialGroup()
+                //   // .addGap(k*330)
+                //   .addGap(3)
+                //   .addComponent(jLabel5.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                //   .addGap(3)
+                //   .addComponent(jTextFieldJL5.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                //   )
+                .addGroup(jPanelMainLayout.createSequentialGroup()
+                  // .addGap(k*330)
+                  .addGap(3)
+                  .addComponent(jLabel6.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                  .addGap(3)
+                  .addComponent(jTextFieldJL6.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                  )
+                .addGroup(jPanelMainLayout.createSequentialGroup()
+                  // .addGap(k*330)
+                  .addGap(3)
+                  .addGap(55)
+                  .addComponent(jLabel7.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                  .addGap(3)
+                  .addComponent(jScrollPaneText.get(k), GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
+                  .addGap(10)
+                  )
+              );
+        }
+        // =================================================================================================================
 
         // Next and Previous Buttons conf. ======================================================================
         jButtonNext.setFont(new Font("DejaVu Sans", 0, 18));
@@ -385,31 +423,31 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
         // end Next and Previous ================================================================================
 
 
-        // jButtonAdicionarFormacao =================================================================================
-        jButtonAdicionarFormacao.setBackground(new Color(62, 62, 62));
-        jButtonAdicionarFormacao.setForeground(new Color(255, 255, 255));
-        jButtonAdicionarFormacao.setFont(new Font("DejaVu Sans", 0, 18));
-        jButtonAdicionarFormacao.setBorder(BorderFactory.createEmptyBorder());
-        jButtonAdicionarFormacao.setFocusPainted(false);
-        jButtonAdicionarFormacao.addActionListener(new ActionListener() {
+        // jButtonAdicionarHabilidade =================================================================================
+        jButtonAdicionarHabilidade.setBackground(new Color(62, 62, 62));
+        jButtonAdicionarHabilidade.setForeground(new Color(255, 255, 255));
+        jButtonAdicionarHabilidade.setFont(new Font("DejaVu Sans", 0, 18));
+        jButtonAdicionarHabilidade.setBorder(BorderFactory.createEmptyBorder());
+        jButtonAdicionarHabilidade.setFocusPainted(false);
+        jButtonAdicionarHabilidade.addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent evt) {
-            jButtonAdicionarFormacaoActionPerformed(evt);
+            jButtonAdicionarHabilidadeActionPerformed(evt);
           }
         });
-        jButtonAdicionarFormacao.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonAdicionarHabilidade.addMouseListener(new java.awt.event.MouseAdapter() {
           @Override
           public void mouseEntered(java.awt.event.MouseEvent evt) {
-            jButtonAdicionarFormacaoMouseEntered(evt);
+            jButtonAdicionarHabilidadeMouseEntered(evt);
           }
 
           @Override
           public void mouseExited(java.awt.event.MouseEvent evt) {
-            jButtonAdicionarFormacaoMouseExited(evt);
+            jButtonAdicionarHabilidadeMouseExited(evt);
           }
         });
 
-        // end jButtonAdicionarFormacao =============================================================================
+        // end jButtonAdicionarHabilidade =============================================================================
 
 
         jLabel1.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/LogoEmpresa.png")); // NOI18N
@@ -465,8 +503,8 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
                   .addGap(170+6)
                   .addGap(45, 45, 45)
                   .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-              // .addGroup(jPanel1Layout.createSequentialGroup()
-              //     .addComponent(jButtonAdicionarFormacao, GroupLayout.PREFERRED_SIZE, 320, GroupLayout.PREFERRED_SIZE))
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(jButtonAdicionarHabilidade, GroupLayout.PREFERRED_SIZE, 320, GroupLayout.PREFERRED_SIZE))
               )
             )));
         jPanel1Layout.setVerticalGroup(
@@ -483,8 +521,8 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
                 .addGap(10)
                 .addGroup(jPanel1Layout.createParallelGroup()
                     .addComponent(jButtonPrevious, 60, 60, 60)
-                    .addComponent(jButtonNext, 60, 60, 60)))
-                    // .addComponent(jButtonAdicionarFormacao, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButtonNext, 60, 60, 60)
+                    .addComponent(jButtonAdicionarHabilidade, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)))
         ));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -586,30 +624,66 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
       jButtonPrevious.setForeground(new java.awt.Color(255, 255, 255));
     }
 
-    // jButtonAdicionarFormacao
-    private void jButtonAdicionarFormacaoActionPerformed(ActionEvent evt) {
-      int length;
+    // jButtonAdicionarHabilidade
+    private void jButtonAdicionarHabilidadeActionPerformed(ActionEvent evt) {
+      int length = jLabel4.size();
 
       // Criando novos elementos ===============================================================
-      jLabel4.add(new JLabel("Ano de início"));
-      jLabel5.add(new JLabel("Ano de conclusão"));
-      jLabel6.add(new JLabel("Local de formação"));
+
+      // *Criando dados para o arquivo JSON****************************************************
+      json.put("habilidadeTipo" + String.valueOf(length), "");
+      json.put("habilidadeDescricao" + String.valueOf(length), "");
+
+      try {
+          WriteJSON();
+      } catch (IOException ex) {
+          Logger.getLogger(JanelaEntradas8.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      // ****************************************************************************************
+      jLabel6.add(new JLabel("Tipo de habilidade (ex. programação, administração, análise de dados)"));
       jLabel7.add(new JLabel("Descrição"));
-      jTextFieldJL4.add(new JTextField(json.getString("formacaoAnoInicio")));
-      jTextFieldJL5.add(new JTextField(json.getString("formacaoAnoFim")));
-      jTextFieldJL6.add(new JTextField(json.getString("formacaoLocal")));
-      jTextAreaJL7.add(new JTextArea(json.getString("formacaoDescricao")));
-      jScrollPaneText.add(new JScrollPane(jTextAreaJL7.get(jTextAreaJL7.size() - 1)));
+      jTextFieldJL6.add(new MyTextField());
+      jTextAreaJL7.add(new MyTextArea());
+      jScrollPaneText.add(new JScrollPane(jTextAreaJL7.get(length)));
 
-      length = jLabel4.size();
+      int aux = length;
+      jTextFieldJL6.get(aux).index = length;
+      jTextFieldJL6.get(length).getDocument().addDocumentListener(new DocumentListener() {
+        @Override
+        public void changedUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
 
-      jTextAreaJL7.get(length - 1).setColumns(1);
-      jTextAreaJL7.get(length - 1).setRows(2);
-      jTextAreaJL7.get(length - 1).setBorder(BorderFactory.createEmptyBorder());
-      jTextAreaJL7.get(length - 1).setLineWrap(true);
-      jTextAreaJL7.get(length - 1).setWrapStyleWord(true);
-      jTextAreaJL7.get(length - 1).setText(json.getString("objetivosProfissionais"));
-      jTextAreaJL7.get(length - 1).getDocument().addDocumentListener(new DocumentListener() {
+        @Override
+        public void removeUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
+
+        @Override
+        public void insertUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
+
+        public void ChangeJSON() {
+          int index = jTextFieldJL6.get(aux).index;
+          json.put("habilidadeTipo" + String.valueOf(index), jTextFieldJL6.get(index).getText());
+
+          try {
+            WriteJSON();
+          } catch (IOException ex) {
+            Logger.getLogger(JanelaEntradas8.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+      });
+
+      jTextAreaJL7.get(length).setColumns(1);
+      jTextAreaJL7.get(length).setRows(2);
+      jTextAreaJL7.get(length).setBorder(BorderFactory.createEmptyBorder());
+      jTextAreaJL7.get(length).setLineWrap(true);
+      jTextAreaJL7.get(length).setWrapStyleWord(true);
+      jTextAreaJL7.get(length).setText(json.getString("habilidadeDescricao" + String.valueOf(length)));
+      jTextAreaJL7.get(length).index = length;
+      jTextAreaJL7.get(length).getDocument().addDocumentListener(new DocumentListener() {
                 @Override
                 public void changedUpdate(DocumentEvent evt) {
                     ChangeJSON();
@@ -626,118 +700,110 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
                 }
 
                 public void ChangeJSON() {
-                    // json.put("objetivosProfissionais", jTextAreaJL7.get(length - 1).getText());
+                    int index = jTextAreaJL7.get(aux).index;
+                    json.put("habilidadeDescricao" + String.valueOf(index), jTextAreaJL7.get(index).getText());
 
                     try {
                         WriteJSON();
                     } catch (IOException ex) {
-                        Logger.getLogger(JanelaEntradas5.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(JanelaEntradas8.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             });
 
       // The jTextAreaJL7 is inside the jScrollPaneText
-      jScrollPaneText.get(length - 1).setBorder(javax.swing.BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+      jScrollPaneText.get(length).setBorder(javax.swing.BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
 
-      jScrollBar.add(jScrollPaneText.get(length - 1).getVerticalScrollBar());
-      jScrollBar.get(length - 1).setPreferredSize(new Dimension(9, 1));
-      jScrollBar.get(length - 1).setUI(new ProjectScrollBarUI(jScrollPaneText.get(length - 1)));
+      jScrollBar.add(jScrollPaneText.get(length).getVerticalScrollBar());
+      jScrollBar.get(length).setPreferredSize(new Dimension(9, 1));
+      jScrollBar.get(length).setUI(new ProjectScrollBarUI(jScrollPaneText.get(length)));
 
-      jLabel4.get(length - 1).setBackground(new Color(255, 255, 255));
-      jLabel4.get(length - 1).setForeground(new Color(62, 62, 62));
-      jLabel4.get(length - 1).setFont(new Font("DejaVu Sans", 0, 18));
+      jLabel6.get(length).setBackground(new Color(255, 255, 255));
+      jLabel6.get(length).setForeground(new Color(62, 62, 62));
+      jLabel6.get(length).setFont(new Font("DejaVu Sans", 0, 18));
 
-      jLabel5.get(length - 1).setBackground(new Color(255, 255, 255));
-      jLabel5.get(length - 1).setForeground(new Color(62, 62, 62));
-      jLabel5.get(length - 1).setFont(new Font("DejaVu Sans", 0, 18));
-
-      jLabel6.get(length - 1).setBackground(new Color(255, 255, 255));
-      jLabel6.get(length - 1).setForeground(new Color(62, 62, 62));
-      jLabel6.get(length - 1).setFont(new Font("DejaVu Sans", 0, 18));
-
-      jLabel7.get(length - 1).setBackground(new Color(255, 255, 255));
-      jLabel7.get(length - 1).setForeground(new Color(62, 62, 62));
-      jLabel7.get(length - 1).setFont(new Font("DejaVu Sans", 0, 18));
+      jLabel7.get(length).setBackground(new Color(255, 255, 255));
+      jLabel7.get(length).setForeground(new Color(62, 62, 62));
+      jLabel7.get(length).setFont(new Font("DejaVu Sans", 0, 18));
       // =================================================================================================================
 
       // Adicionado-os ao painel ===============================================================
-      for (int k = 0; k < length; k++) {
-        GroupLayout jPanelMainLayout = new GroupLayout(jPanelMain);
-        jPanelMain.setLayout(jPanelMainLayout);
+      int k = length;
+      GroupLayout jPanelMainLayout = new GroupLayout(jPanelMain);
+      jPanelMain.setLayout(jPanelMainLayout);
         jPanelMainLayout.setHorizontalGroup(
-          jPanelMainLayout.createParallelGroup()
+        jPanelMainLayout.createParallelGroup()
+          .addGroup(jPanelMainLayout.createSequentialGroup()
+            .addGap(30)
+            // .addComponent(jLabel4.get(k), GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+            // .addGap(15)
+            // .addComponent(jLabel5.get(k), GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+            // .addGap(20)
+            .addComponent(jLabel6.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+            )
+          .addGroup(jPanelMainLayout.createSequentialGroup()
+            .addGap(30)
+            // .addComponent(jTextFieldJL4.get(k), GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+            // .addGap(15)
+            // .addComponent(jTextFieldJL5.get(k), GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+            // .addGap(20)
+            .addComponent(jTextFieldJL6.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+            )
+          .addGroup(jPanelMainLayout.createSequentialGroup()
+            .addGap(30)
+            .addComponent(jLabel7.get(k), GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+          )
+          .addGroup(jPanelMainLayout.createSequentialGroup()
+            .addGap(30)
+            .addComponent(jScrollPaneText.get(k), GroupLayout.PREFERRED_SIZE, 768, GroupLayout.PREFERRED_SIZE)
+          )
+        );
+      jPanelMainLayout.setVerticalGroup(
+        jPanelMainLayout.createSequentialGroup()
+          .addGroup(jPanelMainLayout.createParallelGroup()
+            // .addGroup(jPanelMainLayout.createSequentialGroup()
+            //   .addGap(k*330)
+            //   .addGap(3)
+            //   .addComponent(jLabel4.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+            //   .addGap(3)
+            //   .addComponent(jTextFieldJL4.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+            //   )
+            // .addGroup(jPanelMainLayout.createSequentialGroup()
+            //   .addGap(k*330)
+            //   .addGap(3)
+            //   .addComponent(jLabel5.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+            //   .addGap(3)
+            //   .addComponent(jTextFieldJL5.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+            //   )
             .addGroup(jPanelMainLayout.createSequentialGroup()
-              .addGap(30)
-              .addComponent(jLabel4.get(k), GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-              .addGap(15)
-              .addComponent(jLabel5.get(k), GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-              .addGap(20)
-              .addComponent(jLabel6.get(k), GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
+              .addGap(k*330)
+              .addGap(3)
+              .addComponent(jLabel6.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+              .addGap(3)
+              .addComponent(jTextFieldJL6.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
               )
             .addGroup(jPanelMainLayout.createSequentialGroup()
-              .addGap(30)
-              .addComponent(jTextFieldJL4.get(k), GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-              .addGap(15)
-              .addComponent(jTextFieldJL5.get(k), GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-              .addGap(20)
-              .addComponent(jTextFieldJL6.get(k), GroupLayout.PREFERRED_SIZE, 465, GroupLayout.PREFERRED_SIZE)
+              .addGap(k*330)
+              .addGap(3)
+              .addGap(55)
+              .addComponent(jLabel7.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+              .addGap(3)
+              .addComponent(jScrollPaneText.get(k), GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
+              .addGap(10)
               )
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-              .addGap(30)
-              .addComponent(jLabel7.get(k), GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-            )
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-              .addGap(30)
-              .addComponent(jScrollPaneText.get(k), GroupLayout.PREFERRED_SIZE, 768, GroupLayout.PREFERRED_SIZE)
-            )
-          );
-        jPanelMainLayout.setVerticalGroup(
-          jPanelMainLayout.createSequentialGroup()
-            .addGroup(jPanelMainLayout.createParallelGroup()
-              .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(k*330)
-                .addGap(3)
-                .addComponent(jLabel4.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                .addGap(3)
-                .addComponent(jTextFieldJL4.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                )
-              .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(k*330)
-                .addGap(3)
-                .addComponent(jLabel5.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                .addGap(3)
-                .addComponent(jTextFieldJL5.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                )
-              .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(k*330)
-                .addGap(3)
-                .addComponent(jLabel6.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                .addGap(3)
-                .addComponent(jTextFieldJL6.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                )
-              .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(k*330)
-                .addGap(3)
-                .addGap(55)
-                .addComponent(jLabel7.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                .addGap(3)
-                .addComponent(jScrollPaneText.get(k), GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
-                .addGap(10)
-                )
-            )
-          );
-      }
+          )
+        );
       // =================================================================================================================
     }
 
-    private void jButtonAdicionarFormacaoMouseEntered(java.awt.event.MouseEvent evt) {
-      jButtonAdicionarFormacao.setBackground(new Color(240, 240, 240));
-      jButtonAdicionarFormacao.setForeground(new Color(62, 62, 62));
+    private void jButtonAdicionarHabilidadeMouseEntered(java.awt.event.MouseEvent evt) {
+      jButtonAdicionarHabilidade.setBackground(new Color(240, 240, 240));
+      jButtonAdicionarHabilidade.setForeground(new Color(62, 62, 62));
     }
 
-    private void jButtonAdicionarFormacaoMouseExited(java.awt.event.MouseEvent evt) {
-      jButtonAdicionarFormacao.setBackground(new Color(62, 62, 62));
-      jButtonAdicionarFormacao.setForeground(new Color(255, 255, 255));
+    private void jButtonAdicionarHabilidadeMouseExited(java.awt.event.MouseEvent evt) {
+      jButtonAdicionarHabilidade.setBackground(new Color(62, 62, 62));
+      jButtonAdicionarHabilidade.setForeground(new Color(255, 255, 255));
     }
 
 
@@ -796,19 +862,31 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
     private List<JLabel> jLabel7;
     private List<JScrollPane> jScrollPaneText;
     private List<JScrollBar> jScrollBar;
-    private List<JTextField> jTextFieldJL4;
-    private List<JTextField> jTextFieldJL5;
-    private List<JTextField> jTextFieldJL6;
-    private List<JTextArea> jTextAreaJL7;
+    private List<MyTextField> jTextFieldJL4;
+    private List<MyTextField> jTextFieldJL5;
+    private List<MyTextField> jTextFieldJL6;
+    private List<MyTextArea> jTextAreaJL7;
 
     private JPanel jPanelMain;
     private JScrollPane jScrollPaneMain;
-    private JButton jButtonAdicionarFormacao;
+    private JButton jButtonAdicionarHabilidade;
     private JScrollBar jScrollBarMain;
 
     private javax.swing.JButton jButtonNext;
     private javax.swing.JButton jButtonPrevious;
     // End of variables declaration
+
+    private static class MyTextArea extends JTextArea {
+      public int index;
+
+      private MyTextArea() {}
+    }
+
+    private static class MyTextField extends JTextField {
+      public int index;
+
+      private MyTextField() {}
+    }
 
     private static class ProjectScrollBarUI extends BasicScrollBarUI {
         private JScrollPane jScrollPaneText;

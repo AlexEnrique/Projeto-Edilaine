@@ -729,7 +729,7 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
 
                   public void ChangeJSON() {
                       json.put("obsDeficiencias", jTextAreaObservacoes.getText());
-                      
+
                       try {
                           WriteJSON();
                       } catch (IOException ex) {

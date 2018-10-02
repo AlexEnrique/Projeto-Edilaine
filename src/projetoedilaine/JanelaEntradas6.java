@@ -36,7 +36,7 @@ import java.util.logging.Logger;
  */
 public class JanelaEntradas6 extends javax.swing.JFrame {
 
-    private int k;
+    private int k = 0;
     private int x, y;
     private JSONObject json;
 
@@ -80,10 +80,10 @@ public class JanelaEntradas6 extends javax.swing.JFrame {
         jLabel6 = new ArrayList<JLabel>();
         jLabel7 = new ArrayList<JLabel>();
 
-        jTextFieldJL4 = new ArrayList<JTextField>();
-        jTextFieldJL5 = new ArrayList<JTextField>();
-        jTextFieldJL6 = new ArrayList<JTextField>();
-        jTextAreaJL7 = new ArrayList<JTextArea>();
+        jTextFieldJL4 = new ArrayList<MyTextField>();
+        jTextFieldJL5 = new ArrayList<MyTextField>();
+        jTextFieldJL6 = new ArrayList<MyTextField>();
+        jTextAreaJL7 = new ArrayList<MyTextArea>();
         jScrollPaneText = new ArrayList<JScrollPane>();
         jScrollBar = new ArrayList<JScrollBar>();
 
@@ -216,18 +216,110 @@ public class JanelaEntradas6 extends javax.swing.JFrame {
           jLabel5.add(new JLabel("Ano de conclusão"));
           jLabel6.add(new JLabel("Local de formação"));
           jLabel7.add(new JLabel("Descrição"));
-          jTextFieldJL4.add(new JTextField(json.getString("formacaoAnoInicio" + String.valueOf(k + 1))));
-          jTextFieldJL5.add(new JTextField(json.getString("formacaoAnoFim" + String.valueOf(k + 1))));
-          jTextFieldJL6.add(new JTextField(json.getString("formacaoLocal" + String.valueOf(k + 1))));
-          jTextAreaJL7.add(new JTextArea(json.getString("formacaoDescricao" + String.valueOf(k + 1))));
+          jTextFieldJL4.add(new MyTextField());
+          jTextFieldJL5.add(new MyTextField());
+          jTextFieldJL6.add(new MyTextField());
+          jTextAreaJL7.add(new MyTextArea());
           jScrollPaneText.add(new JScrollPane(jTextAreaJL7.get(jTextAreaJL7.size() - 1)));
+
+          jTextFieldJL4.get(k).setText(json.getString("formacaoAnoInicio" + String.valueOf(k)));
+          jTextFieldJL4.get(k).index = k;
+          int aux = k;
+          jTextFieldJL4.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextFieldJL4.get(aux).index;
+              json.put("formacaoAnoInicio" + String.valueOf(aux), jTextFieldJL4.get(aux).getText());
+
+              try {
+                WriteJSON();
+              } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas6.class.getName()).log(Level.SEVERE, null, ex);
+              }
+            }
+          });
+
+          jTextFieldJL5.get(k).setText(json.getString("formacaoAnoFim" + String.valueOf(k)));
+          jTextFieldJL5.get(k).index = k;
+          jTextFieldJL5.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextFieldJL5.get(aux).index;
+              json.put("formacaoAnoFim" + String.valueOf(index), jTextFieldJL5.get(index).getText());
+
+              try {
+                WriteJSON();
+              } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas6.class.getName()).log(Level.SEVERE, null, ex);
+              }
+            }
+          });
+
+          jTextFieldJL6.get(k).setText(json.getString("formacaoLocal" + String.valueOf(k)));
+          jTextFieldJL6.get(k).index = k;
+          jTextFieldJL6.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent evt) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextFieldJL6.get(aux).index;
+              json.put("formacaoLocal" + String.valueOf(index), jTextFieldJL6.get(index).getText());
+
+              try {
+                WriteJSON();
+              } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas6.class.getName()).log(Level.SEVERE, null, ex);
+              }
+            }
+          });
 
           jTextAreaJL7.get(k).setColumns(1);
           jTextAreaJL7.get(k).setRows(2);
           jTextAreaJL7.get(k).setBorder(BorderFactory.createEmptyBorder());
           jTextAreaJL7.get(k).setLineWrap(true);
           jTextAreaJL7.get(k).setWrapStyleWord(true);
-          jTextAreaJL7.get(k).setText(json.getString("formacaoDescricao" + String.valueOf(k + 1)));
+          jTextAreaJL7.get(k).setText(json.getString("formacaoDescricao" + String.valueOf(k)));
+          jTextAreaJL7.get(k).index = k;
           jTextAreaJL7.get(k).getDocument().addDocumentListener(new DocumentListener() {
                     @Override
                     public void changedUpdate(DocumentEvent evt) {
@@ -245,12 +337,13 @@ public class JanelaEntradas6 extends javax.swing.JFrame {
                     }
 
                     public void ChangeJSON() {
-                        json.put("formacaoDescricao" + String.valueOf(k + 1), jTextAreaJL7.get(k).getText());
+                        int index = jTextAreaJL7.get(aux).index;
+                        json.put("formacaoDescricao" + String.valueOf(index), jTextAreaJL7.get(index).getText());
 
                         try {
                             WriteJSON();
                         } catch (IOException ex) {
-                            Logger.getLogger(JanelaEntradas5.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(JanelaEntradas6.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 });
@@ -308,28 +401,28 @@ public class JanelaEntradas6 extends javax.swing.JFrame {
               // Vertical
               vGroup.addGroup(jPanelMainLayout.createParallelGroup()
                 .addGroup(jPanelMainLayout.createSequentialGroup()
-                  .addGap(k*330)
+                  // .addGap(k*330)
                   .addGap(3)
                   .addComponent(jLabel4.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
                   .addComponent(jTextFieldJL4.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                   )
                 .addGroup(jPanelMainLayout.createSequentialGroup()
-                  .addGap(k*330)
+                  // .addGap(k*330)
                   .addGap(3)
                   .addComponent(jLabel5.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
                   .addComponent(jTextFieldJL5.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                   )
                 .addGroup(jPanelMainLayout.createSequentialGroup()
-                  .addGap(k*330)
+                  // .addGap(k*330)
                   .addGap(3)
                   .addComponent(jLabel6.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
                   .addComponent(jTextFieldJL6.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                   )
                 .addGroup(jPanelMainLayout.createSequentialGroup()
-                  .addGap(k*330)
+                  // .addGap(k*330)
                   .addGap(3)
                   .addGap(55)
                   .addComponent(jLabel7.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
@@ -610,10 +703,10 @@ public class JanelaEntradas6 extends javax.swing.JFrame {
       // Criando novos elementos ===============================================================
 
       // *Criando dados para o arquivo JSON****************************************************
-      json.put("formacaoAnoInicio" + String.valueOf(length + 1), "");
-      json.put("formacaoAnoFim" + String.valueOf(length + 1), "");
-      json.put("formacaoLocal" + String.valueOf(length + 1), "");
-      json.put("formacaoDescricao" + String.valueOf(length + 1), "");
+      json.put("formacaoAnoInicio" + String.valueOf(length), "");
+      json.put("formacaoAnoFim" + String.valueOf(length), "");
+      json.put("formacaoLocal" + String.valueOf(length), "");
+      json.put("formacaoDescricao" + String.valueOf(length), "");
 
       try {
           WriteJSON();
@@ -626,18 +719,107 @@ public class JanelaEntradas6 extends javax.swing.JFrame {
       jLabel5.add(new JLabel("Ano de conclusão"));
       jLabel6.add(new JLabel("Local de formação"));
       jLabel7.add(new JLabel("Descrição"));
-      jTextFieldJL4.add(new JTextField(""));
-      jTextFieldJL5.add(new JTextField(""));
-      jTextFieldJL6.add(new JTextField(""));
-      jTextAreaJL7.add(new JTextArea(""));
+      jTextFieldJL4.add(new MyTextField());
+      jTextFieldJL5.add(new MyTextField());
+      jTextFieldJL6.add(new MyTextField());
+      jTextAreaJL7.add(new MyTextArea());
       jScrollPaneText.add(new JScrollPane(jTextAreaJL7.get(length)));
+
+      int aux = length;
+      jTextFieldJL4.get(length).index = length;
+      jTextFieldJL4.get(length).getDocument().addDocumentListener(new DocumentListener() {
+        @Override
+        public void changedUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
+
+        @Override
+        public void insertUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
+
+        public void ChangeJSON() {
+          int index = jTextFieldJL4.get(aux).index;
+          json.put("formacaoAnoInicio" + String.valueOf(index), jTextFieldJL4.get(index).getText());
+
+          try {
+            WriteJSON();
+          } catch (IOException ex) {
+            Logger.getLogger(JanelaEntradas6.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+      });
+
+      jTextFieldJL5.get(aux).index = length;
+      jTextFieldJL5.get(length).getDocument().addDocumentListener(new DocumentListener() {
+        @Override
+        public void changedUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
+
+        @Override
+        public void insertUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
+
+        public void ChangeJSON() {
+          int index = jTextFieldJL5.get(aux).index;
+          json.put("formacaoAnoFim" + String.valueOf(index), jTextFieldJL5.get(index).getText());
+
+          try {
+            WriteJSON();
+          } catch (IOException ex) {
+            Logger.getLogger(JanelaEntradas6.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+      });
+
+      jTextFieldJL6.get(aux).index = length;
+      jTextFieldJL6.get(length).getDocument().addDocumentListener(new DocumentListener() {
+        @Override
+        public void changedUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
+
+        @Override
+        public void insertUpdate(DocumentEvent evt) {
+          ChangeJSON();
+        }
+
+        public void ChangeJSON() {
+          int index = jTextFieldJL6.get(aux).index;
+          json.put("formacaoLocal" + String.valueOf(index), jTextFieldJL6.get(index).getText());
+
+          try {
+            WriteJSON();
+          } catch (IOException ex) {
+            Logger.getLogger(JanelaEntradas6.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+      });
 
       jTextAreaJL7.get(length).setColumns(1);
       jTextAreaJL7.get(length).setRows(2);
       jTextAreaJL7.get(length).setBorder(BorderFactory.createEmptyBorder());
       jTextAreaJL7.get(length).setLineWrap(true);
       jTextAreaJL7.get(length).setWrapStyleWord(true);
-      jTextAreaJL7.get(length).setText(json.getString("formacaoDescricao" + String.valueOf(length + 1)));
+      jTextAreaJL7.get(length).setText(json.getString("formacaoDescricao" + String.valueOf(length)));
+      jTextAreaJL7.get(length).index = length;
       jTextAreaJL7.get(length).getDocument().addDocumentListener(new DocumentListener() {
                 @Override
                 public void changedUpdate(DocumentEvent evt) {
@@ -655,12 +837,13 @@ public class JanelaEntradas6 extends javax.swing.JFrame {
                 }
 
                 public void ChangeJSON() {
-                    json.put("formacaoDescricao" + String.valueOf(length + 1), jTextAreaJL7.get(length).getText());
+                    int index = jTextAreaJL7.get(aux).index;
+                    json.put("formacaoDescricao" + String.valueOf(index), jTextAreaJL7.get(index).getText());
 
                     try {
                         WriteJSON();
                     } catch (IOException ex) {
-                        Logger.getLogger(JanelaEntradas5.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(JanelaEntradas6.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             });
@@ -824,10 +1007,10 @@ public class JanelaEntradas6 extends javax.swing.JFrame {
     private List<JLabel> jLabel7;
     private List<JScrollPane> jScrollPaneText;
     private List<JScrollBar> jScrollBar;
-    private List<JTextField> jTextFieldJL4;
-    private List<JTextField> jTextFieldJL5;
-    private List<JTextField> jTextFieldJL6;
-    private List<JTextArea> jTextAreaJL7;
+    private List<MyTextField> jTextFieldJL4;
+    private List<MyTextField> jTextFieldJL5;
+    private List<MyTextField> jTextFieldJL6;
+    private List<MyTextArea> jTextAreaJL7;
 
     private JPanel jPanelMain;
     private JScrollPane jScrollPaneMain;
@@ -837,6 +1020,18 @@ public class JanelaEntradas6 extends javax.swing.JFrame {
     private javax.swing.JButton jButtonNext;
     private javax.swing.JButton jButtonPrevious;
     // End of variables declaration
+
+    private static class MyTextArea extends JTextArea {
+      public int index;
+
+      private MyTextArea() {}
+    }
+
+    private static class MyTextField extends JTextField {
+      public int index;
+
+      private MyTextField() {}
+    }
 
     private static class ProjectScrollBarUI extends BasicScrollBarUI {
         private JScrollPane jScrollPaneText;
@@ -895,4 +1090,7 @@ public class JanelaEntradas6 extends javax.swing.JFrame {
             }
         }
     }
+
+
+
 }
