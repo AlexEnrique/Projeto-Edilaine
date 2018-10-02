@@ -14,7 +14,8 @@ A seguinte lista apresenta as etapas pretendidas para o projeto:
     - Janela de dados pessoais. &#10003;
     - Janela de objetivos profissionais e sobre. &#10003;
     - Janela de formação e experiências &#10003;
-    - Outras janelas
+    - Janela de habilidades profissionais &#10003;
+    - Janela para novas seções
   - Janela final de verificação dos dados
   - Janela de alteração de currículo existente.
     - Criar método para salvar dados de currículos e reabrir. 
