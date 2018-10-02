@@ -1,5 +1,7 @@
 package projetoedilaine;
 
+import projetoedilaine.WriteTemplate3;
+
 // import java.awt.*;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -183,7 +185,7 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
         jLabel3.setBackground(new Color(255, 255, 255));
         jLabel3.setForeground(new Color(62, 62, 62));
         jLabel3.setFont(new Font("DejaVu Sans", 0, 18));
-        jLabel3.setText("Está janela corresponde à seção \"Habilidades Profissionais\" do currículo (opcional)");
+        jLabel3.setText("Esta janela corresponde à seção \"Habilidades Profissionais\" do currículo (opcional)");
 
         // jPanelMain ====================================================================================
         jScrollPaneMain.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
@@ -591,8 +593,18 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
     // Next Button
     private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         WriteJSON();
+        new WriteTemplate3();
 
-        new JanelaEntradas8().setVisible(true);
+        // new JanelaEntradas8().setVisible(true);
+        // SaveJSONFile();
+        try {
+            Runtime.getRuntime().exec("rm tmp.json").waitFor();
+        } catch (IOException ex) {
+            Logger.getLogger(JanelaEntradas8.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(JanelaEntradas8.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         this.dispose();
     }
 

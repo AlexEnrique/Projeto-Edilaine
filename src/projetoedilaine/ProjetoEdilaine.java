@@ -31,10 +31,11 @@ public class ProjetoEdilaine {
 
         } else {
           json = new JSONObject()
-          .put("janela", 8)
+          .put("janela", 0)
           .put("nome", "")
           .put("template", 0)
           .put("email", "")
+          .put("profissao", "")
           .put("DDD1", "")
           .put("DDD2", "")
           .put("telefone1", "")

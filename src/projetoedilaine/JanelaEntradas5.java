@@ -158,7 +158,7 @@ public class JanelaEntradas5 extends javax.swing.JFrame {
         jLabel3.setBackground(new Color(255, 255, 255));
         jLabel3.setForeground(new Color(62, 62, 62));
         jLabel3.setFont(new Font("DejaVu Sans", 0, 18));
-        jLabel3.setText("Está parte corresponde à seção \"Objetivos Profissionais\" do currículo. A mesma é opcional");
+        jLabel3.setText("Esta parte corresponde à seção \"Objetivos Profissionais\" do currículo. A mesma é opcional");
 
         jTextArea.setColumns(1);
         jTextArea.setRows(2);

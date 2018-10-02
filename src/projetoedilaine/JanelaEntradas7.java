@@ -183,7 +183,7 @@ public class JanelaEntradas7 extends javax.swing.JFrame {
         jLabel3.setBackground(new Color(255, 255, 255));
         jLabel3.setForeground(new Color(62, 62, 62));
         jLabel3.setFont(new Font("DejaVu Sans", 0, 18));
-        jLabel3.setText("Está janela corresponde à seção \"Experiências Profissionais\" do currículo (opcional)");
+        jLabel3.setText("Esta janela corresponde à seção \"Experiências Profissionais\" do currículo (opcional)");
 
         // jPanelMain ====================================================================================
         jScrollPaneMain.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
