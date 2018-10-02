@@ -19,11 +19,11 @@ A seguinte lista apresenta as etapas pretendidas para o projeto:
   - Janela final de verificação dos dados
   - Janela de alteração de currículo existente.
     - Criar método para salvar dados de currículos e reabrir. 
-* Adaptação dos códigos-fontes de templates em LaTeX para o programa.
+* Adaptação dos códigos-fontes de templates em LaTeX para o programa. &#10003;
 * Script de compilação dos templates em LaTeX.
   - Preparação das bibliotecas requeridas.
   - Adaptação para o Windows OS.
-* Primeira fase de testes: funcionamento e desempenho local.
+* Primeira fase de testes: funcionamento e desempenho local. &#10003;
 * Criar instalador provendo todos os recursos necessários para o programa.
 * Última fase de testes: funcionamento e desempenho em outras máquinas.
 
