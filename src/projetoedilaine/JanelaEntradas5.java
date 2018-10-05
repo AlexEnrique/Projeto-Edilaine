@@ -45,7 +45,7 @@ public class JanelaEntradas5 extends javax.swing.JFrame {
         this.json = new JSONObject(
                       new JSONTokener(
                           new BufferedReader(
-                              new FileReader("tmp.json")
+                              new FileReader("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json")
                           )
                       )
                   );
@@ -262,7 +262,7 @@ public class JanelaEntradas5 extends javax.swing.JFrame {
         // end Next and Previous ================================================================================
 
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/LogoEmpresa.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\CONTRETEC\\CurriculumSoftware\\LogoEmpresa.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -361,7 +361,7 @@ public class JanelaEntradas5 extends javax.swing.JFrame {
     // Sair
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {
         try {
-            Runtime.getRuntime().exec("rm tmp.json").waitFor();
+            Runtime.getRuntime().exec("cmd /c cd C:\\CONTRETEC\\CurriculumSoftware & del C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json").waitFor();
         } catch (IOException ex) {
             Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
@@ -433,7 +433,7 @@ public class JanelaEntradas5 extends javax.swing.JFrame {
     }
 
     private void WriteJSON() throws IOException {
-      try (BufferedWriter writer = new BufferedWriter(new FileWriter("tmp.json"))) {
+      try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json"))) {
         writer.write(json.toString());
         writer.close();
       } catch (IOException ex) {

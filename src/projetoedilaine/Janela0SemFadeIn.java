@@ -31,7 +31,7 @@ public class Janela0SemFadeIn extends javax.swing.JFrame {
         this.json = new JSONObject(
                         new JSONTokener(
                             new BufferedReader(
-                                new FileReader("tmp.json")
+                                new FileReader("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json")
                             )
                         )
                     );
@@ -162,7 +162,7 @@ public class Janela0SemFadeIn extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/LogoEmpresa.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\CONTRETEC\\CurriculumSoftware\\LogoEmpresa.png")); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(62, 62, 62));
@@ -304,7 +304,7 @@ public class Janela0SemFadeIn extends javax.swing.JFrame {
     // Sair
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {
         try {
-            Runtime.getRuntime().exec("rm tmp.json").waitFor();
+            Runtime.getRuntime().exec("cmd /c cd C:\\CONTRETEC\\CurriculumSoftware & del C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json").waitFor();
         } catch (IOException ex) {
             Logger.getLogger(Janela0SemFadeIn.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {

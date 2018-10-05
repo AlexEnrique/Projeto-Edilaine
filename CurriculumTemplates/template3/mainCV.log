@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.9.27)  2 OCT 2018 20:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.9.27)  3 OCT 2018 08:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -846,7 +846,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \col@ii@posy=\skip296
 \col@ii@evenx=\skip297
 \col@ii@eveny=\skip298
- (./mainCV.aux)
+
+No file mainCV.aux.
 \openout1 = `mainCV.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 106.
@@ -862,7 +863,6 @@ LaTeX Font Info:    ... okay on input line 106.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 106.
 LaTeX Font Info:    ... okay on input line 106.
 LaTeX Font Info:    Try loading font information for OT1+bch on input line 106.
-
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1bch.fd
 File: ot1bch.fd 2004/10/18 font definitions for OT1/bch.
@@ -999,8 +999,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ]
 (./mainCV.aux) ) 
 Here is how much of TeX's memory you used:
- 17259 strings out of 494884
- 314687 string characters out of 6179236
+ 17257 strings out of 494884
+ 314665 string characters out of 6179236
  424567 words of memory out of 5000000
  20290 multiletter control sequences out of 15000+600000
  17903 words of font info for 39 fonts, out of 8000000 for 9000

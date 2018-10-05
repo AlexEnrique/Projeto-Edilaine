@@ -20,11 +20,11 @@ public class ProjetoEdilaine {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         JSONObject json;
 
-        if (new File("tmp.json").exists()) {
+        if (new File("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json").exists()) {
           json = new JSONObject(
                       new JSONTokener(
                           new BufferedReader(
-                              new FileReader("tmp.json")
+                              new FileReader("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json")
                           )
                       )
                   );
@@ -42,12 +42,12 @@ public class ProjetoEdilaine {
           .put("telefone2", "")
           .put("cidade", "")
           .put("estado", "")
-          .put("obsEndereco", "") // Observações sobre o endereço
-          .put("obsVirtuais", "") // Observações sobre endereços virtuais
+          .put("obsEndereco", "") // Observações sobre o endereço         // NÃO UTILIZADO ATÉ O MOMENTO
+          .put("obsVirtuais", "") // Observações sobre endereços virtuais // NÃO UTILIZADO ATÉ O MOMENTO
           .put("website", "")
           .put("linkedin", "")
           .put("sobreMim", "")
-          .put("deficiencia?", "nao")
+          .put("deficiencia?", "nao") // AINDA NÃO UTILIZADO
           .put("defAuditiva?", "")
           .put("defAuditivaNivel", "")
           .put("defAuditivaTipo", "")
@@ -79,16 +79,14 @@ public class ProjetoEdilaine {
           .put("experienciaAnoFim0", "")
           .put("experienciaLocal0", "")
           .put("experienciaDescricao0", "")
-          // .put("habilidadeAnoInicio0", "")
-          // .put("habilidadeAnoFim0", "")
           .put("habilidadeTipo0", "")
           .put("habilidadeDescricao0", "")
           .put("objetivosProfissionais", "");
 
-          new FileWriter("tmp.json").close(); // Criar novo arquivo
+          new FileWriter("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json").close(); // Criar novo arquivo
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("tmp.json"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json"))) {
           writer.write(json.toString());
           writer.close();
         } catch (IOException ex) {

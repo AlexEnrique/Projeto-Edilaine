@@ -46,7 +46,7 @@ public class JanelajButtonObsEndereco extends javax.swing.JFrame {
       this.json = new JSONObject(
                       new JSONTokener(
                           new BufferedReader(
-                              new FileReader("tmp.json")
+                              new FileReader("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json")
                           )
                       )
                   );
@@ -233,7 +233,7 @@ public class JanelajButtonObsEndereco extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/LogoEmpresa.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\CONTRETEC\\CurriculumSoftware\\LogoEmpresa.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -369,7 +369,7 @@ public class JanelajButtonObsEndereco extends javax.swing.JFrame {
        }
 
        private void WriteJSON() throws IOException {
-         try (BufferedWriter writer = new BufferedWriter(new FileWriter("tmp.json"))) {
+         try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json"))) {
            writer.write(json.toString());
            writer.close();
          } catch (IOException ex) {

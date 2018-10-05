@@ -106,7 +106,7 @@ public class JanelaAviso1 extends javax.swing.JFrame {
           }
         });
 
-        jLabelIcon.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/warning.png"));
+        jLabelIcon.setIcon(new javax.swing.ImageIcon("C:\\CONTRETEC\\CurriculumSoftware\\warning.png"));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

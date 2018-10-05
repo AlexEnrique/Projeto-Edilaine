@@ -39,7 +39,7 @@ public class JanelaTemplates extends javax.swing.JFrame {
       this.json = new JSONObject(
                       new JSONTokener(
                           new BufferedReader(
-                              new FileReader("tmp.json")
+                              new FileReader("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json")
                           )
                       )
                   );
@@ -182,7 +182,7 @@ public class JanelaTemplates extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/LogoEmpresa.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\CONTRETEC\\CurriculumSoftware\\LogoEmpresa.png")); // NOI18N
 
         jLabel3.setFont(new Font("DejaVu Sans", 0, 18));
         jLabel3.setForeground(new Color(62, 62, 62));
@@ -193,7 +193,7 @@ public class JanelaTemplates extends javax.swing.JFrame {
         jLabelCaption1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCaption1.setText("Modelo 1");
 
-        jButtonTemp1.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/AdjustedTemplates/template1.png"));
+        jButtonTemp1.setIcon(new javax.swing.ImageIcon("C:\\CONTRETEC\\CurriculumSoftware\\AdjustedTemplates\\template1.png"));
         jButtonTemp1.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,7 +206,7 @@ public class JanelaTemplates extends javax.swing.JFrame {
         jLabelCaption2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCaption2.setText("Modelo 2");
 
-        jButtonTemp2.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/AdjustedTemplates/template2.png"));
+        jButtonTemp2.setIcon(new javax.swing.ImageIcon("C:\\CONTRETEC\\CurriculumSoftware\\AdjustedTemplates\\template2.png"));
         jButtonTemp2.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,7 +219,7 @@ public class JanelaTemplates extends javax.swing.JFrame {
         jLabelCaption3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCaption3.setText("Modelo 3");
 
-        jButtonTemp3.setIcon(new javax.swing.ImageIcon("/home/alex/NetBeansProjects/projetoEdilaine/AdjustedTemplates/template3.png"));
+        jButtonTemp3.setIcon(new javax.swing.ImageIcon("C:\\CONTRETEC\\CurriculumSoftware\\AdjustedTemplates\\template3.png"));
         jButtonTemp3.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -349,7 +349,7 @@ public class JanelaTemplates extends javax.swing.JFrame {
     // Sair
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {
         try {
-            Runtime.getRuntime().exec("rm tmp.json").waitFor();
+            Runtime.getRuntime().exec("cmd /c cd C:\\CONTRETEC\\CurriculumSoftware & del C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json").waitFor();
         } catch (IOException ex) {
             Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
@@ -454,7 +454,7 @@ public class JanelaTemplates extends javax.swing.JFrame {
     }
 
     private void WriteJSON(int templateNo) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("tmp.json"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json"))) {
           json.put("template", templateNo);
           writer.write(json.toString());
           writer.close();
@@ -464,7 +464,7 @@ public class JanelaTemplates extends javax.swing.JFrame {
     }
 
     private void WriteJSON() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("tmp.json"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json"))) {
           for (String key : JSONObject.getNames(json)) {
             json.put(key, json.get(key));
           }

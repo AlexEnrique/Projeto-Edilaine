@@ -20,11 +20,11 @@ A seguinte lista apresenta as etapas pretendidas para o projeto:
   - Janela de alteração de currículo existente.
     - Criar método para salvar dados de currículos e reabrir. 
 * Adaptação dos códigos-fontes de templates em LaTeX para o programa. &#10003;
-* Script de compilação dos templates em LaTeX.
-  - Preparação das bibliotecas requeridas.
-  - Adaptação para o Windows OS.
+* Script de compilação dos templates em LaTeX. &#10003;
+  - Preparação das bibliotecas requeridas. &#10003;
+  - Adaptação para o Windows OS. &#10003;
 * Primeira fase de testes: funcionamento e desempenho local. &#10003;
-* Criar instalador provendo todos os recursos necessários para o programa.
+* Criar instalador provendo todos os recursos necessários para o programa. &#10003;
 * Última fase de testes: funcionamento e desempenho em outras máquinas.
 
 Items com a marca <code>&#10003;</code> ao final representam estágios concluídos.
