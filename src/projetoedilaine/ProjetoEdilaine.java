@@ -31,7 +31,7 @@ public class ProjetoEdilaine {
 
         } else {
           json = new JSONObject()
-          .put("janela", 0)
+          .put("janela", 10)
           .put("nome", "")
           .put("template", 0)
           .put("email", "")
@@ -81,6 +81,14 @@ public class ProjetoEdilaine {
           .put("experienciaDescricao0", "")
           .put("habilidadeTipo0", "")
           .put("habilidadeDescricao0", "")
+          .put("novaSecaoNome0", "")
+          .put("novaSecaoNomeSubsecao0", "")
+          .put("novaSecaoData0", "")
+          .put("novaSecaoDataInicio0", "")
+          .put("novaSecaoDataFim0", "")
+          .put("novaSecaoLocal0", "")
+          .put("novaSecaoDescricao0", "")
+          .put("novaSecaoTopicos0", "")
           .put("objetivosProfissionais", "");
 
           new FileWriter("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json").close(); // Criar novo arquivo
@@ -104,6 +112,12 @@ public class ProjetoEdilaine {
                   break;
 
           case 8: new JanelaEntradas8().setVisible(true);
+                  break;
+
+          case 9: new JanelaNovasSecoes().setVisible(true);
+                  break;
+
+          case 10: new JanelaFoto().setVisible(true);
                   break;
 
           default: new Janela0().setVisible(true);

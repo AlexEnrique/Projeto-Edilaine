@@ -593,16 +593,17 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
     // Next Button
     private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         WriteJSON();
-        new WriteTemplate3();
+        // new WriteTemplate3();
+        new JanelaNovasSecoes().setVisible(true);
 
         // Remover isso na versão final!
-        try {
-            Runtime.getRuntime().exec("cmd /c cd C:\\CONTRETEC\\CurriculumSoftware & del C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json").waitFor();
-        } catch (IOException ex) {
-            Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // try {
+        //     Runtime.getRuntime().exec("cmd /c cd C:\\CONTRETEC\\CurriculumSoftware & del C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json").waitFor();
+        // } catch (IOException ex) {
+        //     Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
+        // } catch (InterruptedException ex) {
+        //     Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
+        // }
 
 
         // new JanelaEntradas8().setVisible(true);
