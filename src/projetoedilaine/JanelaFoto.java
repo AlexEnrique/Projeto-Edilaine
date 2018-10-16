@@ -35,6 +35,8 @@ public class JanelaFoto extends javax.swing.JFrame {
     private int x, y;
     private Timer fadeInJL3;
     private JSONObject json;
+    private int imgX, imgY;
+    private String imgPath;
 
     public JanelaFoto() throws FileNotFoundException {
       this.json = new JSONObject(
@@ -58,6 +60,9 @@ public class JanelaFoto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        imgY = 235;
+
+        imgX = imgY;
 
         // Botoes de minimizar e maximizar
         jButtonExit = new javax.swing.JButton();
@@ -71,6 +76,7 @@ public class JanelaFoto extends javax.swing.JFrame {
 
         jRadioButtonSim = new JRadioButton("Sim");
         jRadioButtonNao = new JRadioButton("Não");
+        buttonGroup = new javax.swing.ButtonGroup();
 
         jButton1 = new JButton("Escolher foto");
 
@@ -166,13 +172,12 @@ public class JanelaFoto extends javax.swing.JFrame {
 
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("C:\\CONTRETEC\\CurriculumSoftware\\imgs\\no-photo.jpg"));
+            img = ImageIO.read(new File(json.getString("caminhoFoto")));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Image dimg = img.getScaledInstance(200, 200,
-        Image.SCALE_SMOOTH);
+        Image dimg = img.getScaledInstance(imgX, imgY, Image.SCALE_SMOOTH);
 
         jLabel5.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
         jLabel5.setIcon(new ImageIcon(dimg));
@@ -189,24 +194,63 @@ public class JanelaFoto extends javax.swing.JFrame {
                 return;
               }
 
-              String fileName = chooser.getSelectedFile().getAbsolutePath();
+              imgPath = chooser.getSelectedFile().getAbsolutePath(); // String imgPath
               BufferedImage img = null;
 
               try {
-                  img = ImageIO.read(new File(fileName));
+                  img = ImageIO.read(new File(imgPath));
               } catch (IOException ex) {
                   ex.printStackTrace();
               }
 
-              Image dimg = img.getScaledInstance(200, 200,
-              Image.SCALE_SMOOTH);
+              Image dimg = img.getScaledInstance(imgX, imgY, Image.SCALE_SMOOTH);
 
               jLabel5.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
               jLabel5.setIcon(new ImageIcon(dimg));
 
+              json.put("caminhoFoto", imgPath);
             }
           }
         });
+
+        buttonGroup.add(jRadioButtonSim);
+        buttonGroup.add(jRadioButtonNao);
+
+        jRadioButtonSim.setBackground(new Color(255, 255, 255));
+        jRadioButtonSim.setForeground(new Color(62, 62, 62));
+        jRadioButtonSim.setFont(new Font("DejaVu Sans", 1, 14));
+        jRadioButtonSim.setFocusPainted(false);
+        jRadioButtonSim.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            json.put("usarFoto?", 1);
+          }
+        });
+
+        jRadioButtonNao.setBackground(new Color(255, 255, 255));
+        jRadioButtonNao.setForeground(new Color(62, 62, 62));
+        jRadioButtonNao.setFont(new Font("DejaVu Sans", 1, 14));
+        jRadioButtonNao.setFocusPainted(false);
+        jRadioButtonNao.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            json.put("usarFoto?", 0);
+          }
+        });
+
+        if (json.getInt("usarFoto?") == 0) {
+          jRadioButtonNao.setSelected(true);
+        } else {
+          jRadioButtonSim.setSelected(true);
+        }
+
+
+
+
+
+
+
+
         // .setFont(new Font("DejaVu Sans", 0, 18));
         // .setBackground(new Color(255, 255, 255));
         // .setForeground(new Color(62, 62, 62));
@@ -327,10 +371,11 @@ public class JanelaFoto extends javax.swing.JFrame {
               )
               .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGap(300)
-                  .addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                  .addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, imgX, GroupLayout.PREFERRED_SIZE)
               )
               .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGap(300)
+                  .addGap(35/2)
                   .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
               )
         );
@@ -349,7 +394,7 @@ public class JanelaFoto extends javax.swing.JFrame {
                 )
                 .addGap(10)
                 .addGroup(jPanel1Layout.createParallelGroup()
-                    .addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, imgY, GroupLayout.PREFERRED_SIZE)
                 )
                 .addGap(10)
                 .addGroup(jPanel1Layout.createParallelGroup()
@@ -430,7 +475,7 @@ public class JanelaFoto extends javax.swing.JFrame {
     private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         WriteJSON();
 
-        // new JanelaEntradas2().setVisible(true);
+        new JanelaConfirmarAlterarDados1().setVisible(true);
         this.dispose();
     }
 
@@ -518,6 +563,8 @@ public class JanelaFoto extends javax.swing.JFrame {
 
     private JRadioButton jRadioButtonSim;
     private JRadioButton jRadioButtonNao;
+
+    private ButtonGroup buttonGroup;
 
     private JButton jButton1;
 

@@ -31,7 +31,7 @@ public class ProjetoEdilaine {
 
         } else {
           json = new JSONObject()
-          .put("janela", 10)
+          .put("janela", 0)
           .put("nome", "")
           .put("template", 0)
           .put("email", "")
@@ -89,7 +89,9 @@ public class ProjetoEdilaine {
           .put("novaSecaoLocal0", "")
           .put("novaSecaoDescricao0", "")
           .put("novaSecaoTopicos0", "")
-          .put("objetivosProfissionais", "");
+          .put("objetivosProfissionais", "")
+          .put("usarFoto?", 0) // 0 para não e 1 para sim
+          .put("caminhoFoto", "C:\\CONTRETEC\\CurriculumSoftware\\imgs\\no-photo.jpg");
 
           new FileWriter("C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json").close(); // Criar novo arquivo
         }
@@ -118,7 +120,10 @@ public class ProjetoEdilaine {
                   break;
 
           case 10: new JanelaFoto().setVisible(true);
-                  break;
+                   break;
+
+          case 11: new JanelaConfirmarAlterarDados1().setVisible(true);
+                   break;
 
           default: new Janela0().setVisible(true);
                    break;
