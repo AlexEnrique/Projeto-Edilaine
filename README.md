@@ -17,9 +17,9 @@ A seguinte lista apresenta as etapas pretendidas para o projeto:
     - Janela de habilidades profissionais &#10003;
     - Janela para novas seções &#10003;
     - Janela para inserir fotos &#10003;
-  - Janela final de verificação dos dados
+  - Janela final de verificação dos dados &#10003;
   - Janela de alteração de currículo existente.
-    - Criar método para salvar dados de currículos e reabrir. 
+    - Criar método para salvar dados de currículos e reabrir. &#10003;
 * Adaptação dos códigos-fontes de templates em LaTeX para o programa. &#10003;
 * Script de compilação dos templates em LaTeX. &#10003;
   - Preparação das bibliotecas requeridas. &#10003;
