@@ -1,0 +1,58 @@
+package projetoedilaine;
+
+// import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.*;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * @author Alex Enrique Crispim
+ */
+
+public final class RenderCurriculum {
+  private JSONObject json;
+
+  public void RenderCurriculum() {
+      // switch (json.getInt("template")) 
+  }
+
+  public static void main(String[] args) {
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+            new RenderCurriculum();
+        }
+    });
+  }
+
+}

@@ -80,51 +80,81 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
 
         jLabelNome = new JLabel("Nome:");
         jTextFieldNome = new JTextField();
+        jButtonNomeAS = new JButton("Alterar/Salvar nome");
 
         jLabelProfissao = new JLabel("Profissão:");
         jTextFieldProfissao = new JTextField();
+        jButtonProfissaoAS = new JButton("Alterar/Salvar profissão");
 
         jLabelEstilo = new JLabel("Estilo do currículo:");
         jLabelEstiloImagem = new JLabel();
+        jButtonEstiloR = new JButton("Voltar à janela de estilos");
 
         jLabelEmail = new JLabel("E-mail:"); // Transformar em um array ao final
         jTextFieldEmail = new JTextField();
+        jButtonEmailAS = new JButton("Alterar/Salvar e-mail");
 
         jLabelDDD = new JLabel("DDD:");
         jTextFieldDDD = new JTextField();
         jLabelTelefone = new JLabel("Telefone:");
         jTextFieldTelefone = new JTextField();
+        jButtonDDDTelefones = new JButton("Alterar/Salvar DDD e telefone");
 
         jLabelCidade = new JLabel("Cidade:");
         jTextFieldCidade = new JTextField();
+        jButtonCidade = new JButton("Alterar/Salvar cidade");
 
         jLabelEstado = new JLabel("Estado:");
         jTextFieldEstado = new JTextField();
+        jButtonEstado = new JButton("Alterar/Salvar estado");
 
         jLabelWebsite = new JLabel("Website:");
         jTextFieldWebsite = new JTextField();
+        jButtonWebsite = new JButton("Alterar/Salvar website");
 
         jLabelLinkedin = new JLabel("LinkedIn:");
         jTextFieldLinkedin = new JTextField();
+        jButtonLinkedin = new JButton("Alterar/Salvar LinkedIn");
 
-        jLabelFoto = new JLabel("Foto:");
+        imgY = 120;
+        imgX = imgY; // Dimensões - foto
+
+        jLabelFoto = new JLabel("Usar foto:");
         jLabelFotoUsar = new JLabel( (json.getInt("usarFoto?") == 0) ? "Não" : "Sim" );
         jLabelFotoImagem = new JLabel();
+        jButtonFoto = new JButton("Alterar foto");
 
         jLabelObsEndereco = new JLabel("Observações sobre endereço:");
         jTextAreaObsEndereco = new JTextArea();
         jScrollPaneObsEndereco = new JScrollPane(jTextAreaObsEndereco);
         jScrollBarObsEndereco = new JScrollBar();
+        jButtonObsEndereco = new JButton("Alterar observações sobre endereço");
 
         jLabelObsVirtuais = new JLabel("Observações sobre endereços virtuais:");
         jTextAreaObsVirtuais = new JTextArea();
         jScrollPaneObsVirtuais = new JScrollPane(jTextAreaObsVirtuais);
         jScrollBarObsVirtuais = new JScrollBar();
+        jButtonObsVirtuais = new JButton("Alterar observações sobre endereços virtuais");
+
+        jLabelSobreMim = new JLabel("Sobre mim:");
+        jTextAreaSobreMim = new JTextArea();
+        jScrollPaneSobreMim = new JScrollPane(jTextAreaSobreMim);
+        jScrollBarSobreMim = new JScrollBar();
+        jButtonSobreMim = new JButton("Sobre mim - alterar");
+
+        jLabelObjetivos = new JLabel("Objetivos profissionais:");
+        jTextAreaObjetivos = new JTextArea();
+        jScrollPaneObjetivos = new JScrollPane(jTextAreaObjetivos);
+        jScrollBarObjetivos = new JScrollBar();
+        jButtonObjetivos = new JButton("Alterar objetivos profissionais");
 
 
         jPanelMain = new JPanel();
         jScrollPaneMain = new JScrollPane(jPanelMain);
-        jScrollBarMain = new JScrollBar();
+        jScrollBarMain = jScrollPaneMain.getVerticalScrollBar();
+        jScrollBarMain.setPreferredSize(new Dimension(7, 1));
+        jScrollBarMain.setUI(new ProjectScrollBarUI(jScrollPaneMain));
+
 
         // Separador
         // jSeparator = new javax.swing.JSeparator(SwingConstants.VERTICAL);
@@ -212,9 +242,6 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
         });
 
         // Botões principais ====================================================================================
-        imgY = 120;
-        imgX = imgY;
-
         jLabelTitulo.setFont(new Font("DejaVu Sans", 0, 18));
         jLabelTitulo.setBackground(new Color(255, 255, 255));
         jLabelTitulo.setForeground(new Color(62, 62, 62));
@@ -293,19 +320,18 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
         jLabelFoto.setBackground(new Color(255, 255, 255));
         jLabelFoto.setForeground(new Color(62, 62, 62));
 
-        jLabelFotoUsar.setFont(new Font("DejaVu Sans", 0, 15));
+        jLabelFotoUsar.setFont(new Font("DejaVu Sans", 1, 15));
         jLabelFotoUsar.setBackground(new Color(255, 255, 255));
         jLabelFotoUsar.setForeground(new Color(62, 62, 62));
 
         jLabelFotoImagem.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
         jLabelFotoImagem.setIcon(new ImageIcon(fotoImg()));
 
-
         jLabelObsEndereco.setFont(new Font("DejaVu Sans", 0, 16));
         jLabelObsEndereco.setBackground(new Color(255, 255, 255));
         jLabelObsEndereco.setForeground(new Color(62, 62, 62));
 
-        jScrollPaneObsEndereco.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+        jScrollPaneObsEndereco.setBorder(BorderFactory.createLineBorder(new Color(184, 207, 229), 1));
 
         jScrollBarObsEndereco = jScrollPaneObsEndereco.getVerticalScrollBar();
         jScrollBarObsEndereco.setPreferredSize(new Dimension(9, 1));
@@ -319,13 +345,14 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
         jTextAreaObsEndereco.setWrapStyleWord(true);
         jTextAreaObsEndereco.setText(json.getString("obsEndereco"));
         jTextAreaObsEndereco.setEditable(false);
+        jTextAreaObsEndereco.setBackground(new Color(238, 238, 238));
 
 
         jLabelObsVirtuais.setFont(new Font("DejaVu Sans", 0, 16));
         jLabelObsVirtuais.setBackground(new Color(255, 255, 255));
         jLabelObsVirtuais.setForeground(new Color(62, 62, 62));
 
-        jScrollPaneObsVirtuais.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+        jScrollPaneObsVirtuais.setBorder(BorderFactory.createLineBorder(new Color(184, 207, 229), 1));
 
         jScrollBarObsVirtuais = jScrollPaneObsVirtuais.getVerticalScrollBar();
         jScrollBarObsVirtuais.setPreferredSize(new Dimension(9, 1));
@@ -339,9 +366,604 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
         jTextAreaObsVirtuais.setWrapStyleWord(true);
         jTextAreaObsVirtuais.setText(json.getString("obsVirtuais"));
         jTextAreaObsVirtuais.setEditable(false);
+        jTextAreaObsVirtuais.setBackground(new Color(238, 238, 238));
 
 
+        jLabelSobreMim.setFont(new Font("DejaVu Sans", 0, 16));
+        jLabelSobreMim.setBackground(new Color(255, 255, 255));
+        jLabelSobreMim.setForeground(new Color(62, 62, 62));
 
+        jScrollPaneSobreMim.setBorder(BorderFactory.createLineBorder(new Color(184, 207, 229), 1));
+
+        jScrollBarSobreMim = jScrollPaneSobreMim.getVerticalScrollBar();
+        jScrollBarSobreMim.setPreferredSize(new Dimension(9, 1));
+        jScrollBarSobreMim.setUI(new ProjectScrollBarUI(jScrollPaneSobreMim));
+
+        jTextAreaSobreMim.setBackground(new Color(255, 255, 255));
+        jTextAreaSobreMim.setColumns(2);
+        jTextAreaSobreMim.setRows(3);
+        jTextAreaSobreMim.setBorder(BorderFactory.createEmptyBorder());
+        jTextAreaSobreMim.setLineWrap(true);
+        jTextAreaSobreMim.setWrapStyleWord(true);
+        jTextAreaSobreMim.setText(json.getString("sobreMim"));
+        jTextAreaSobreMim.setEditable(false);
+        jTextAreaSobreMim.setBackground(new Color(238, 238, 238));
+
+
+        jLabelObjetivos.setFont(new Font("DejaVu Sans", 0, 16));
+        jLabelObjetivos.setBackground(new Color(255, 255, 255));
+        jLabelObjetivos.setForeground(new Color(62, 62, 62));
+
+        jScrollPaneObjetivos.setBorder(BorderFactory.createLineBorder(new Color(184, 207, 229), 1));
+
+        jScrollBarObjetivos = jScrollPaneObsVirtuais.getVerticalScrollBar();
+        jScrollBarObjetivos.setPreferredSize(new Dimension(9, 1));
+        jScrollBarObjetivos.setUI(new ProjectScrollBarUI(jScrollPaneObsVirtuais));
+
+        jTextAreaObjetivos.setBackground(new Color(255, 255, 255));
+        jTextAreaObjetivos.setColumns(2);
+        jTextAreaObjetivos.setRows(3);
+        jTextAreaObjetivos.setBorder(BorderFactory.createEmptyBorder());
+        jTextAreaObjetivos.setLineWrap(true);
+        jTextAreaObjetivos.setWrapStyleWord(true);
+        jTextAreaObjetivos.setText(json.getString("objetivosProfissionais"));
+        jTextAreaObjetivos.setEditable(false);
+        jTextAreaObjetivos.setBackground(new Color(238, 238, 238));
+
+        // -------BOTÕES ------------------------------------------------------------------------------
+        jButtonNomeAS.setBackground(new Color(62, 62, 62));
+        jButtonNomeAS.setForeground(new Color(255, 255, 255));
+        jButtonNomeAS.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonNomeAS.setFocusable(false);
+        jButtonNomeAS.setFocusPainted(false);
+        jButtonNomeAS.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonNomeAS.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            if (jTextFieldNome.isEditable()) {
+              jTextFieldNome.setEditable(false);
+
+              json.put("nome", jTextFieldNome.getText());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextFieldNome.setEditable(true);
+            }
+          }
+        });
+        jButtonNomeAS.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonNomeAS.setBackground(new Color(240, 240, 240));
+            jButtonNomeAS.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonNomeAS.setBackground(new Color(62, 62, 62));
+            jButtonNomeAS.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonProfissaoAS.setBackground(new Color(62, 62, 62));
+        jButtonProfissaoAS.setForeground(new Color(255, 255, 255));
+        jButtonProfissaoAS.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonProfissaoAS.setFocusable(false);
+        jButtonProfissaoAS.setFocusPainted(false);
+        jButtonProfissaoAS.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonProfissaoAS.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            if (jTextFieldProfissao.isEditable()) {
+              jTextFieldProfissao.setEditable(false);
+
+              json.put("profissao", jTextFieldProfissao.getText());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextFieldProfissao.setEditable(true);
+            }
+          }
+        });
+        jButtonProfissaoAS.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonProfissaoAS.setBackground(new Color(240, 240, 240));
+            jButtonProfissaoAS.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonProfissaoAS.setBackground(new Color(62, 62, 62));
+            jButtonProfissaoAS.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonEstiloR.setBackground(new Color(62, 62, 62));
+        jButtonEstiloR.setForeground(new Color(255, 255, 255));
+        jButtonEstiloR.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonEstiloR.setFocusable(false);
+        jButtonEstiloR.setFocusPainted(false);
+        jButtonEstiloR.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonEstiloR.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            jButtonEstiloRActionPerformed(evt);
+          }
+        });
+        jButtonEstiloR.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonEstiloR.setBackground(new Color(240, 240, 240));
+            jButtonEstiloR.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonEstiloR.setBackground(new Color(62, 62, 62));
+            jButtonEstiloR.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonEmailAS.setBackground(new Color(62, 62, 62));
+        jButtonEmailAS.setForeground(new Color(255, 255, 255));
+        jButtonEmailAS.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonEmailAS.setFocusable(false);
+        jButtonEmailAS.setFocusPainted(false);
+        jButtonEmailAS.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonEmailAS.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            if (jTextFieldEmail.isEditable()) {
+              jTextFieldEmail.setEditable(false);
+
+              json.put("email", jTextFieldEmail.getText().toLowerCase());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextFieldEmail.setEditable(true);
+            }
+          }
+        });
+        jButtonEmailAS.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonEmailAS.setBackground(new Color(240, 240, 240));
+            jButtonEmailAS.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonEmailAS.setBackground(new Color(62, 62, 62));
+            jButtonEmailAS.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonDDDTelefones.setBackground(new Color(62, 62, 62));
+        jButtonDDDTelefones.setForeground(new Color(255, 255, 255));
+        jButtonDDDTelefones.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonDDDTelefones.setFocusable(false);
+        jButtonDDDTelefones.setFocusPainted(false);
+        jButtonDDDTelefones.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonDDDTelefones.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            if (jTextFieldDDD.isEditable()) {
+              jTextFieldDDD.setEditable(false);
+              jTextFieldTelefone.setEditable(false);
+
+              json.put("DDD1", jTextFieldDDD.getText());
+              json.put("telefone1", jTextFieldTelefone.getText());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextFieldDDD.setEditable(true);
+              jTextFieldTelefone.setEditable(true);
+            }
+          }
+        });
+        jButtonDDDTelefones.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonDDDTelefones.setBackground(new Color(240, 240, 240));
+            jButtonDDDTelefones.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonDDDTelefones.setBackground(new Color(62, 62, 62));
+            jButtonDDDTelefones.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonCidade.setBackground(new Color(62, 62, 62));
+        jButtonCidade.setForeground(new Color(255, 255, 255));
+        jButtonCidade.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonCidade.setFocusable(false);
+        jButtonCidade.setFocusPainted(false);
+        jButtonCidade.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonCidade.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            if (jTextFieldCidade.isEditable()) {
+              jTextFieldCidade.setEditable(false);
+
+              json.put("cidade", jTextFieldCidade.getText());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextFieldCidade.setEditable(true);
+            }
+          }
+        });
+        jButtonCidade.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonCidade.setBackground(new Color(240, 240, 240));
+            jButtonCidade.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonCidade.setBackground(new Color(62, 62, 62));
+            jButtonCidade.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonEstado.setBackground(new Color(62, 62, 62));
+        jButtonEstado.setForeground(new Color(255, 255, 255));
+        jButtonEstado.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonEstado.setFocusable(false);
+        jButtonEstado.setFocusPainted(false);
+        jButtonEstado.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonEstado.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            if (jTextFieldEstado.isEditable()) {
+              jTextFieldEstado.setEditable(false);
+
+              json.put("estado", jTextFieldEstado.getText().toUpperCase());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextFieldEstado.setEditable(true);
+            }
+          }
+        });
+        jButtonEstado.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonEstado.setBackground(new Color(240, 240, 240));
+            jButtonEstado.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonEstado.setBackground(new Color(62, 62, 62));
+            jButtonEstado.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonWebsite.setBackground(new Color(62, 62, 62));
+        jButtonWebsite.setForeground(new Color(255, 255, 255));
+        jButtonWebsite.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonWebsite.setFocusable(false);
+        jButtonWebsite.setFocusPainted(false);
+        jButtonWebsite.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonWebsite.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            if (jTextFieldWebsite.isEditable()) {
+              jTextFieldWebsite.setEditable(false);
+
+              json.put("website", jTextFieldWebsite.getText());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextFieldWebsite.setEditable(true);
+            }
+          }
+        });
+        jButtonWebsite.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonWebsite.setBackground(new Color(240, 240, 240));
+            jButtonWebsite.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonWebsite.setBackground(new Color(62, 62, 62));
+            jButtonWebsite.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonLinkedin.setBackground(new Color(62, 62, 62));
+        jButtonLinkedin.setForeground(new Color(255, 255, 255));
+        jButtonLinkedin.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonLinkedin.setFocusable(false);
+        jButtonLinkedin.setFocusPainted(false);
+        jButtonLinkedin.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonLinkedin.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            if (jTextFieldLinkedin.isEditable()) {
+              jTextFieldLinkedin.setEditable(false);
+
+              json.put("linkedin", jTextFieldLinkedin.getText());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextFieldLinkedin.setEditable(true);
+            }
+          }
+        });
+        jButtonLinkedin.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonLinkedin.setBackground(new Color(240, 240, 240));
+            jButtonLinkedin.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonLinkedin.setBackground(new Color(62, 62, 62));
+            jButtonLinkedin.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonFoto.setBackground(new Color(62, 62, 62));
+        jButtonFoto.setForeground(new Color(255, 255, 255));
+        jButtonFoto.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonFoto.setFocusable(false);
+        jButtonFoto.setFocusPainted(false);
+        jButtonFoto.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonFoto.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+              try {
+                  jButtonPreviousActionPerformed(evt);
+              } catch (IOException ex) {
+                  Logger.getLogger(JanelaConfirmarAlterarDados1.class.getName()).log(Level.SEVERE, null, ex);
+              }
+          }
+        });
+        jButtonFoto.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonFoto.setBackground(new Color(240, 240, 240));
+            jButtonFoto.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonFoto.setBackground(new Color(62, 62, 62));
+            jButtonFoto.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonObsEndereco.setBackground(new Color(62, 62, 62));
+        jButtonObsEndereco.setForeground(new Color(255, 255, 255));
+        jButtonObsEndereco.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonObsEndereco.setFocusable(false);
+        jButtonObsEndereco.setFocusPainted(false);
+        jButtonObsEndereco.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonObsEndereco.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+
+            if (jTextAreaObsEndereco.isEditable()) {
+              jTextAreaObsEndereco.setEditable(false);
+              jTextAreaObsEndereco.setBackground(new Color(238, 238, 238));
+              jScrollPaneObsEndereco.setBorder(BorderFactory.createLineBorder(new Color(184, 207, 229), 1));
+
+              json.put("obsEndereco", jTextAreaObsEndereco.getText());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextAreaObsEndereco.setEditable(true);
+              jTextAreaObsEndereco.setBackground(new Color(255, 255, 255));
+              jScrollPaneObsEndereco.setBorder(BorderFactory.createLineBorder(new Color(122, 138, 153), 1));
+            }
+
+          }
+        });
+        jButtonObsEndereco.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonObsEndereco.setBackground(new Color(240, 240, 240));
+            jButtonObsEndereco.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonObsEndereco.setBackground(new Color(62, 62, 62));
+            jButtonObsEndereco.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonObsVirtuais.setBackground(new Color(62, 62, 62));
+        jButtonObsVirtuais.setForeground(new Color(255, 255, 255));
+        jButtonObsVirtuais.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonObsVirtuais.setFocusable(false);
+        jButtonObsVirtuais.setFocusPainted(false);
+        jButtonObsVirtuais.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonObsVirtuais.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+
+            if (jTextAreaObsVirtuais.isEditable()) {
+              jTextAreaObsVirtuais.setEditable(false);
+              jTextAreaObsVirtuais.setBackground(new Color(238, 238, 238));
+              jScrollPaneObsVirtuais.setBorder(BorderFactory.createLineBorder(new Color(184, 207, 229), 1));
+
+              json.put("obsVirtuais", jTextAreaObsVirtuais.getText());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextAreaObsVirtuais.setEditable(true);
+              jTextAreaObsVirtuais.setBackground(new Color(255, 255, 255));
+              jScrollPaneObsVirtuais.setBorder(BorderFactory.createLineBorder(new Color(122, 138, 153), 1));
+            }
+
+          }
+        });
+        jButtonObsVirtuais.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonObsVirtuais.setBackground(new Color(240, 240, 240));
+            jButtonObsVirtuais.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonObsVirtuais.setBackground(new Color(62, 62, 62));
+            jButtonObsVirtuais.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonSobreMim.setBackground(new Color(62, 62, 62));
+        jButtonSobreMim.setForeground(new Color(255, 255, 255));
+        jButtonSobreMim.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonSobreMim.setFocusable(false);
+        jButtonSobreMim.setFocusPainted(false);
+        jButtonSobreMim.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonSobreMim.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+
+            if (jTextAreaSobreMim.isEditable()) {
+              jTextAreaSobreMim.setEditable(false);
+              jTextAreaSobreMim.setBackground(new Color(238, 238, 238));
+              jScrollPaneSobreMim.setBorder(BorderFactory.createLineBorder(new Color(184, 207, 229), 1));
+
+              json.put("sobreMim", jTextAreaSobreMim.getText());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextAreaSobreMim.setEditable(true);
+              jTextAreaSobreMim.setBackground(new Color(255, 255, 255));
+              jScrollPaneSobreMim.setBorder(BorderFactory.createLineBorder(new Color(122, 138, 153), 1));
+            }
+
+          }
+        });
+        jButtonSobreMim.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonSobreMim.setBackground(new Color(240, 240, 240));
+            jButtonSobreMim.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonSobreMim.setBackground(new Color(62, 62, 62));
+            jButtonSobreMim.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+        jButtonObjetivos.setBackground(new Color(62, 62, 62));
+        jButtonObjetivos.setForeground(new Color(255, 255, 255));
+        jButtonObjetivos.setFont(new Font("DejaVu Sans", 1, 11));
+        jButtonObjetivos.setFocusable(false);
+        jButtonObjetivos.setFocusPainted(false);
+        jButtonObjetivos.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonObjetivos.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+
+            if (jTextAreaObjetivos.isEditable()) {
+              jTextAreaObjetivos.setEditable(false);
+              jTextAreaObjetivos.setBackground(new Color(238, 238, 238));
+              jScrollPaneObjetivos.setBorder(BorderFactory.createLineBorder(new Color(184, 207, 229), 1));
+
+              json.put("objetivosProfissionais", jTextAreaObjetivos.getText());
+
+              try {
+                WriteJSON();
+              } catch (FileNotFoundException e) {
+              } catch (IOException e) {
+              }
+
+            } else {
+              jTextAreaObjetivos.setEditable(true);
+              jTextAreaObjetivos.setBackground(new Color(255, 255, 255));
+              jScrollPaneObjetivos.setBorder(BorderFactory.createLineBorder(new Color(122, 138, 153), 1));
+            }
+
+          }
+        });
+        jButtonObjetivos.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent evt) {
+            jButtonObjetivos.setBackground(new Color(240, 240, 240));
+            jButtonObjetivos.setForeground(new Color(62, 62, 62));
+          }
+
+          @Override
+          public void mouseExited(MouseEvent evt) {
+            jButtonObjetivos.setBackground(new Color(62, 62, 62));
+            jButtonObjetivos.setForeground(new Color(255, 255, 255));
+          }
+        });
+
+
+        //-----------------------------------------------------------------------------------------------
         // .setFont(new Font("DejaVu Sans", 0, 18));
         // .setBackground(new Color(255, 255, 255));
         // .setForeground(new Color(62, 62, 62));
@@ -370,23 +992,29 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
         hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
           .addComponent(jLabelNome, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
           .addGap(7)
-          .addComponent(jTextFieldNome, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jTextFieldNome, GroupLayout.PREFERRED_SIZE, 294, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonNomeAS, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jLabelNome, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
           .addComponent(jTextFieldNome, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonNomeAS, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         // Campo de profissao
         hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
           .addComponent(jLabelProfissao, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
           .addGap(7)
-          .addComponent(jTextFieldProfissao, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jTextFieldProfissao, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonProfissaoAS, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGap(10);
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jLabelProfissao, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
           .addComponent(jTextFieldProfissao, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonProfissaoAS, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         // Campo de templates
@@ -401,22 +1029,28 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
         hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
           .addGap(50)
           .addComponent(jLabelEstiloImagem, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonEstiloR, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGap(5);
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jLabelEstiloImagem, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonEstiloR, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         // E-mail
         hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
           .addComponent(jLabelEmail, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
           .addGap(7)
-          .addComponent(jTextFieldEmail, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jTextFieldEmail, GroupLayout.PREFERRED_SIZE, 294, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonEmailAS, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGap(10);
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jLabelEmail, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
           .addComponent(jTextFieldEmail, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonEmailAS, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         // Telefones
@@ -428,61 +1062,77 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
           .addComponent(jLabelTelefone, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
           .addGap(7)
           .addComponent(jTextFieldTelefone, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonDDDTelefones, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGap(10);
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jLabelDDD, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabelDDD, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
           .addComponent(jTextFieldDDD, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabelTelefone, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
           .addComponent(jTextFieldTelefone, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonDDDTelefones, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         // Campo Cidade
         hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
           .addComponent(jLabelCidade, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
           .addGap(7)
-          .addComponent(jTextFieldCidade, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jTextFieldCidade, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonCidade, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGap(10);
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jLabelCidade, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
           .addComponent(jTextFieldCidade, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonCidade, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         // Campo Estado
         hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
           .addComponent(jLabelEstado, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
           .addGap(7)
-          .addComponent(jTextFieldEstado, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jTextFieldEstado, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonEstado, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGap(10);
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jLabelEstado, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
           .addComponent(jTextFieldEstado, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonEstado, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         // Campo Website
         hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
           .addComponent(jLabelWebsite, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
           .addGap(7)
-          .addComponent(jTextFieldWebsite, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jTextFieldWebsite, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonWebsite, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGap(10);
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jLabelWebsite, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
           .addComponent(jTextFieldWebsite, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonWebsite, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         // Campo LinkedIn
         hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
           .addComponent(jLabelLinkedin, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
           .addGap(7)
-          .addComponent(jTextFieldLinkedin, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jTextFieldLinkedin, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonLinkedin, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGap(10);
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jLabelLinkedin, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
           .addComponent(jTextFieldLinkedin, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonLinkedin, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         // Campo foto
@@ -490,11 +1140,14 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
           .addComponent(jLabelFoto, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
           .addGap(7)
           .addComponent(jLabelFotoUsar, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonFoto, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGap(10);
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jLabelFoto, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabelFotoUsar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonFoto, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         if (json.getInt("usarFoto?") == 1) {
@@ -532,10 +1185,13 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
         hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
           .addGap(30)
           .addComponent(jScrollPaneObsEndereco, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonObsEndereco, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGap(10);
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jScrollPaneObsEndereco, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonObsEndereco, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         // Campo observações endereços virtuais
@@ -550,10 +1206,55 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
         hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
           .addGap(30)
           .addComponent(jScrollPaneObsVirtuais, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonObsVirtuais, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
         );
         vGroup.addGap(10);
         vGroup.addGroup(jPanelMainLayout.createParallelGroup()
           .addComponent(jScrollPaneObsVirtuais, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonObsVirtuais, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+        );
+
+        // Campo Sobre Mim
+        hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+          .addComponent(jLabelSobreMim, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
+        );
+        vGroup.addGap(10);
+        vGroup.addGroup(jPanelMainLayout.createParallelGroup()
+          .addComponent(jLabelSobreMim, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+        );
+
+        hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+          .addGap(30)
+          .addComponent(jScrollPaneSobreMim, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonSobreMim, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
+        );
+        vGroup.addGap(10);
+        vGroup.addGroup(jPanelMainLayout.createParallelGroup()
+          .addComponent(jScrollPaneSobreMim, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonSobreMim, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+        );
+
+        // Campo objetivos
+        hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+          .addComponent(jLabelObjetivos, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
+        );
+        vGroup.addGap(10);
+        vGroup.addGroup(jPanelMainLayout.createParallelGroup()
+          .addComponent(jLabelObjetivos, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+        );
+
+        hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+          .addGap(30)
+          .addComponent(jScrollPaneObjetivos, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
+          .addGap(15)
+          .addComponent(jButtonObjetivos, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
+        );
+        vGroup.addGap(10);
+        vGroup.addGroup(jPanelMainLayout.createParallelGroup()
+          .addComponent(jScrollPaneObjetivos, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButtonObjetivos, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         );
 
         // ======================================================================================================
@@ -747,11 +1448,28 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
       jButtonMinimize.setForeground(new java.awt.Color(255, 255, 255));
     }
 
+    private void jButtonEstiloRActionPerformed(ActionEvent evt) {
+      try {
+          // Throw (isEverythingOK?)
+          WriteJSON();
+      } catch (IOException ex) {
+          Logger.getLogger(JanelaConfirmarAlterarDados1.class.getName()).log(Level.SEVERE, null, ex);
+      }
+
+      try {
+          new JanelaTrocarTemplate().setVisible(true);
+      } catch (FileNotFoundException ex) {
+          Logger.getLogger(JanelaConfirmarAlterarDados1.class.getName()).log(Level.SEVERE, null, ex);
+      }
+
+      this.dispose();
+    }
+
     // Next Button
     private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         WriteJSON();
 
-        // new JanelaEntradas2().setVisible(true);
+        new JanelaConfirmarAlterarDados2().setVisible(true);
         this.dispose();
     }
 
@@ -891,46 +1609,70 @@ public class JanelaConfirmarAlterarDados1 extends javax.swing.JFrame {
 
     private JLabel jLabelNome;
     private JTextField jTextFieldNome;
+    private JButton jButtonNomeAS;
 
     private JLabel jLabelProfissao;
     private JTextField jTextFieldProfissao;
+    private JButton jButtonProfissaoAS;
 
     private JLabel jLabelEstilo;
     private JLabel jLabelEstiloImagem;
+    private JButton jButtonEstiloR;
 
     private JLabel jLabelEmail; // Transformar em um array ao final
     private JTextField jTextFieldEmail;
+    private JButton jButtonEmailAS;
 
     private JLabel jLabelDDD;
     private JTextField jTextFieldDDD;
     private JLabel jLabelTelefone;
     private JTextField jTextFieldTelefone;
+    private JButton jButtonDDDTelefones;
 
     private JLabel jLabelCidade;
     private JTextField jTextFieldCidade;
+    private JButton jButtonCidade;
 
     private JLabel jLabelEstado;
     private JTextField jTextFieldEstado;
+    private JButton jButtonEstado;
 
     private JLabel jLabelWebsite;
     private JTextField jTextFieldWebsite;
+    private JButton jButtonWebsite;
 
     private JLabel jLabelLinkedin;
     private JTextField jTextFieldLinkedin;
+    private JButton jButtonLinkedin;
 
     private JLabel jLabelFoto;
     private JLabel jLabelFotoUsar;
     private JLabel jLabelFotoImagem;
+    private JButton jButtonFoto;
 
     private JLabel jLabelObsEndereco;
     private JTextArea jTextAreaObsEndereco;
     private JScrollPane jScrollPaneObsEndereco;
     private JScrollBar jScrollBarObsEndereco;
+    private JButton jButtonObsEndereco;
 
     private JLabel jLabelObsVirtuais;
     private JTextArea jTextAreaObsVirtuais;
     private JScrollPane jScrollPaneObsVirtuais;
     private JScrollBar jScrollBarObsVirtuais;
+    private JButton jButtonObsVirtuais;
+
+    private JLabel jLabelSobreMim;
+    private JTextArea jTextAreaSobreMim;
+    private JScrollPane jScrollPaneSobreMim;
+    private JScrollBar jScrollBarSobreMim;
+    private JButton jButtonSobreMim;
+
+    private JLabel jLabelObjetivos;
+    private JTextArea jTextAreaObjetivos;
+    private JScrollPane jScrollPaneObjetivos;
+    private JScrollBar jScrollBarObjetivos;
+    private JButton jButtonObjetivos;
 
     private JPanel jPanelMain;
     private JScrollPane jScrollPaneMain;

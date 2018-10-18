@@ -89,7 +89,7 @@ public class JanelaEntradas7 extends javax.swing.JFrame {
 
         jPanelMain = new JPanel();
         jScrollPaneMain = new JScrollPane(jPanelMain);
-        jButtonAdicionarExperiencia = new JButton("Adicionar nova formação");
+        jButtonAdicionarExperiencia = new JButton("Adicionar nova experiência");
 
         // jTextFieldJL4 = new JTextField(json.getString("ExperienciaAnoInicio"));
         // jTextFieldJL5 = new JTextField(json.getString("ExperienciaAnoFim"));

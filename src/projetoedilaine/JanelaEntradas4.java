@@ -165,9 +165,17 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
 
 
         // Deficiencias
+        if (json.getString("deficiencia?").equals("sim"))
+          jRadioButtonSim.setSelected(true);
+        else
+          jRadioButtonNao.setSelected(true);
+          
         // ================================================================================================================
         // *jScrollPane principal******************************************************************************************
-        jScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        if (json.getString("deficiencia?").equals("sim"))
+          jScrollPane.setBorder(BorderFactory.createLineBorder(new Color(215, 215, 215), 1));
+        else
+          jScrollPane.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 1));
         jScrollPane.setPreferredSize(new Dimension(840, 300));
         jScrollPane.setBackground(new Color(255, 255, 255));
 
@@ -191,6 +199,14 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
         jCheckBoxFisica.setFocusPainted(false);
         jCheckBoxIntelectualMental.setFocusPainted(false);
         jCheckBoxVisual.setFocusPainted(false);
+
+        jCheckBoxAuditiva.setSelected(json.getString("defAuditiva?").toLowerCase().equals("sim"));
+        jCheckBoxFala.setSelected(json.getString("defFala?").equals("sim"));
+        jCheckBoxFisica.setSelected(json.getString("defFisica?").equals("sim"));
+        jCheckBoxIntelectualMental.setSelected(json.getString("defIntelectualMental?").equals("sim"));
+        jCheckBoxVisual.setSelected(json.getString("defVisual?").equals("sim"));
+
+
         // *Check Box gerais ******************************************************************************************
 
         // *Auditiva***************************************************************************************************
@@ -211,6 +227,10 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
         JCheckBox jCheckBoxAud2 = new JCheckBox("Usuário de Libras");
         JCheckBox jCheckBoxAud3 = new JCheckBox("Precisa de Intérprete");
 
+        jCheckBoxAud1.setSelected(json.getString("defAuditivaOralizado?").equals("sim"));
+        jCheckBoxAud2.setSelected(json.getString("defAuditivaLibras?").equals("sim"));
+        jCheckBoxAud3.setSelected(json.getString("defAuditivaInterprete?").equals("sim"));
+
         jLabelAud1.setBackground(new Color(230, 230, 230));
         jLabelAud1.setForeground(new Color(62, 62, 62));
         jLabelAud1.setFont(new Font("DejaVu Sans", 0, 12));
@@ -221,6 +241,8 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
 
         jComboBoxAud1.setModel(new DefaultComboBoxModel<>(new String[] {"", "de 41 a 55 dB - Surdez Moderada", "de 56 a 70 dB - Surdez Acentuada", "de 71 a 90 dB - Surdez Severa", "acima de 91 dB - Surdez Profunda", "Anacusia"}));
         jComboBoxAud2.setModel(new DefaultComboBoxModel<>(new String[] {"", "unilateral", "bilateral"}));
+        jComboBoxAud1.setSelectedItem(json.getString("defAuditivaNivel"));
+        jComboBoxAud2.setSelectedItem(json.getString("defAuditivaTipo"));
 
         jCheckBoxAud1.setBackground(new Color(230, 230, 230));
         jCheckBoxAud1.setForeground(new Color(62, 62, 62));
@@ -264,7 +286,11 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
         jCheckBoxAuditiva.addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent evt) {
-            json.put("defAuditiva?", "sim");
+            if (jCheckBoxAuditiva.isSelected()) {
+              json.put("defAuditiva?", "sim");
+            } else {
+              json.put("defAuditiva?", "");
+            }
 
             try {
                 WriteJSON();
@@ -339,7 +365,7 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
         jLabelFala1.setFont(new Font("DejaVu Sans", 0, 12));
 
         jComboBoxFala1.setModel(new DefaultComboBoxModel<>(new String[] {"", "Pequenas alterações na fala", "Grandes alterações na fala", "Mudez"}));
-
+        jComboBoxFala1.setSelectedItem(json.getString("defFalaTipo"));
         // addActionListener's
         jCheckBoxFala.addActionListener(new ActionListener() {
           @Override
@@ -387,6 +413,7 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
         jLabelFis1.setFont(new Font("DejaVu Sans", 0, 12));
 
         jComboBoxFisica1.setModel(new DefaultComboBoxModel<>(new String[] {"", "Monoparesia", "Monoplegia", "Hemiparesia", "Hemiplegia", "Paraparesia", "Paraplegia", "Triparesia", "Triplegia", "Tetraparesia", "Tetraplegia", "Amputação ou ausência de membro", "Membos com deformidade congênida ou adquirida", "Nanismo", "Ostomia", "Paralisia cerebral", "Deficiência Crônica Renal"}));
+        jComboBoxFisica1.setSelectedItem(json.getString("defFisicaTipo"));
 
         // addActionListener's
         jCheckBoxFisica.addActionListener(new ActionListener() {
@@ -436,41 +463,49 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
         jCheckBoxIntMent1.setBackground(new Color(230, 230, 230));
         jCheckBoxIntMent1.setForeground(new Color(62, 62, 62));
         jCheckBoxIntMent1.setFont(new Font("DejaVu Sans", 0, 12));
+        jCheckBoxIntMent1.setSelected(json.getString("defIntelectualMentalItem1").equals("sim"));
 
         JCheckBox jCheckBoxIntMent2 = new JCheckBox("Cuidado pessoal");
         jCheckBoxIntMent2.setBackground(new Color(230, 230, 230));
         jCheckBoxIntMent2.setForeground(new Color(62, 62, 62));
         jCheckBoxIntMent2.setFont(new Font("DejaVu Sans", 0, 12));
+        jCheckBoxIntMent2.setSelected(json.getString("defIntelectualMentalItem2").equals("sim"));
 
         JCheckBox jCheckBoxIntMent3 = new JCheckBox("Habilidade social");
         jCheckBoxIntMent3.setBackground(new Color(230, 230, 230));
         jCheckBoxIntMent3.setForeground(new Color(62, 62, 62));
         jCheckBoxIntMent3.setFont(new Font("DejaVu Sans", 0, 12));
+        jCheckBoxIntMent3.setSelected(json.getString("defIntelectualMentalItem3").equals("sim"));
 
         JCheckBox jCheckBoxIntMent4 = new JCheckBox("Utilização de recursos da comunidade");
         jCheckBoxIntMent4.setBackground(new Color(230, 230, 230));
         jCheckBoxIntMent4.setForeground(new Color(62, 62, 62));
         jCheckBoxIntMent4.setFont(new Font("DejaVu Sans", 0, 12));
+        jCheckBoxIntMent4.setSelected(json.getString("defIntelectualMentalItem4").equals("sim"));
 
         JCheckBox jCheckBoxIntMent5 = new JCheckBox("Saúde e segurança");
         jCheckBoxIntMent5.setBackground(new Color(230, 230, 230));
         jCheckBoxIntMent5.setForeground(new Color(62, 62, 62));
         jCheckBoxIntMent5.setFont(new Font("DejaVu Sans", 0, 12));
+        jCheckBoxIntMent5.setSelected(json.getString("defIntelectualMentalItem5").equals("sim"));
 
         JCheckBox jCheckBoxIntMent6 = new JCheckBox("Habilidade acadêmica");
         jCheckBoxIntMent6.setBackground(new Color(230, 230, 230));
         jCheckBoxIntMent6.setForeground(new Color(62, 62, 62));
         jCheckBoxIntMent6.setFont(new Font("DejaVu Sans", 0, 12));
+        jCheckBoxIntMent6.setSelected(json.getString("defIntelectualMentalItem6").equals("sim"));
 
         JCheckBox jCheckBoxIntMent7 = new JCheckBox("Lazer");
         jCheckBoxIntMent7.setBackground(new Color(230, 230, 230));
         jCheckBoxIntMent7.setForeground(new Color(62, 62, 62));
         jCheckBoxIntMent7.setFont(new Font("DejaVu Sans", 0, 12));
+        jCheckBoxIntMent7.setSelected(json.getString("defIntelectualMentalItem7").equals("sim"));
 
         JCheckBox jCheckBoxIntMent8 = new JCheckBox("Trabalho");
         jCheckBoxIntMent8.setBackground(new Color(230, 230, 230));
         jCheckBoxIntMent8.setForeground(new Color(62, 62, 62));
         jCheckBoxIntMent8.setFont(new Font("DejaVu Sans", 0, 12));
+        jCheckBoxIntMent8.setSelected(json.getString("defIntelectualMentalItem8").equals("sim"));
 
         // addActionListener's
         jCheckBoxIntelectualMental.addActionListener(new ActionListener() {
@@ -643,6 +678,9 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
         jComboBoxVisual1.setModel(new DefaultComboBoxModel<>(new String[] {"", "Visão Subnormal ou Baixa Visão", "Cegueira", "Visão monocular", "Somatória da média do campo de visão em ambos os olhos menor do que 60º"}));
         jComboBoxVisual2.setModel(new DefaultComboBoxModel<>(new String[] {"", "unilateral", "bilateral"}));
 
+        jComboBoxVisual1.setSelectedItem(json.getString("defVisualTipo"));
+        jComboBoxVisual2.setSelectedItem(json.getString("defVisualDetalhamento"));
+
         // addActionListener's
         jCheckBoxVisual.addActionListener(new ActionListener() {
           @Override
@@ -754,7 +792,7 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
         jRadioButtonSim.addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent evt) {
-            jScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+            jScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(215, 215, 215), 1));
 
             GroupLayout jPanel3LayoutSIM = new GroupLayout(jPanel3);
             jPanel3.setLayout(jPanel3LayoutSIM);
@@ -955,7 +993,7 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
         });
         if (json.getString("deficiencia?").equals("sim")) {
           jRadioButtonSim.setSelected(true);
-          jScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+          // jScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
 
           GroupLayout jPanel3LayoutSIM = new GroupLayout(jPanel3);
           jPanel3.setLayout(jPanel3LayoutSIM);
@@ -1152,7 +1190,7 @@ public class JanelaEntradas4 extends javax.swing.JFrame {
         jRadioButtonNao.setForeground(new Color(62, 62, 62));
         jRadioButtonNao.setFont(new Font("DejaVu Sans", 1, 14));
         jRadioButtonNao.setFocusPainted(false);
-        if (json.getString("deficiencia?").equals("nao"))
+        if (json.getString("deficiencia?").equals("não"))
           jRadioButtonNao.setSelected(true);
         jRadioButtonNao.addActionListener(new ActionListener() {
           @Override

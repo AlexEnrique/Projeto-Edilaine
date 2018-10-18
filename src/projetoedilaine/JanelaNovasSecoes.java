@@ -40,7 +40,12 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
 
     private int k = 0;
     private int x, y;
+    private int aux;
     private JSONObject json;
+
+    GroupLayout jPanelMainLayout;
+    GroupLayout.Group hGroup;
+    GroupLayout.Group vGroup;
 
     private static final long serialVersionUID = 8607734981506765935L;
     private static final int SCROLL_BAR_ALPHA_ROLLOVER = 100;
@@ -86,12 +91,12 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
         jLabel9 = new ArrayList<JLabel>();  // Descrição
         jLabel10 = new ArrayList<JLabel>(); // Tópicos ()
 
-        jCheckBoxJL5 = new ArrayList<JCheckBox>();
-        jCheckBoxJL6 = new ArrayList<JCheckBox>();
-        jCheckBoxJL7InicioFim = new ArrayList<JCheckBox>();
-        jCheckBoxJL8 = new ArrayList<JCheckBox>();
-        jCheckBoxJL9 = new ArrayList<JCheckBox>();
-        jCheckBoxJL10 = new ArrayList<JCheckBox>();
+        jCheckBoxJL5 = new ArrayList<MyCheckBox>();
+        jCheckBoxJL6 = new ArrayList<MyCheckBox>();
+        jCheckBoxJL7InicioFim = new ArrayList<MyCheckBox>();
+        jCheckBoxJL8 = new ArrayList<MyCheckBox>();
+        jCheckBoxJL9 = new ArrayList<MyCheckBox>();
+        jCheckBoxJL10 = new ArrayList<MyCheckBox>();
 
         jTextFieldJL4 = new ArrayList<MyTextField>();
         jTextFieldJL5 = new ArrayList<MyTextField>();
@@ -107,8 +112,7 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
         jScrollBarJL9 = new ArrayList<JScrollBar>();
         jScrollBarJL10 = new ArrayList<JScrollBar>();
 
-        // jScrollPaneText = new ArrayList<JScrollPane>();
-        // jScrollBar = new ArrayList<JScrollBar>();
+        jSeparator = new ArrayList<JSeparator>(SwingConstants.HORIZONTAL);
 
         jPanelMain = new JPanel();
         jScrollPaneMain = new JScrollPane(jPanelMain);
@@ -219,9 +223,9 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
           }
         }
 
-        GroupLayout jPanelMainLayout = new GroupLayout(jPanelMain);
-        GroupLayout.Group hGroup = jPanelMainLayout.createParallelGroup();
-        GroupLayout.Group vGroup = jPanelMainLayout.createSequentialGroup();
+        jPanelMainLayout = new GroupLayout(jPanelMain);
+        hGroup = jPanelMainLayout.createParallelGroup();
+        vGroup = jPanelMainLayout.createSequentialGroup();
         jPanelMainLayout.setHorizontalGroup(hGroup);
         jPanelMainLayout.setVerticalGroup(vGroup);
         jPanelMain.setLayout(jPanelMainLayout);
@@ -229,6 +233,8 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
         // k precisou ser definido fora do initComponents() por que deve ser final, se for de dentro da classe
         for (k = 0; k < length; k++) {
           // Criando novos elementos ===============================================================
+          aux = k;
+
           // Labels
           jLabel4.add(new JLabel("Nome da seção"));
           jLabel5.add(new JLabel("Nome de subseção"));
@@ -239,138 +245,391 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
           jLabel9.add(new JLabel("Descrição"));
           jLabel10.add(new JLabel("Tópicos"));
 
-          jCheckBoxJL5.add(new JCheckBox("Nome de subseção"));
+          jCheckBoxJL5.add(new MyCheckBox("Nome de subseção"));
+          jCheckBoxJL5.get(k).setSelected(json.getInt("novaSecaoNomeSubsecao?" + String.valueOf(k)) == 1);
+          jCheckBoxJL5.get(k).index = k;
           jCheckBoxJL5.get(k).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-              System.out.println("Botão 6 funcionando");
+              int index = jCheckBoxJL5.get(aux).index;
+
+              if (jCheckBoxJL5.get(index).isSelected()) {
+                json.put("novaSecaoNomeSubsecao?" + String.valueOf(index), 1);
+              } else {
+                json.put("novaSecaoNomeSubsecao?" + String.valueOf(index), 0);
+              }
             }
+
           });
 
-          jCheckBoxJL6.add(new JCheckBox("Data"));
+          jCheckBoxJL6.add(new MyCheckBox("Data"));
+          jCheckBoxJL6.get(k).setSelected(json.getInt("novaSecaoData?" + String.valueOf(k)) == 1);
+          jCheckBoxJL6.get(k).index = k;
           jCheckBoxJL6.get(k).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-              System.out.println("Botão 6 funcionando");
+              int index = jCheckBoxJL6.get(aux).index;
+
+              if (jCheckBoxJL6.get(index).isSelected()) {
+                json.put("novaSecaoData?" + String.valueOf(index), 1);
+              } else {
+                json.put("novaSecaoData?" + String.valueOf(index), 0);
+              }
             }
+
           });
 
-          jCheckBoxJL7InicioFim.add(new JCheckBox("Data de início e término"));
+          jCheckBoxJL7InicioFim.add(new MyCheckBox("Data de início e término"));
+          jCheckBoxJL7InicioFim.get(k).setSelected(json.getInt("novaSecaoDataInicioFim?" + String.valueOf(k)) == 1);
+          jCheckBoxJL7InicioFim.get(k).index = k;
           jCheckBoxJL7InicioFim.get(k).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-              System.out.println("Botão 7 funcionando");
+              int index = jCheckBoxJL7InicioFim.get(aux).index;
+
+              if (jCheckBoxJL7InicioFim.get(index).isSelected()) {
+                json.put("novaSecaoDataInicioFim?" + String.valueOf(index), 1);
+              } else {
+                json.put("novaSecaoDataInicioFim?" + String.valueOf(index), 0);
+              }
             }
+
           });
 
-          jCheckBoxJL8.add(new JCheckBox("Local"));
+          jCheckBoxJL8.add(new MyCheckBox("Local"));
+          jCheckBoxJL8.get(k).setSelected(json.getInt("novaSecaoLocal?" + String.valueOf(k)) == 1);
+          jCheckBoxJL8.get(k).index = k;
           jCheckBoxJL8.get(k).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-              System.out.println("Botão 8 funcionando");
+              int index = jCheckBoxJL8.get(aux).index;
+
+              if (jCheckBoxJL8.get(index).isSelected()) {
+                json.put("novaSecaoLocal?" + String.valueOf(index), 1);
+              } else {
+                json.put("novaSecaoLocal?" + String.valueOf(index), 0);
+              }
             }
+
           });
 
-          jCheckBoxJL9.add(new JCheckBox("Descrição"));
+          jCheckBoxJL9.add(new MyCheckBox("Descrição"));
+          jCheckBoxJL9.get(k).setSelected(json.getInt("novaSecaoDescricao?" + String.valueOf(k)) == 1);
+          jCheckBoxJL9.get(k).index = k;
           jCheckBoxJL9.get(k).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-              System.out.println("Botão 9 funcionando");
+              int index = jCheckBoxJL9.get(aux).index;
+
+              if (jCheckBoxJL9.get(index).isSelected()) {
+                json.put("novaSecaoDescricao?" + String.valueOf(index), 1);
+              } else {
+                json.put("novaSecaoDescricao?" + String.valueOf(index), 0);
+              }
             }
+
           });
 
-          jCheckBoxJL10.add(new JCheckBox("Tópicos"));
+          jCheckBoxJL10.add(new MyCheckBox("Tópicos"));
+          jCheckBoxJL10.get(k).setSelected(json.getInt("novaSecaoTopicos?" + String.valueOf(k)) == 1);
+          jCheckBoxJL10.get(k).index = k;
           jCheckBoxJL10.get(k).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-              System.out.println("Botão 10 funcionando");
+              int index = jCheckBoxJL10.get(aux).index;
+
+              if (jCheckBoxJL10.get(index).isSelected()) {
+                json.put("novaSecaoTopicos?" + String.valueOf(index), 1);
+              } else {
+                json.put("novaSecaoTopicos?" + String.valueOf(index), 0);
+              }
             }
+
           });
+
 
           // Text areas and fields
           jTextFieldJL4.add(new MyTextField());
+          jTextFieldJL4.get(k).setText(json.getString("novaSecaoNome" + String.valueOf(k)));
+          jTextFieldJL4.get(k).index = k;
+          jTextFieldJL4.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextFieldJL4.get(aux).index;
+              json.put("novaSecaoNome" + String.valueOf(index), jTextFieldJL4.get(index).getText());
+
+              try {
+                  WriteJSON();
+              } catch (IOException ex) {
+                  Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+              }
+
+            }
+        });
+
           jTextFieldJL5.add(new MyTextField());
+          jTextFieldJL5.get(k).setText(json.getString("novaSecaoNomeSubsecao" + String.valueOf(k)));
+          jTextFieldJL5.get(k).index = k;
+          jTextFieldJL5.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextFieldJL5.get(aux).index;
+              json.put("novaSecaoNomeSubsecao" + String.valueOf(index), jTextFieldJL5.get(index).getText());
+
+              try {
+                  WriteJSON();
+              } catch (IOException ex) {
+                  Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+              }
+
+            }
+        });
+
           jTextFieldJL6.add(new MyTextField());
+          jTextFieldJL6.get(k).setText(json.getString("novaSecaoData" + String.valueOf(k)));
+          jTextFieldJL6.get(k).index = k;
+          jTextFieldJL6.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextFieldJL6.get(aux).index;
+              json.put("novaSecaoData" + String.valueOf(index), jTextFieldJL6.get(index).getText());
+
+              try {
+                  WriteJSON();
+              } catch (IOException ex) {
+                  Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+              }
+
+            }
+         });
+
           jTextFieldJL7Inicio.add(new MyTextField());
+          jTextFieldJL7Inicio.get(k).setText(json.getString("novaSecaoDataInicio" + String.valueOf(k)));
+          jTextFieldJL7Inicio.get(k).index = k;
+          jTextFieldJL7Inicio.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextFieldJL7Inicio.get(aux).index;
+              json.put("novaSecaoDataInicio" + String.valueOf(index), jTextFieldJL7Inicio.get(index).getText());
+
+              try {
+                  WriteJSON();
+              } catch (IOException ex) {
+                  Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+              }
+
+            }
+          });
+
           jTextFieldJL7Fim.add(new MyTextField());
+          jTextFieldJL7Fim.get(k).setText(json.getString("novaSecaoDataFim" + String.valueOf(k)));
+          jTextFieldJL7Fim.get(k).index = k;
+          jTextFieldJL7Fim.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextFieldJL7Fim.get(aux).index;
+              json.put("novaSecaoDataFim" + String.valueOf(index), jTextFieldJL7Fim.get(index).getText());
+
+              try {
+                  WriteJSON();
+              } catch (IOException ex) {
+                  Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+              }
+
+            }
+          });
+
           jTextFieldJL8.add(new MyTextField());
+          jTextFieldJL8.get(k).setText(json.getString("novaSecaoLocal" + String.valueOf(k)));
+          jTextFieldJL8.get(k).index = k;
+          jTextFieldJL8.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextFieldJL8.get(aux).index;
+              json.put("novaSecaoLocal" + String.valueOf(index), jTextFieldJL8.get(index).getText());
+
+              try {
+                  WriteJSON();
+              } catch (IOException ex) {
+                  Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+              }
+
+            }
+          });
+
           jTextAreaJL9.add(new MyTextArea());
-          jTextAreaJL10.add(new MyTextArea());
-
-          // ScrollBar for the text areas
-          jScrollPaneTextJL9.add(new JScrollPane(jTextAreaJL9.get(jTextAreaJL9.size() - 1)));
-          jScrollPaneTextJL10.add(new JScrollPane(jTextAreaJL10.get(jTextAreaJL10.size() - 1)));
-
-          int aux = k;
-          // jTextFieldJL6.get(k).setText(json.getString("habilidadeTipo" + String.valueOf(k)));
-          // jTextFieldJL6.get(k).index = k;
-          // jTextFieldJL6.get(k).getDocument().addDocumentListener(new DocumentListener() {
-          //   @Override
-          //   public void changedUpdate(DocumentEvent evt) {
-          //     ChangeJSON();
-          //   }
-          //
-          //   @Override
-          //   public void removeUpdate(DocumentEvent evt) {
-          //     ChangeJSON();
-          //   }
-          //
-          //   @Override
-          //   public void insertUpdate(DocumentEvent evt) {
-          //     ChangeJSON();
-          //   }
-          //
-          //   public void ChangeJSON() {
-          //     int index = jTextFieldJL6.get(aux).index;
-          //     json.put("habilidadeTipo" + String.valueOf(index), jTextFieldJL6.get(index).getText());
-          //
-          //     try {
-          //       WriteJSON();
-          //     } catch (IOException ex) {
-          //       Logger.getLogger(JanelaNovasSecoes.class.getName()).log(Level.SEVERE, null, ex);
-          //     }
-          //   }
-          // });
-          //
           jTextAreaJL9.get(k).setColumns(1);
           jTextAreaJL9.get(k).setRows(2);
           jTextAreaJL9.get(k).setBorder(BorderFactory.createEmptyBorder());
           jTextAreaJL9.get(k).setLineWrap(true);
           jTextAreaJL9.get(k).setWrapStyleWord(true);
-          // jTextAreaJL7.get(k).setText(json.getString("habilidadeDescricao" + String.valueOf(k)));
-          // jTextAreaJL7.get(k).index = k;
-          // jTextAreaJL7.get(k).getDocument().addDocumentListener(new DocumentListener() {
-          //           @Override
-          //           public void changedUpdate(DocumentEvent evt) {
-          //               ChangeJSON();
-          //           }
-          //
-          //           @Override
-          //           public void removeUpdate(DocumentEvent evt) {
-          //               ChangeJSON();
-          //           }
-          //
-          //           @Override
-          //           public void insertUpdate(DocumentEvent evt) {
-          //               ChangeJSON();
-          //           }
-          //
-          //           public void ChangeJSON() {
-          //               int index = jTextAreaJL7.get(aux).index;
-          //               json.put("habilidadeDescricao" + String.valueOf(index), jTextAreaJL7.get(index).getText());
-          //
-          //               try {
-          //                   WriteJSON();
-          //               } catch (IOException ex) {
-          //                   Logger.getLogger(JanelaNovasSecoes.class.getName()).log(Level.SEVERE, null, ex);
-          //               }
-          //           }
-          //       });
+          jTextAreaJL9.get(k).setText(json.getString("novaSecaoDescricao" + String.valueOf(k)));
+          jTextAreaJL9.get(k).index = k;
+          jTextAreaJL9.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextAreaJL9.get(aux).index;
+              json.put("novaSecaoDescricao" + String.valueOf(index), jTextAreaJL9.get(index).getText());
+
+              try {
+                  WriteJSON();
+              } catch (IOException ex) {
+                  Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+              }
+
+            }
+          });
+
+          jTextAreaJL10.add(new MyTextArea());
+          jTextAreaJL10.get(k).setColumns(1);
+          jTextAreaJL10.get(k).setRows(2);
+          jTextAreaJL10.get(k).setBorder(BorderFactory.createEmptyBorder());
+          jTextAreaJL10.get(k).setLineWrap(true);
+          jTextAreaJL10.get(k).setWrapStyleWord(true);
+          jTextAreaJL10.get(k).setText(json.getString("novaSecaoTopicos" + String.valueOf(k)));
+          jTextAreaJL10.get(k).index = k;
+          jTextAreaJL10.get(k).getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+              ChangeJSON();
+            }
+
+            public void ChangeJSON() {
+              int index = jTextAreaJL10.get(aux).index;
+              json.put("novaSecaoTopicos" + String.valueOf(index), jTextAreaJL10.get(index).getText());
+
+              try {
+                  WriteJSON();
+              } catch (IOException ex) {
+                  Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+              }
+
+            }
+          });
+
+
+          // ScrollBar for the text areas
+
+          jScrollPaneTextJL9.add(new JScrollPane(jTextAreaJL9.get(jTextAreaJL9.size() - 1)));
+          jScrollPaneTextJL10.add(new JScrollPane(jTextAreaJL10.get(jTextAreaJL10.size() - 1)));
+
+          jScrollPaneTextJL9.get(k).setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+          jScrollPaneTextJL10.get(k).setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
 
           // The jTextAreaJL7 is inside the jScrollPaneText
           jScrollPaneTextJL9.get(k).setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+          jScrollPaneTextJL9.get(k).setPreferredSize(new Dimension(620, 100));
 
           jScrollPaneTextJL10.get(k).setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+          jScrollPaneTextJL10.get(k).setPreferredSize(new Dimension(620, 100));
 
           jScrollBarJL9.add(jScrollPaneTextJL9.get(k).getVerticalScrollBar());
           jScrollBarJL9.get(k).setPreferredSize(new Dimension(9, 1));
@@ -411,15 +670,25 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
           jLabel10.get(k).setBackground(new Color(255, 255, 255));
           jLabel10.get(k).setForeground(new Color(62, 62, 62));
           jLabel10.get(k).setFont(new Font("DejaVu Sans", 0, 18));
+
+          jSeparator.add(new JSeparator(SwingConstants.HORIZONTAL));
           // =================================================================================================================
-          // jCheckBoxJL5 = new ArrayList<JCheckBox>();
-          // jCheckBoxJL6 = new ArrayList<JCheckBox>();
-          // jCheckBoxJL7InicioFim = new ArrayList<JCheckBox>();
-          // jCheckBoxJL8 = new ArrayList<JCheckBox>();
-          // jCheckBoxJL9 = new ArrayList<JCheckBox>();
-          // jCheckBoxJL10 = new ArrayList<JCheckBox>();
+
+          int jSx = 780, jSy = 1, gapXbef = 15, gapXafter = 10, gapYbef = 7, gapYafter = 4;
+          if (k == 0) {
+            jSx = 0;
+            jSy = 0;
+            gapXbef = 0;
+            gapXafter = 0;
+            gapYbef = 0;
+            gapYafter = 0;            
+          }
 
           // Adicionado-os ao painel ===============================================================
+              hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+                .addGap(gapXbef)
+                .addComponent(jSeparator.get(k), GroupLayout.PREFERRED_SIZE, jSx, GroupLayout.PREFERRED_SIZE)
+              );
               hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
                 .addGap(30)
                 .addComponent(jLabel4.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
@@ -485,7 +754,7 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
                     .addGap(25)
                     .addGroup(jPanelMainLayout.createParallelGroup()
                       .addComponent(jLabel9.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
-                      .addComponent(jTextAreaJL9.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                      .addComponent(jScrollPaneTextJL9.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
                     )
                   )
 
@@ -494,8 +763,9 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
                     .addGap(25)
                     .addGroup(jPanelMainLayout.createParallelGroup()
                       .addComponent(jLabel10.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
-                      .addComponent(jTextAreaJL10.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                      .addComponent(jScrollPaneTextJL10.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
                     )
+                    .addGap(10)
                   )
 
                 )
@@ -504,23 +774,26 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
               // Vertical
               vGroup.addGroup(jPanelMainLayout.createParallelGroup()
                 .addGroup(jPanelMainLayout.createSequentialGroup()
+                  .addGap(gapYbef)
+                  .addComponent(jSeparator.get(k), GroupLayout.PREFERRED_SIZE, jSy, GroupLayout.PREFERRED_SIZE)
+                  .addGap(gapYafter)
                   .addGap(3)
                   .addComponent(jLabel4.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
-                  .addComponent(jTextFieldJL4.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                  .addGap(3)
+                  .addComponent(jTextFieldJL4.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                  .addGap(10)
                   .addComponent(jCheckBoxJL5.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
                   .addComponent(jLabel5.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
                   .addComponent(jTextFieldJL5.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                  .addGap(3)
+                  .addGap(10)
                   .addComponent(jCheckBoxJL6.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
                   .addComponent(jLabel6.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
                   .addComponent(jTextFieldJL6.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                  .addGap(3)
+                  .addGap(10)
                   .addComponent(jCheckBoxJL7InicioFim.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
 
@@ -536,24 +809,25 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
                     .addComponent(jTextFieldJL7Fim.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                   )
 
-                  .addGap(3)
+                  .addGap(10)
                   .addComponent(jCheckBoxJL8.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
                   .addComponent(jLabel8.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
                   .addComponent(jTextFieldJL8.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                  .addGap(3)
+                  .addGap(10)
                   .addComponent(jCheckBoxJL9.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
                   .addComponent(jLabel9.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
-                  .addComponent(jTextAreaJL9.get(k), GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
-                  .addGap(3)
+                  .addComponent(jScrollPaneTextJL9.get(k), GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+                  .addGap(10)
                   .addComponent(jCheckBoxJL10.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
                   .addComponent(jLabel10.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                   .addGap(3)
-                  .addComponent(jTextAreaJL10.get(k), GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                  .addComponent(jScrollPaneTextJL10.get(k), GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                  .addGap(10)
                   )
               );
         }
@@ -791,13 +1065,13 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
         new JanelaFoto().setVisible(true);
 
         // Remover isso na versão final!
-        try {
-            Runtime.getRuntime().exec("cmd /c cd C:\\CONTRETEC\\CurriculumSoftware & del C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json").waitFor();
-        } catch (IOException ex) {
-            Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // try {
+        //     Runtime.getRuntime().exec("cmd /c cd C:\\CONTRETEC\\CurriculumSoftware & del C:\\CONTRETEC\\CurriculumSoftware\\tmp\\tmp.json").waitFor();
+        // } catch (IOException ex) {
+        //     Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
+        // } catch (InterruptedException ex) {
+        //     Logger.getLogger(Janela0.class.getName()).log(Level.SEVERE, null, ex);
+        // }
 
 
         // new JanelaNovasSecoes().setVisible(true);
@@ -836,11 +1110,635 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
 
     // jButtonAdicionarHabilidade
     private void jButtonAdicionarHabilidadeActionPerformed(ActionEvent evt) {
-      int length = jLabel4.size();
+        int length = jLabel4.size();
 
-      // Criando novos elementos ===============================================================
+        // Criando novos elementos ===============================================================
 
-      // *Criando dados para o arquivo JSON****************************************************
+        // *Criando dados para o arquivo JSON****************************************************
+        // json.put("habilidadeTipo" + String.valueOf(length), "");
+        // json.put("habilidadeDescricao" + String.valueOf(length), "");
+        json.put("novaSecaoNome" + String.valueOf(length), "");
+        json.put("novaSecaoNomeSubsecao?" + String.valueOf(length), 0);
+        json.put("novaSecaoNomeSubsecao" + String.valueOf(length), "");
+        json.put("novaSecaoData?" + String.valueOf(length), 0);
+        json.put("novaSecaoData" + String.valueOf(length), "");
+        json.put("novaSecaoDataInicioFim?" + String.valueOf(length), 0);
+        json.put("novaSecaoDataInicio" + String.valueOf(length), "");
+        json.put("novaSecaoDataFim" + String.valueOf(length), "");
+        json.put("novaSecaoLocal?" + String.valueOf(length), 0);
+        json.put("novaSecaoLocal" + String.valueOf(length), "");
+        json.put("novaSecaoDescricao?" + String.valueOf(length), 0);
+        json.put("novaSecaoDescricao" + String.valueOf(length), "");
+        json.put("novaSecaoTopicos?" + String.valueOf(length), 0);
+        json.put("novaSecaoTopicos" + String.valueOf(length), "");
+
+        try {
+            WriteJSON();
+        } catch (IOException ex) {
+            Logger.getLogger(JanelaEntradas8.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // ****************************************************************************************
+
+        // ReturnPoint1
+
+        // GroupLayout jPanelMainLayout = new GroupLayout(jPanelMain);
+        // GroupLayout.Group hGroup = jPanelMainLayout.createParallelGroup();
+        // GroupLayout.Group vGroup = jPanelMainLayout.createSequentialGroup();
+        // jPanelMainLayout.setHorizontalGroup(hGroup);
+        // jPanelMainLayout.setVerticalGroup(vGroup);
+        // jPanelMain.setLayout(jPanelMainLayout);
+
+        // Criando novos elementos ===============================================================
+        int localAux = length;
+        int k = length;
+
+        // Labels
+        jLabel4.add(new JLabel("Nome da seção"));
+        jLabel5.add(new JLabel("Nome de subseção"));
+        jLabel6.add(new JLabel("Data"));
+        jLabel7Inicio.add(new JLabel("Data de início"));
+        jLabel7Fim.add(new JLabel("Data de termino"));
+        jLabel8.add(new JLabel("Local"));
+        jLabel9.add(new JLabel("Descrição"));
+        jLabel10.add(new JLabel("Tópicos"));
+
+        jCheckBoxJL5.add(new MyCheckBox("Nome de subseção"));
+        jCheckBoxJL5.get(k).setSelected(json.getInt("novaSecaoNomeSubsecao?" + String.valueOf(k)) == 1);
+        jCheckBoxJL5.get(k).index = k;
+        jCheckBoxJL5.get(k).addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            int index = jCheckBoxJL5.get(localAux).index;
+
+            if (jCheckBoxJL5.get(index).isSelected()) {
+              json.put("novaSecaoNomeSubsecao?" + String.valueOf(index), 1);
+            } else {
+              json.put("novaSecaoNomeSubsecao?" + String.valueOf(index), 0);
+            }
+          }
+
+        });
+
+        jCheckBoxJL6.add(new MyCheckBox("Data"));
+        jCheckBoxJL6.get(k).setSelected(json.getInt("novaSecaoData?" + String.valueOf(k)) == 1);
+        jCheckBoxJL6.get(k).index = k;
+        jCheckBoxJL6.get(k).addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            int index = jCheckBoxJL6.get(localAux).index;
+
+            if (jCheckBoxJL6.get(index).isSelected()) {
+              json.put("novaSecaoData?" + String.valueOf(index), 1);
+            } else {
+              json.put("novaSecaoData?" + String.valueOf(index), 0);
+            }
+          }
+
+        });
+
+        jCheckBoxJL7InicioFim.add(new MyCheckBox("Data de início e término"));
+        jCheckBoxJL7InicioFim.get(k).setSelected(json.getInt("novaSecaoDataInicioFim?" + String.valueOf(k)) == 1);
+        jCheckBoxJL7InicioFim.get(k).index = k;
+        jCheckBoxJL7InicioFim.get(k).addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            int index = jCheckBoxJL7InicioFim.get(localAux).index;
+
+            if (jCheckBoxJL7InicioFim.get(index).isSelected()) {
+              json.put("novaSecaoDataInicioFim?" + String.valueOf(index), 1);
+            } else {
+              json.put("novaSecaoDataInicioFim?" + String.valueOf(index), 0);
+            }
+          }
+
+        });
+
+        jCheckBoxJL8.add(new MyCheckBox("Local"));
+        jCheckBoxJL8.get(k).setSelected(json.getInt("novaSecaoLocal?" + String.valueOf(k)) == 1);
+        jCheckBoxJL8.get(k).index = k;
+        jCheckBoxJL8.get(k).addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            int index = jCheckBoxJL8.get(localAux).index;
+
+            if (jCheckBoxJL8.get(index).isSelected()) {
+              json.put("novaSecaoLocal?" + String.valueOf(index), 1);
+            } else {
+              json.put("novaSecaoLocal?" + String.valueOf(index), 0);
+            }
+          }
+
+        });
+
+        jCheckBoxJL9.add(new MyCheckBox("Descrição"));
+        jCheckBoxJL9.get(k).setSelected(json.getInt("novaSecaoDescricao?" + String.valueOf(k)) == 1);
+        jCheckBoxJL9.get(k).index = k;
+        jCheckBoxJL9.get(k).addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            int index = jCheckBoxJL9.get(localAux).index;
+
+            if (jCheckBoxJL9.get(index).isSelected()) {
+              json.put("novaSecaoDescricao?" + String.valueOf(index), 1);
+            } else {
+              json.put("novaSecaoDescricao?" + String.valueOf(index), 0);
+            }
+          }
+
+        });
+
+        jCheckBoxJL10.add(new MyCheckBox("Tópicos"));
+        jCheckBoxJL10.get(k).setSelected(json.getInt("novaSecaoTopicos?" + String.valueOf(k)) == 1);
+        jCheckBoxJL10.get(k).index = k;
+        jCheckBoxJL10.get(k).addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+            int index = jCheckBoxJL10.get(localAux).index;
+
+            if (jCheckBoxJL10.get(index).isSelected()) {
+              json.put("novaSecaoTopicos?" + String.valueOf(index), 1);
+            } else {
+              json.put("novaSecaoTopicos?" + String.valueOf(index), 0);
+            }
+          }
+
+        });
+
+
+        // Text areas and fields
+        jTextFieldJL4.add(new MyTextField());
+        jTextFieldJL4.get(k).setText(json.getString("novaSecaoNome" + String.valueOf(k)));
+        jTextFieldJL4.get(k).index = k;
+        jTextFieldJL4.get(k).getDocument().addDocumentListener(new DocumentListener() {
+          @Override
+          public void changedUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void removeUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void insertUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          public void ChangeJSON() {
+            int index = jTextFieldJL4.get(localAux).index;
+            json.put("novaSecaoNome" + String.valueOf(index), jTextFieldJL4.get(index).getText());
+
+            try {
+                WriteJSON();
+            } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+          }
+      });
+
+        jTextFieldJL5.add(new MyTextField());
+        jTextFieldJL5.get(k).setText(json.getString("novaSecaoNomeSubsecao" + String.valueOf(k)));
+        jTextFieldJL5.get(k).index = k;
+        jTextFieldJL5.get(k).getDocument().addDocumentListener(new DocumentListener() {
+          @Override
+          public void changedUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void removeUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void insertUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          public void ChangeJSON() {
+            int index = jTextFieldJL5.get(localAux).index;
+            json.put("novaSecaoNomeSubsecao" + String.valueOf(index), jTextFieldJL5.get(index).getText());
+
+            try {
+                WriteJSON();
+            } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+          }
+      });
+
+        jTextFieldJL6.add(new MyTextField());
+        jTextFieldJL6.get(k).setText(json.getString("novaSecaoData" + String.valueOf(k)));
+        jTextFieldJL6.get(k).index = k;
+        jTextFieldJL6.get(k).getDocument().addDocumentListener(new DocumentListener() {
+          @Override
+          public void changedUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void removeUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void insertUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          public void ChangeJSON() {
+            int index = jTextFieldJL6.get(localAux).index;
+            json.put("novaSecaoData" + String.valueOf(index), jTextFieldJL6.get(index).getText());
+
+            try {
+                WriteJSON();
+            } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+          }
+       });
+
+        jTextFieldJL7Inicio.add(new MyTextField());
+        jTextFieldJL7Inicio.get(k).setText(json.getString("novaSecaoDataInicio" + String.valueOf(k)));
+        jTextFieldJL7Inicio.get(k).index = k;
+        jTextFieldJL7Inicio.get(k).getDocument().addDocumentListener(new DocumentListener() {
+          @Override
+          public void changedUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void removeUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void insertUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          public void ChangeJSON() {
+            int index = jTextFieldJL7Inicio.get(localAux).index;
+            json.put("novaSecaoDataInicio" + String.valueOf(index), jTextFieldJL7Inicio.get(index).getText());
+
+            try {
+                WriteJSON();
+            } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+          }
+        });
+
+        jTextFieldJL7Fim.add(new MyTextField());
+        jTextFieldJL7Fim.get(k).setText(json.getString("novaSecaoDataFim" + String.valueOf(k)));
+        jTextFieldJL7Fim.get(k).index = k;
+        jTextFieldJL7Fim.get(k).getDocument().addDocumentListener(new DocumentListener() {
+          @Override
+          public void changedUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void removeUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void insertUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          public void ChangeJSON() {
+            int index = jTextFieldJL7Fim.get(localAux).index;
+            json.put("novaSecaoDataFim" + String.valueOf(index), jTextFieldJL7Fim.get(index).getText());
+
+            try {
+                WriteJSON();
+            } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+          }
+        });
+
+        jTextFieldJL8.add(new MyTextField());
+        jTextFieldJL8.get(k).setText(json.getString("novaSecaoLocal" + String.valueOf(k)));
+        jTextFieldJL8.get(k).index = k;
+        jTextFieldJL8.get(k).getDocument().addDocumentListener(new DocumentListener() {
+          @Override
+          public void changedUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void removeUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void insertUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          public void ChangeJSON() {
+            int index = jTextFieldJL8.get(localAux).index;
+            json.put("novaSecaoLocal" + String.valueOf(index), jTextFieldJL8.get(index).getText());
+
+            try {
+                WriteJSON();
+            } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+          }
+        });
+
+        jTextAreaJL9.add(new MyTextArea());
+        jTextAreaJL9.get(k).setColumns(1);
+        jTextAreaJL9.get(k).setRows(2);
+        jTextAreaJL9.get(k).setBorder(BorderFactory.createEmptyBorder());
+        jTextAreaJL9.get(k).setLineWrap(true);
+        jTextAreaJL9.get(k).setWrapStyleWord(true);
+        jTextAreaJL9.get(k).setText(json.getString("novaSecaoDescricao" + String.valueOf(k)));
+        jTextAreaJL9.get(k).index = k;
+        jTextAreaJL9.get(k).getDocument().addDocumentListener(new DocumentListener() {
+          @Override
+          public void changedUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void removeUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void insertUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          public void ChangeJSON() {
+            int index = jTextAreaJL9.get(localAux).index;
+            json.put("novaSecaoDescricao" + String.valueOf(index), jTextAreaJL9.get(index).getText());
+
+            try {
+                WriteJSON();
+            } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+          }
+        });
+
+        jTextAreaJL10.add(new MyTextArea());
+        jTextAreaJL10.get(k).setColumns(1);
+        jTextAreaJL10.get(k).setRows(2);
+        jTextAreaJL10.get(k).setBorder(BorderFactory.createEmptyBorder());
+        jTextAreaJL10.get(k).setLineWrap(true);
+        jTextAreaJL10.get(k).setWrapStyleWord(true);
+        jTextAreaJL10.get(k).setText(json.getString("novaSecaoTopicos" + String.valueOf(k)));
+        jTextAreaJL10.get(k).index = k;
+        jTextAreaJL10.get(k).getDocument().addDocumentListener(new DocumentListener() {
+          @Override
+          public void changedUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void removeUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          @Override
+          public void insertUpdate(DocumentEvent e) {
+            ChangeJSON();
+          }
+
+          public void ChangeJSON() {
+            int index = jTextAreaJL10.get(localAux).index;
+            json.put("novaSecaoTopicos" + String.valueOf(index), jTextAreaJL10.get(index).getText());
+
+            try {
+                WriteJSON();
+            } catch (IOException ex) {
+                Logger.getLogger(JanelaEntradas4.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+          }
+        });
+
+
+        // ScrollBar for the text areas
+
+        jScrollPaneTextJL9.add(new JScrollPane(jTextAreaJL9.get(jTextAreaJL9.size() - 1)));
+        jScrollPaneTextJL10.add(new JScrollPane(jTextAreaJL10.get(jTextAreaJL10.size() - 1)));
+
+        jScrollPaneTextJL9.get(k).setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+        jScrollPaneTextJL10.get(k).setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+
+        // The jTextAreaJL7 is inside the jScrollPaneText
+        jScrollPaneTextJL9.get(k).setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+        jScrollPaneTextJL9.get(k).setPreferredSize(new Dimension(620, 100));
+
+        jScrollPaneTextJL10.get(k).setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62), 1));
+        jScrollPaneTextJL10.get(k).setPreferredSize(new Dimension(620, 100));
+
+        jScrollBarJL9.add(jScrollPaneTextJL9.get(k).getVerticalScrollBar());
+        jScrollBarJL9.get(k).setPreferredSize(new Dimension(9, 1));
+        jScrollBarJL9.get(k).setUI(new ProjectScrollBarUI(jScrollPaneTextJL9.get(k)));
+
+        jScrollBarJL10.add(jScrollPaneTextJL10.get(k).getVerticalScrollBar());
+        jScrollBarJL10.get(k).setPreferredSize(new Dimension(9, 1));
+        jScrollBarJL10.get(k).setUI(new ProjectScrollBarUI(jScrollPaneTextJL10.get(k)));
+
+        jLabel4.get(k).setBackground(new Color(255, 255, 255));
+        jLabel4.get(k).setForeground(new Color(62, 62, 62));
+        jLabel4.get(k).setFont(new Font("DejaVu Sans", 0, 18));
+
+        jLabel5.get(k).setBackground(new Color(255, 255, 255));
+        jLabel5.get(k).setForeground(new Color(62, 62, 62));
+        jLabel5.get(k).setFont(new Font("DejaVu Sans", 0, 18));
+
+        jLabel6.get(k).setBackground(new Color(255, 255, 255));
+        jLabel6.get(k).setForeground(new Color(62, 62, 62));
+        jLabel6.get(k).setFont(new Font("DejaVu Sans", 0, 18));
+
+        jLabel7Inicio.get(k).setBackground(new Color(255, 255, 255));
+        jLabel7Inicio.get(k).setForeground(new Color(62, 62, 62));
+        jLabel7Inicio.get(k).setFont(new Font("DejaVu Sans", 0, 18));
+
+        jLabel7Fim.get(k).setBackground(new Color(255, 255, 255));
+        jLabel7Fim.get(k).setForeground(new Color(62, 62, 62));
+        jLabel7Fim.get(k).setFont(new Font("DejaVu Sans", 0, 18));
+
+        jLabel8.get(k).setBackground(new Color(255, 255, 255));
+        jLabel8.get(k).setForeground(new Color(62, 62, 62));
+        jLabel8.get(k).setFont(new Font("DejaVu Sans", 0, 18));
+
+        jLabel9.get(k).setBackground(new Color(255, 255, 255));
+        jLabel9.get(k).setForeground(new Color(62, 62, 62));
+        jLabel9.get(k).setFont(new Font("DejaVu Sans", 0, 18));
+
+        jLabel10.get(k).setBackground(new Color(255, 255, 255));
+        jLabel10.get(k).setForeground(new Color(62, 62, 62));
+        jLabel10.get(k).setFont(new Font("DejaVu Sans", 0, 18));
+
+        jSeparator.add(new JSeparator(SwingConstants.HORIZONTAL));
+        // =================================================================================================================
+
+        // Adicionado-os ao painel ===============================================================
+            hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+              .addGap(15)
+              .addComponent(jSeparator.get(k), GroupLayout.PREFERRED_SIZE, 780, GroupLayout.PREFERRED_SIZE)
+            );
+            hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+              .addGap(30)
+              .addComponent(jLabel4.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+              );
+            hGroup.addGroup(jPanelMainLayout.createSequentialGroup()
+              .addGap(30)
+              .addGroup(jPanelMainLayout.createParallelGroup()
+                .addComponent(jTextFieldJL4.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+
+                .addComponent(jCheckBoxJL5.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelMainLayout.createSequentialGroup()
+                  .addGap(25)
+                  .addGroup(jPanelMainLayout.createParallelGroup()
+                    .addComponent(jLabel5.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldJL5.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                  )
+                )
+
+                .addGroup(jPanelMainLayout.createSequentialGroup()
+                  .addGap(25)
+                  .addGroup(jPanelMainLayout.createParallelGroup()
+                    .addComponent(jLabel5.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldJL5.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                  )
+                )
+
+                .addComponent(jCheckBoxJL6.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelMainLayout.createSequentialGroup()
+                  .addGap(25)
+                  .addGroup(jPanelMainLayout.createParallelGroup()
+                    .addComponent(jLabel6.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldJL6.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                  )
+                )
+
+                .addComponent(jCheckBoxJL7InicioFim.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelMainLayout.createSequentialGroup()
+                  .addGap(25)
+                  .addGroup(jPanelMainLayout.createParallelGroup()
+                  .addComponent(jLabel7Inicio.get(k), GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+                  .addComponent(jTextFieldJL7Inicio.get(k), GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                      .addGap(145)
+                      .addGroup(jPanelMainLayout.createParallelGroup()
+                        .addComponent(jLabel7Fim.get(k), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldJL7Fim.get(k), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+                      )
+                    )
+                  )
+                )
+
+                .addComponent(jCheckBoxJL8.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelMainLayout.createSequentialGroup()
+                  .addGap(25)
+                  .addGroup(jPanelMainLayout.createParallelGroup()
+                    .addComponent(jLabel8.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldJL8.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                  )
+                )
+
+                .addComponent(jCheckBoxJL9.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelMainLayout.createSequentialGroup()
+                  .addGap(25)
+                  .addGroup(jPanelMainLayout.createParallelGroup()
+                    .addComponent(jLabel9.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPaneTextJL9.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                  )
+                )
+
+                .addComponent(jCheckBoxJL10.get(k), GroupLayout.PREFERRED_SIZE, 670, GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelMainLayout.createSequentialGroup()
+                  .addGap(25)
+                  .addGroup(jPanelMainLayout.createParallelGroup()
+                    .addComponent(jLabel10.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPaneTextJL10.get(k), GroupLayout.PREFERRED_SIZE, 670-50, GroupLayout.PREFERRED_SIZE)
+                  )
+                  .addGap(10)
+                )
+
+              )
+              );
+
+            // Vertical
+            vGroup.addGroup(jPanelMainLayout.createParallelGroup()
+              .addGroup(jPanelMainLayout.createSequentialGroup()
+                .addGap(10)
+                .addComponent(jSeparator.get(k), GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+                .addGap(7)
+                .addComponent(jLabel4.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+                .addComponent(jTextFieldJL4.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(10)
+                .addComponent(jCheckBoxJL5.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+                .addComponent(jLabel5.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+                .addComponent(jTextFieldJL5.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                .addGap(10)
+                .addComponent(jCheckBoxJL6.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+                .addComponent(jLabel6.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+                .addComponent(jTextFieldJL6.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                .addGap(10)
+                .addComponent(jCheckBoxJL7InicioFim.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+
+                .addGroup(jPanelMainLayout.createParallelGroup()
+                  .addComponent(jLabel7Inicio.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                  .addGap(10)
+                  .addComponent(jLabel7Fim.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                )
+
+                .addGroup(jPanelMainLayout.createParallelGroup()
+                  .addComponent(jTextFieldJL7Inicio.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                  .addGap(3)
+                  .addComponent(jTextFieldJL7Fim.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                )
+
+                .addGap(10)
+                .addComponent(jCheckBoxJL8.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+                .addComponent(jLabel8.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+                .addComponent(jTextFieldJL8.get(k), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                .addGap(10)
+                .addComponent(jCheckBoxJL9.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+                .addComponent(jLabel9.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+                .addComponent(jScrollPaneTextJL9.get(k), GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+                .addGap(10)
+                .addComponent(jCheckBoxJL10.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+                .addComponent(jLabel10.get(k), GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGap(3)
+                .addComponent(jScrollPaneTextJL10.get(k), GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                .addGap(10)
+                )
+            );
+
+            jPanelMain.revalidate();
+            // ReturnPoint2
 
       // =================================================================================================================
     }
@@ -914,12 +1812,12 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
     private List<JLabel> jLabel9;  // Descrição
     private List<JLabel> jLabel10; // Tópicos ()
 
-    private List<JCheckBox> jCheckBoxJL5;
-    private List<JCheckBox> jCheckBoxJL6;
-    private List<JCheckBox> jCheckBoxJL7InicioFim;
-    private List<JCheckBox> jCheckBoxJL8;
-    private List<JCheckBox> jCheckBoxJL9;
-    private List<JCheckBox> jCheckBoxJL10;
+    private List<MyCheckBox> jCheckBoxJL5;
+    private List<MyCheckBox> jCheckBoxJL6;
+    private List<MyCheckBox> jCheckBoxJL7InicioFim;
+    private List<MyCheckBox> jCheckBoxJL8;
+    private List<MyCheckBox> jCheckBoxJL9;
+    private List<MyCheckBox> jCheckBoxJL10;
 
     private List<MyTextField> jTextFieldJL4;
     private List<MyTextField> jTextFieldJL5;
@@ -935,6 +1833,8 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
     private List<JScrollBar> jScrollBarJL9;
     private List<JScrollBar> jScrollBarJL10;
 
+    private ArrayList<JSeparator> jSeparator;
+
     private JPanel jPanelMain;
     private JScrollPane jScrollPaneMain;
     private JButton jButtonAdicionarHabilidade;
@@ -943,6 +1843,17 @@ public class JanelaNovasSecoes extends javax.swing.JFrame {
     private JButton jButtonNext;
     private JButton jButtonPrevious;
     // End of variables declaration
+
+    private static class MyCheckBox extends JCheckBox {
+      public int index;
+
+      private MyCheckBox() {}
+
+      private MyCheckBox(String text) {
+        this.setText(text);
+      }
+
+    }
 
     private static class MyTextArea extends JTextArea {
       public int index;

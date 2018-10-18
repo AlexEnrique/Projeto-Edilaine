@@ -91,7 +91,7 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
 
         jPanelMain = new JPanel();
         jScrollPaneMain = new JScrollPane(jPanelMain);
-        jButtonAdicionarHabilidade = new JButton("Adicionar nova formação");
+        jButtonAdicionarHabilidade = new JButton("Adicionar nova habilidade");
 
         // jTextFieldJL4 = new JTextField(json.getString("HabilidadeAnoInicio"));
         // jTextFieldJL5 = new JTextField(json.getString("HabilidadeAnoFim"));
@@ -642,7 +642,7 @@ public class JanelaEntradas8 extends javax.swing.JFrame {
 
     // jButtonAdicionarHabilidade
     private void jButtonAdicionarHabilidadeActionPerformed(ActionEvent evt) {
-      int length = jLabel4.size();
+      int length = jLabel4.size() + 1;
 
       // Criando novos elementos ===============================================================
 
