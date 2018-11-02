@@ -1,0 +1,33 @@
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6800 64-bit) (preloaded format=xelatex 2018.10.18)  18 OCT 2018 22:47
+entering extended mode
+**corriculum.tex
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\.tex"
+! Interruption.
+l.1 
+    %%
+? ^^D
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+H for help, X to quit.
+? 
+LaTeX2e <2018-04-01> patch level 5
+! Interruption.
+l.1 
+    %%
+? 짰^^X
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+H for help, X to quit.
+? x
+ 
+Here is how much of TeX's memory you used:
+ 6 strings out of 427798
+ 63 string characters out of 3151796
+ 63035 words of memory out of 3000000
+ 4100 multiletter control sequences out of 15000+200000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 4i,0n,1p,22b,8s stack positions out of 5000i,500n,10000p,200000b,50000s
+No pages of output.
